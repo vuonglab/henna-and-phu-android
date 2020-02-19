@@ -3,25 +3,43 @@ package com.vuonglab.hennaandphu;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.TextView;
 
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
+    private Handler handler = new Handler();
+    private TextView durationTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView duration = findViewById(R.id.marriedDuration);
+        durationTextView = findViewById(R.id.marriedDuration);
 
         String marriedDuration = getMarriedDuration();
+        durationTextView.setText(marriedDuration);
 
-        duration.setText(marriedDuration);
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() { handler.postDelayed(runnable, 0); }
+        }, 0, 1000);
+        // timer.cancel();
     }
+
+    final Runnable runnable = new Runnable() {
+        public void run() {
+            String marriedDuration = getMarriedDuration();
+            durationTextView.setText(marriedDuration);
+        }
+    };
 
     private String getMarriedDuration() {
         // Credit: https://stackoverflow.com/questions/25747499/java-8-calculate-difference-between-two-localdatetime
