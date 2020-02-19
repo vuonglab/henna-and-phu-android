@@ -28,9 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         durationTextView = findViewById(R.id.marriedDuration);
 
-        String marriedDuration = getMarriedDuration();
-        durationTextView.setText(marriedDuration);
-
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
