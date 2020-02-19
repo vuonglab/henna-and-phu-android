@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.time.LocalDateTime;
@@ -13,6 +14,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
+
+    private Timer timer;
+
     private Handler handler = new Handler();
     private TextView durationTextView;
 
@@ -26,18 +31,42 @@ public class MainActivity extends AppCompatActivity {
         String marriedDuration = getMarriedDuration();
         durationTextView.setText(marriedDuration);
 
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() { handler.postDelayed(runnable, 0); }
         }, 0, 1000);
-        // timer.cancel();
+
+        Log.d(TAG, "Created timer.");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        timer.cancel();
+
+        Log.d(TAG, "Canceled timer.");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() { handler.postDelayed(runnable, 0); }
+        }, 0, 1000);
+
+        Log.d(TAG, "Restarted timer.");
     }
 
     final Runnable runnable = new Runnable() {
         public void run() {
             String marriedDuration = getMarriedDuration();
             durationTextView.setText(marriedDuration);
+
+            Log.d(TAG, "Timer running...");
         }
     };
 
