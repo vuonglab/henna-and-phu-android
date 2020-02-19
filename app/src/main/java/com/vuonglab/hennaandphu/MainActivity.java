@@ -27,13 +27,15 @@ public class MainActivity extends AppCompatActivity {
     private TextView hoursLabel, minutesLabel, secondsLabel;
 
     private class Duration {
-        public long Years;
-        public long Months;
-        public long Days;
-        public long Hours;
-        public long Minutes;
-        public long Seconds;
+        public long Years = -1;
+        public long Months = -1;
+        public long Days = -1;
+        public long Hours = -1;
+        public long Minutes = -1;
+        public long Seconds = -1;
     }
+
+    private Duration previousMarriedDuration = new Duration();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,35 +92,61 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             Duration marriedDuration = getMarriedDuration();
 
-            yearsCount.setText("" + marriedDuration.Years);
-            yearsCount.setEnabled(marriedDuration.Years > 0);
-            yearsLabel.setText(marriedDuration.Years > 1 ? "years" : "year");
-            yearsLabel.setEnabled(marriedDuration.Years > 0);
+            if (marriedDuration.Years != previousMarriedDuration.Years) {
+                yearsCount.setText("" + marriedDuration.Years);
+                yearsCount.setEnabled(marriedDuration.Years > 0);
+                yearsLabel.setText(marriedDuration.Years > 1 ? "years" : "year");
+                yearsLabel.setEnabled(marriedDuration.Years > 0);
 
-            monthsCount.setText("" + marriedDuration.Months);
-            monthsCount.setEnabled(marriedDuration.Months > 0);
-            monthsLabel.setText(marriedDuration.Months > 1 ? "months" : "month");
-            monthsLabel.setEnabled(marriedDuration.Months > 0);
+                Log.d(TAG, "Years updated");
+            }
 
-            daysCount.setText("" + marriedDuration.Days);
-            daysCount.setEnabled(marriedDuration.Days > 0);
-            daysLabel.setText(marriedDuration.Days > 1 ? "days" : "day");
-            daysLabel.setEnabled(marriedDuration.Days > 0);
+            if (marriedDuration.Months != previousMarriedDuration.Months) {
+                monthsCount.setText("" + marriedDuration.Months);
+                monthsCount.setEnabled(marriedDuration.Months > 0);
+                monthsLabel.setText(marriedDuration.Months > 1 ? "months" : "month");
+                monthsLabel.setEnabled(marriedDuration.Months > 0);
 
-            hoursCount.setText("" + marriedDuration.Hours);
-            hoursCount.setEnabled(marriedDuration.Hours > 0);
-            hoursLabel.setText(marriedDuration.Hours > 1 ? "hours" : "hour");
-            hoursLabel.setEnabled(marriedDuration.Hours > 0);
+                Log.d(TAG, "Months updated");
+            }
 
-            minutesCount.setText("" + marriedDuration.Minutes);
-            minutesCount.setEnabled(marriedDuration.Minutes > 0);
-            minutesLabel.setText(marriedDuration.Minutes > 1 ? "minutes" : "minute");
-            minutesLabel.setEnabled(marriedDuration.Minutes > 0);
+            if (marriedDuration.Days != previousMarriedDuration.Days) {
+                daysCount.setText("" + marriedDuration.Days);
+                daysCount.setEnabled(marriedDuration.Days > 0);
+                daysLabel.setText(marriedDuration.Days > 1 ? "days" : "day");
+                daysLabel.setEnabled(marriedDuration.Days > 0);
 
-            secondsCount.setText("" + marriedDuration.Seconds);
-            secondsCount.setEnabled(marriedDuration.Seconds > 0);
-            secondsLabel.setText(marriedDuration.Seconds > 1 ? "seconds" : "second");
-            secondsLabel.setEnabled(marriedDuration.Seconds > 0);
+                Log.d(TAG, "Days updated");
+            }
+
+            if (marriedDuration.Hours != previousMarriedDuration.Hours) {
+                hoursCount.setText("" + marriedDuration.Hours);
+                hoursCount.setEnabled(marriedDuration.Hours > 0);
+                hoursLabel.setText(marriedDuration.Hours > 1 ? "hours" : "hour");
+                hoursLabel.setEnabled(marriedDuration.Hours > 0);
+
+                Log.d(TAG, "Hours updated");
+            }
+
+            if (marriedDuration.Minutes != previousMarriedDuration.Minutes) {
+                minutesCount.setText("" + marriedDuration.Minutes);
+                minutesCount.setEnabled(marriedDuration.Minutes > 0);
+                minutesLabel.setText(marriedDuration.Minutes > 1 ? "minutes" : "minute");
+                minutesLabel.setEnabled(marriedDuration.Minutes > 0);
+
+                Log.d(TAG, "Minutes updated");
+            }
+
+            if (marriedDuration.Seconds != previousMarriedDuration.Seconds) {
+                secondsCount.setText("" + marriedDuration.Seconds);
+                secondsCount.setEnabled(marriedDuration.Seconds > 0);
+                secondsLabel.setText(marriedDuration.Seconds > 1 ? "seconds" : "second");
+                secondsLabel.setEnabled(marriedDuration.Seconds > 0);
+
+                Log.d(TAG, "Seconds updated");
+            }
+
+            previousMarriedDuration = marriedDuration;
 
             Log.d(TAG, "Timer running...");
         }
