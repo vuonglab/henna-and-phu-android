@@ -92,6 +92,11 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             Duration marriedDuration = getMarriedDuration();
 
+            // Labels are changed to singular or plural only if necessary.
+            // Also, duration component is enabled or disabled only if needed.
+            // These optimizations assume that the xml layout sets the labels
+            // to plural and enables all TextViews as defaults.
+
             if (marriedDuration.Years != previousMarriedDuration.Years) {
                 yearsCount.setText("" + marriedDuration.Years);
 
