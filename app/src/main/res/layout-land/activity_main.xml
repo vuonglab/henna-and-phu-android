@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*"
+    android:layout_margin="16sp"
+    tools:context=".MainActivity">
+
+    <TableRow>
+        <TextView
+            android:id="@+id/yearsCount"
+            android:text="4"
+            android:textSize="48sp"
+            android:layout_marginEnd="2sp"
+            android:gravity="end" />
+
+        <TextView
+            android:id="@+id/yearsLabel"
+            android:text="@string/years"
+            android:textSize="48sp"
+            android:layout_marginStart="2sp"
+            android:gravity="start" />
+
+        <TextView
+            android:id="@+id/hoursCount"
+            android:text="8"
+            android:textSize="48sp"
+            android:layout_marginEnd="2sp"
+            android:gravity="end" />
+
+        <TextView
+            android:id="@+id/hoursLabel"
+            android:text="@string/hours"
+            android:textSize="48sp"
+            android:layout_marginStart="2sp"
+            android:gravity="start" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/monthsCount"
+            android:text="10"
+            android:textSize="48sp"
+            android:layout_marginEnd="2sp"
+            android:gravity="end" />
+
+        <TextView
+            android:id="@+id/monthsLabel"
+            android:text="@string/months"
+            android:textSize="48sp"
+            android:layout_marginStart="2sp"
+            android:gravity="start" />
+
+        <TextView
+            android:id="@+id/minutesCount"
+            android:text="4"
+            android:textSize="48sp"
+            android:layout_marginEnd="2sp"
+            android:gravity="end" />
+
+        <TextView
+            android:id="@+id/minutesLabel"
+            android:text="@string/minutes"
+            android:textSize="48sp"
+            android:layout_marginStart="2sp"
+            android:gravity="start" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/daysCount"
+            android:text="28"
+            android:textSize="48sp"
+            android:layout_marginEnd="2sp"
+            android:gravity="end" />
+
+        <TextView
+            android:id="@+id/daysLabel"
+            android:text="@string/days"
+            android:textSize="48sp"
+            android:layout_marginStart="2sp"
+            android:gravity="start" />
+
+        <TextView
+            android:id="@+id/secondsCount"
+            android:text="53"
+            android:textSize="48sp"
+            android:layout_marginEnd="2sp"
+            android:gravity="end" />
+
+        <TextView
+            android:id="@+id/secondsLabel"
+            android:text="@string/seconds"
+            android:textSize="48sp"
+            android:layout_marginStart="2sp"
+            android:gravity="start" />
+    </TableRow>
+</TableLayout>
