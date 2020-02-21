@@ -101,9 +101,9 @@ public class MainActivity extends AppCompatActivity {
                 yearsCount.setText("" + marriedDuration.Years);
 
                 if (marriedDuration.Years == 0 || marriedDuration.Years == 1)
-                    yearsLabel.setText("year");
+                    yearsLabel.setText(R.string.year);
                 else if (marriedDuration.Years == 2)
-                    yearsLabel.setText("years");
+                    yearsLabel.setText(R.string.years);
 
                 if (marriedDuration.Years == 0) {
                     yearsCount.setEnabled(false);
@@ -120,9 +120,9 @@ public class MainActivity extends AppCompatActivity {
                 monthsCount.setText("" + marriedDuration.Months);
 
                 if (marriedDuration.Months == 0 || marriedDuration.Months == 1)
-                    monthsLabel.setText("month");
+                    monthsLabel.setText(R.string.month);
                 else if (marriedDuration.Months == 2)
-                        monthsLabel.setText("months");
+                        monthsLabel.setText(R.string.months);
 
                 if (marriedDuration.Months == 0) {
                     monthsCount.setEnabled(false);
@@ -139,9 +139,9 @@ public class MainActivity extends AppCompatActivity {
                 daysCount.setText("" + marriedDuration.Days);
 
                 if (marriedDuration.Days == 0 || marriedDuration.Days == 1)
-                    daysLabel.setText("day");
+                    daysLabel.setText(R.string.day);
                 else if (marriedDuration.Days == 2)
-                    daysLabel.setText("days");
+                    daysLabel.setText(R.string.days);
 
                 if (marriedDuration.Days == 0) {
                     daysCount.setEnabled(false);
@@ -158,9 +158,9 @@ public class MainActivity extends AppCompatActivity {
                 hoursCount.setText("" + marriedDuration.Hours);
 
                 if (marriedDuration.Hours == 0 || marriedDuration.Hours == 1)
-                    hoursLabel.setText("hour");
+                    hoursLabel.setText(R.string.hour);
                 else if (marriedDuration.Hours == 2)
-                    hoursLabel.setText("hours");
+                    hoursLabel.setText(R.string.hours);
 
                 if (marriedDuration.Hours == 0) {
                     hoursCount.setEnabled(false);
@@ -177,9 +177,9 @@ public class MainActivity extends AppCompatActivity {
                 minutesCount.setText("" + marriedDuration.Minutes);
 
                 if (marriedDuration.Minutes == 0 || marriedDuration.Minutes == 1)
-                    minutesLabel.setText("minute");
+                    minutesLabel.setText(R.string.minute);
                 else if (marriedDuration.Minutes == 2)
-                    minutesLabel.setText("minutes");
+                    minutesLabel.setText(R.string.minutes);
 
                 if (marriedDuration.Minutes == 0) {
                     minutesCount.setEnabled(false);
@@ -196,9 +196,9 @@ public class MainActivity extends AppCompatActivity {
                 secondsCount.setText("" + marriedDuration.Seconds);
 
                 if (marriedDuration.Seconds == 0 || marriedDuration.Seconds == 1)
-                    secondsLabel.setText("second");
+                    secondsLabel.setText(R.string.second);
                 else if (marriedDuration.Seconds == 2)
-                    secondsLabel.setText("seconds");
+                    secondsLabel.setText(R.string.seconds);
 
                 if (marriedDuration.Seconds == 0) {
                     secondsCount.setEnabled(false);
