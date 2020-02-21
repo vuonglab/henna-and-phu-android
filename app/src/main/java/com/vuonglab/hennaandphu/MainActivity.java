@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             // to plural and enables all TextViews as defaults.
 
             if (marriedDuration.Years != previousMarriedDuration.Years) {
-                yearsCount.setText("" + marriedDuration.Years);
+                yearsCount.setText(Long.toString(marriedDuration.Years));
 
                 if (marriedDuration.Years == 0 || marriedDuration.Years == 1)
                     yearsLabel.setText(R.string.year);
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (marriedDuration.Months != previousMarriedDuration.Months) {
-                monthsCount.setText("" + marriedDuration.Months);
+                monthsCount.setText(Long.toString(marriedDuration.Months));
 
                 if (marriedDuration.Months == 0 || marriedDuration.Months == 1)
                     monthsLabel.setText(R.string.month);
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (marriedDuration.Days != previousMarriedDuration.Days) {
-                daysCount.setText("" + marriedDuration.Days);
+                daysCount.setText(Long.toString(marriedDuration.Days));
 
                 if (marriedDuration.Days == 0 || marriedDuration.Days == 1)
                     daysLabel.setText(R.string.day);
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (marriedDuration.Hours != previousMarriedDuration.Hours) {
-                hoursCount.setText("" + marriedDuration.Hours);
+                hoursCount.setText(Long.toString(marriedDuration.Hours));
 
                 if (marriedDuration.Hours == 0 || marriedDuration.Hours == 1)
                     hoursLabel.setText(R.string.hour);
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (marriedDuration.Minutes != previousMarriedDuration.Minutes) {
-                minutesCount.setText("" + marriedDuration.Minutes);
+                minutesCount.setText(Long.toString(marriedDuration.Minutes));
 
                 if (marriedDuration.Minutes == 0 || marriedDuration.Minutes == 1)
                     minutesLabel.setText(R.string.minute);
@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (marriedDuration.Seconds != previousMarriedDuration.Seconds) {
-                secondsCount.setText("" + marriedDuration.Seconds);
+                secondsCount.setText(Long.toString(marriedDuration.Seconds));
 
                 if (marriedDuration.Seconds == 0 || marriedDuration.Seconds == 1)
                     secondsLabel.setText(R.string.second);
