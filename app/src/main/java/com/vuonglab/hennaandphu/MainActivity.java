@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Timer timer;
 
-    private Handler handler = new Handler();
+    private final Handler handler = new Handler();
 
     private TextView yearsCount, monthsCount, daysCount;
     private TextView hoursCount, minutesCount, secondsCount;
@@ -27,12 +27,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView hoursLabel, minutesLabel, secondsLabel;
 
     private class Duration {
-        public long Years = -1;
-        public long Months = -1;
-        public long Days = -1;
-        public long Hours = -1;
-        public long Minutes = -1;
-        public long Seconds = -1;
+        long Years = -1;
+        long Months = -1;
+        long Days = -1;
+        long Hours = -1;
+        long Minutes = -1;
+        long Seconds = -1;
     }
 
     private Duration previousMarriedDuration = new Duration();
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "Restarted timer.");
     }
 
-    final Runnable runnable = new Runnable() {
+    private final Runnable runnable = new Runnable() {
         public void run() {
             Duration marriedDuration = getMarriedDuration();
 
