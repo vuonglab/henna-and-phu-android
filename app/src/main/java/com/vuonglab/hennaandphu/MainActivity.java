@@ -8,7 +8,8 @@ import android.util.Log;
 import android.widget.TextView;
 
 import java.time.LocalDateTime;
-import java.time.Month;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -233,27 +234,40 @@ public class MainActivity extends AppCompatActivity {
 
     private Duration getMarriedDuration() {
         // Credit: https://stackoverflow.com/questions/25747499/java-8-calculate-difference-between-two-localdatetime
-        LocalDateTime weddingDateTime = LocalDateTime.of(2015, Month.MARCH, 14, 9, 26, 53);
-        LocalDateTime now = LocalDateTime.now();
+        ZonedDateTime weddingDateTimeInPhoenixWithTimeZone = ZonedDateTime.of(2015, 3, 14, 9, 26, 53, 0, ZoneId.of("America/Phoenix"));
+        LocalDateTime weddingDateTimeInPhoenix = weddingDateTimeInPhoenixWithTimeZone.toLocalDateTime();
 
-        LocalDateTime tempDateTime = LocalDateTime.from( weddingDateTime );
+        ZonedDateTime nowLocalWithTimeZone = ZonedDateTime.now();
+        ZonedDateTime nowInPhoenixWithTimeZone = ZonedDateTime.now(ZoneId.of("America/Phoenix"));
+        LocalDateTime nowInPhoenix = nowInPhoenixWithTimeZone.toLocalDateTime();
 
-        long years = tempDateTime.until( now, ChronoUnit.YEARS );
+        if (previousMarriedDuration.Years < 0) {
+            Log.d(TAG, "   Wedding date-time in Phoenix (with timezone): " + weddingDateTimeInPhoenixWithTimeZone.toString());
+            Log.d(TAG, "Wedding date-time in Phoenix (without timezone): " + weddingDateTimeInPhoenix.toString());
+
+            Log.d(TAG, "       Current date-time, local (with timezone): " + nowLocalWithTimeZone.toString());
+            Log.d(TAG, "   Current date-time in Phoenix (with timezone): " + nowInPhoenixWithTimeZone.toString());
+            Log.d(TAG, "Current date-time in Phoenix (without timezone): " + nowInPhoenix.toString());
+        }
+
+        LocalDateTime tempDateTime = LocalDateTime.from( weddingDateTimeInPhoenix );
+
+        long years = tempDateTime.until( nowInPhoenix, ChronoUnit.YEARS );
         tempDateTime = tempDateTime.plusYears( years );
 
-        long months = tempDateTime.until( now, ChronoUnit.MONTHS );
+        long months = tempDateTime.until( nowInPhoenix, ChronoUnit.MONTHS );
         tempDateTime = tempDateTime.plusMonths( months );
 
-        long days = tempDateTime.until( now, ChronoUnit.DAYS );
+        long days = tempDateTime.until( nowInPhoenix, ChronoUnit.DAYS );
         tempDateTime = tempDateTime.plusDays( days );
 
-        long hours = tempDateTime.until( now, ChronoUnit.HOURS );
+        long hours = tempDateTime.until( nowInPhoenix, ChronoUnit.HOURS );
         tempDateTime = tempDateTime.plusHours( hours );
 
-        long minutes = tempDateTime.until( now, ChronoUnit.MINUTES );
+        long minutes = tempDateTime.until( nowInPhoenix, ChronoUnit.MINUTES );
         tempDateTime = tempDateTime.plusMinutes( minutes );
 
-        long seconds = tempDateTime.until( now, ChronoUnit.SECONDS );
+        long seconds = tempDateTime.until( nowInPhoenix, ChronoUnit.SECONDS );
 
         Duration marriedDuration = new Duration();
         marriedDuration.Years = years;
