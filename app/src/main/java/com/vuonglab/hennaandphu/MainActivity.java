@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 yearsCount.setText(String.valueOf(marriedDuration.Years));
 
                 long expectedYears = previousMarriedDuration.Years + 1;
-                boolean updateSkipped = (expectedYears != marriedDuration.Years);
+                boolean updateSkipped = (expectedYears != marriedDuration.Years || previousMarriedDuration.Years < 0);
 
                 if (marriedDuration.Years == 0 || marriedDuration.Years == 1)
                     yearsLabel.setText(R.string.year);
@@ -111,14 +111,14 @@ public class MainActivity extends AppCompatActivity {
                     yearsLabel.setEnabled(true);
                 }
 
-                Log.d(TAG, "Years updated" + (updateSkipped ? " (skipped)" : ""));
+                Log.d(TAG, "Years updated" + (updateSkipped ? "!" : ""));
             }
 
             if (marriedDuration.Months != previousMarriedDuration.Months) {
                 monthsCount.setText(String.valueOf(marriedDuration.Months));
 
                 long expectedMonths = (previousMarriedDuration.Months == 11 ? 0 : previousMarriedDuration.Months+1);
-                boolean updateSkipped = (expectedMonths != marriedDuration.Months);
+                boolean updateSkipped = (expectedMonths != marriedDuration.Months || previousMarriedDuration.Months < 0);
 
                 if (marriedDuration.Months == 0 || marriedDuration.Months == 1)
                     monthsLabel.setText(R.string.month);
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                     monthsLabel.setEnabled(true);
                 }
 
-                Log.d(TAG, "Months updated" + (updateSkipped ? " (skipped)" : ""));
+                Log.d(TAG, "Months updated" + (updateSkipped ? "!" : ""));
             }
 
             if (marriedDuration.Days != previousMarriedDuration.Days) {
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 boolean updateSkipped = true;
                 if (previousMarriedDuration.Days <= 26) {
                     long expectedDays = previousMarriedDuration.Days + 1;
-                    updateSkipped = (expectedDays != marriedDuration.Days);
+                    updateSkipped = (expectedDays != marriedDuration.Days || previousMarriedDuration.Days < 0);
                 }
 
                 if (marriedDuration.Days == 0 || marriedDuration.Days == 1)
@@ -158,14 +158,14 @@ public class MainActivity extends AppCompatActivity {
                     daysLabel.setEnabled(true);
                 }
 
-                Log.d(TAG, "Days updated" + (updateSkipped ? " (skipped)" : ""));
+                Log.d(TAG, "Days updated" + (updateSkipped ? "!" : ""));
             }
 
             if (marriedDuration.Hours != previousMarriedDuration.Hours) {
                 hoursCount.setText(String.valueOf(marriedDuration.Hours));
 
                 long expectedHours = (previousMarriedDuration.Hours == 23 ? 0 : previousMarriedDuration.Hours+1);
-                boolean updateSkipped = (expectedHours != marriedDuration.Hours);
+                boolean updateSkipped = (expectedHours != marriedDuration.Hours || previousMarriedDuration.Hours < 0);
 
                 if (marriedDuration.Hours == 0 || marriedDuration.Hours == 1)
                     hoursLabel.setText(R.string.hour);
@@ -180,14 +180,14 @@ public class MainActivity extends AppCompatActivity {
                     hoursLabel.setEnabled(true);
                 }
 
-                Log.d(TAG, "Hours updated" + (updateSkipped ? " (skipped)" : ""));
+                Log.d(TAG, "Hours updated" + (updateSkipped ? "!" : ""));
             }
 
             if (marriedDuration.Minutes != previousMarriedDuration.Minutes) {
                 minutesCount.setText(String.valueOf(marriedDuration.Minutes));
 
                 long expectedMinutes = (previousMarriedDuration.Minutes == 59 ? 0 : previousMarriedDuration.Minutes+1);
-                boolean updateSkipped = (expectedMinutes != marriedDuration.Minutes);
+                boolean updateSkipped = (expectedMinutes != marriedDuration.Minutes || previousMarriedDuration.Minutes < 0);
 
                 if (marriedDuration.Minutes == 0 || marriedDuration.Minutes == 1)
                     minutesLabel.setText(R.string.minute);
@@ -202,14 +202,14 @@ public class MainActivity extends AppCompatActivity {
                     minutesLabel.setEnabled(true);
                 }
 
-                Log.d(TAG, "Minutes updated" + (updateSkipped ? " (skipped)" : ""));
+                Log.d(TAG, "Minutes updated" + (updateSkipped ? "!" : ""));
             }
 
             if (marriedDuration.Seconds != previousMarriedDuration.Seconds) {
                 secondsCount.setText(String.valueOf(marriedDuration.Seconds));
 
                 long expectedSeconds = (previousMarriedDuration.Seconds == 59 ? 0 : previousMarriedDuration.Seconds+1);
-                boolean updateSkipped = (expectedSeconds != marriedDuration.Seconds);
+                boolean updateSkipped = (expectedSeconds != marriedDuration.Seconds || previousMarriedDuration.Seconds < 0);
 
                 if (marriedDuration.Seconds == 0 || marriedDuration.Seconds == 1)
                     secondsLabel.setText(R.string.second);
@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
                     secondsLabel.setEnabled(true);
                 }
 
-                Log.d(TAG, "Seconds updated" + (updateSkipped ? " (skipped)" : ""));
+                Log.d(TAG, "Seconds updated" + (updateSkipped ? "!" : ""));
             }
 
             previousMarriedDuration = marriedDuration;
