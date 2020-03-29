@@ -7,10 +7,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -82,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final Runnable runnable = new Runnable() {
         public void run() {
-            Duration marriedDuration = getMarriedDuration();
+            Duration marriedDuration = DurationCalculator.getMarriedDuration(ZonedDateTime.now());
 
             if (marriedDuration.Years != previousMarriedDuration.Years) {
                 yearsCount.setText(String.valueOf(marriedDuration.Years));
@@ -222,54 +219,4 @@ public class MainActivity extends AppCompatActivity {
             previousMarriedDuration = marriedDuration;
         }
     };
-
-    private Duration getMarriedDuration() {
-        // Credit: https://stackoverflow.com/questions/25747499/java-8-calculate-difference-between-two-localdatetime
-        ZonedDateTime weddingDateTimeInPhoenixWithTimeZone = ZonedDateTime.of(2015, 3, 14, 9, 26, 53, 0, ZoneId.of("America/Phoenix"));
-        LocalDateTime weddingDateTimeInPhoenix = weddingDateTimeInPhoenixWithTimeZone.toLocalDateTime();
-
-        ZonedDateTime nowLocalWithTimeZone = ZonedDateTime.now();
-
-        ZonedDateTime nowInPhoenixWithTimeZone = nowLocalWithTimeZone.withZoneSameInstant(ZoneId.of("America/Phoenix"));
-        LocalDateTime nowInPhoenix = nowInPhoenixWithTimeZone.toLocalDateTime();
-
-        if (previousMarriedDuration.Years < 0) {
-            Log.d(TAG, "   Wedding date-time in Phoenix (with timezone): " + weddingDateTimeInPhoenixWithTimeZone.toString());
-            Log.d(TAG, "Wedding date-time in Phoenix (without timezone): " + weddingDateTimeInPhoenix.toString());
-
-            Log.d(TAG, "       Current date-time, local (with timezone): " + nowLocalWithTimeZone.toString());
-
-            Log.d(TAG, "   Current date-time in Phoenix (with timezone): " + nowInPhoenixWithTimeZone.toString());
-            Log.d(TAG, "Current date-time in Phoenix (without timezone): " + nowInPhoenix.toString());
-        }
-
-        LocalDateTime tempDateTime = LocalDateTime.from( weddingDateTimeInPhoenix );
-
-        long years = tempDateTime.until( nowInPhoenix, ChronoUnit.YEARS );
-        tempDateTime = tempDateTime.plusYears( years );
-
-        long months = tempDateTime.until( nowInPhoenix, ChronoUnit.MONTHS );
-        tempDateTime = tempDateTime.plusMonths( months );
-
-        long days = tempDateTime.until( nowInPhoenix, ChronoUnit.DAYS );
-        tempDateTime = tempDateTime.plusDays( days );
-
-        long hours = tempDateTime.until( nowInPhoenix, ChronoUnit.HOURS );
-        tempDateTime = tempDateTime.plusHours( hours );
-
-        long minutes = tempDateTime.until( nowInPhoenix, ChronoUnit.MINUTES );
-        tempDateTime = tempDateTime.plusMinutes( minutes );
-
-        long seconds = tempDateTime.until( nowInPhoenix, ChronoUnit.SECONDS );
-
-        Duration marriedDuration = new Duration();
-        marriedDuration.Years = years;
-        marriedDuration.Months = months;
-        marriedDuration.Days = days;
-        marriedDuration.Hours = hours;
-        marriedDuration.Minutes = minutes;
-        marriedDuration.Seconds = seconds;
-
-        return marriedDuration;
-    }
 }
