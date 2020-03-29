@@ -229,7 +229,8 @@ public class MainActivity extends AppCompatActivity {
         LocalDateTime weddingDateTimeInPhoenix = weddingDateTimeInPhoenixWithTimeZone.toLocalDateTime();
 
         ZonedDateTime nowLocalWithTimeZone = ZonedDateTime.now();
-        ZonedDateTime nowInPhoenixWithTimeZone = ZonedDateTime.now(ZoneId.of("America/Phoenix"));
+
+        ZonedDateTime nowInPhoenixWithTimeZone = nowLocalWithTimeZone.withZoneSameInstant(ZoneId.of("America/Phoenix"));
         LocalDateTime nowInPhoenix = nowInPhoenixWithTimeZone.toLocalDateTime();
 
         if (previousMarriedDuration.Years < 0) {
@@ -237,6 +238,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "Wedding date-time in Phoenix (without timezone): " + weddingDateTimeInPhoenix.toString());
 
             Log.d(TAG, "       Current date-time, local (with timezone): " + nowLocalWithTimeZone.toString());
+
             Log.d(TAG, "   Current date-time in Phoenix (with timezone): " + nowInPhoenixWithTimeZone.toString());
             Log.d(TAG, "Current date-time in Phoenix (without timezone): " + nowInPhoenix.toString());
         }
