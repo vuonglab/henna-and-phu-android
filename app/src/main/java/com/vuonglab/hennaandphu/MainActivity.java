@@ -27,15 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView yearsLabel, monthsLabel, daysLabel;
     private TextView hoursLabel, minutesLabel, secondsLabel;
 
-    private class Duration {
-        long Years = -1;
-        long Months = -1;
-        long Days = -1;
-        long Hours = -1;
-        long Minutes = -1;
-        long Seconds = -1;
-    }
-
     private Duration previousMarriedDuration = new Duration();
 
     @Override
