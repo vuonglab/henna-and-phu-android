@@ -18,6 +18,7 @@ class DurationCalculator {
         ZonedDateTime nowInPhoenixWithTimeZone = nowWithTimeZone.withZoneSameInstant(ZoneId.of("America/Phoenix"));
         LocalDateTime nowInPhoenix = nowInPhoenixWithTimeZone.toLocalDateTime();
 
+        /*
         Log.d(TAG, "   Wedding date-time in Phoenix (with timezone): " + weddingDateTimeInPhoenixWithTimeZone.toString());
         Log.d(TAG, "Wedding date-time in Phoenix (without timezone): " + weddingDateTimeInPhoenix.toString());
 
@@ -25,6 +26,7 @@ class DurationCalculator {
 
         Log.d(TAG, "   Current date-time in Phoenix (with timezone): " + nowInPhoenixWithTimeZone.toString());
         Log.d(TAG, "Current date-time in Phoenix (without timezone): " + nowInPhoenix.toString());
+        */
 
         LocalDateTime tempDateTime = LocalDateTime.from( weddingDateTimeInPhoenix );
 
