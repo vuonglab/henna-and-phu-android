@@ -7,4 +7,16 @@ class Duration {
     long Hours = -1;
     long Minutes = -1;
     long Seconds = -1;
+
+    Duration() {}
+
+    Duration(long years, long months, long days, long hours, long minutes, long seconds)
+    {
+        Years = years;
+        Months = months;
+        Days = days;
+        Hours = hours;
+        Minutes = minutes;
+        Seconds = seconds;
+    }
 }
