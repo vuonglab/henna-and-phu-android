@@ -1,12 +1,11 @@
 package com.vuonglab.hennaandphu;
 
+import static com.google.common.truth.Truth.assertThat;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class MarriedDurationUnitTest {
     @Test
     public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+        assertThat(2 + 2).isEqualTo(4);
     }
 }
