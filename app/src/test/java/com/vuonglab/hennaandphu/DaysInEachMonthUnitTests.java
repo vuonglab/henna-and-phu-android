@@ -7,7 +7,7 @@ import java.time.ZonedDateTime;
 
 import static com.google.common.truth.Truth.assertThat;
 
-public class PhoenixMonthsDurationUnitTests {
+public class DaysInEachMonthUnitTests {
     @Test
     public void _0_month() {
         ZonedDateTime now = getPhoenixDateTime(2015, 3, 14, 9, 26, 53);

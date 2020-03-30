@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
-public class PhoenixBasicDurationUnitTests {
+public class BasicDurationUnitTests {
     @Test
     public void zero_duration() {
         ZonedDateTime now = getPhoenixDateTime(2015, 3, 14, 9, 26, 53);
