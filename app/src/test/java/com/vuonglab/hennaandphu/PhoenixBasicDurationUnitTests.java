@@ -15,7 +15,7 @@ public class PhoenixBasicDurationUnitTests {
     }
 
     @Test
-    public void one_second() {
+    public void _1_second() {
         ZonedDateTime now = getPhoenixDateTime(2015, 3, 14, 9, 26, 54);
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
         assertDuration(marriedDuration, new Duration(0, 0, 0, 0, 0, 1));
@@ -29,7 +29,7 @@ public class PhoenixBasicDurationUnitTests {
     }
 
     @Test
-    public void one_minute() {
+    public void _1_minute() {
         ZonedDateTime now = getPhoenixDateTime(2015, 3, 14, 9, 27, 53);
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
         assertDuration(marriedDuration, new Duration(0, 0, 0, 0, 1, 0));
@@ -43,7 +43,7 @@ public class PhoenixBasicDurationUnitTests {
     }
 
     @Test
-    public void one_hour() {
+    public void _1_hour() {
         ZonedDateTime now = getPhoenixDateTime(2015, 3, 14, 10, 26, 53);
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
         assertDuration(marriedDuration, new Duration(0, 0, 0, 1, 0, 0));
@@ -57,7 +57,7 @@ public class PhoenixBasicDurationUnitTests {
     }
 
     @Test
-    public void one_day() {
+    public void _1_day() {
         ZonedDateTime now = getPhoenixDateTime(2015, 3, 15, 9, 26, 53);
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
         assertDuration(marriedDuration, new Duration(0, 0, 1, 0, 0, 0));
@@ -71,7 +71,7 @@ public class PhoenixBasicDurationUnitTests {
     }
 
     @Test
-    public void one_month() {
+    public void _1_month() {
         ZonedDateTime now = getPhoenixDateTime(2015, 4, 14, 9, 26, 53);
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
         assertDuration(marriedDuration, new Duration(0, 1, 0, 0, 0, 0));
@@ -85,7 +85,7 @@ public class PhoenixBasicDurationUnitTests {
     }
 
     @Test
-    public void one_year() {
+    public void _1_year() {
         ZonedDateTime now = getPhoenixDateTime(2016, 3, 14, 9, 26, 53);
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
         assertDuration(marriedDuration, new Duration(1, 0, 0, 0, 0, 0));
