@@ -100,7 +100,7 @@ public class BasicDurationUnitTests {
 
     private ZonedDateTime getPhoenixDateTime(int year, int month, int dayOfMonth, int hour, int minute, int second)
     {
-        return ZonedDateTime.of(year, month, dayOfMonth, hour, minute, second, 0, ZoneId.of("America/Phoenix"));
+        return ZonedDateTime.of(year, month, dayOfMonth, hour, minute, second, 0, ZoneId.of("US/Arizona"));
     }
 
     private void assertDuration(Duration actualDuration, Duration expectedDuration)

@@ -12,10 +12,10 @@ class DurationCalculator {
 
     static Duration getMarriedDuration(ZonedDateTime nowWithTimeZone) {
         // Credit: https://stackoverflow.com/questions/25747499/java-8-calculate-difference-between-two-localdatetime
-        ZonedDateTime weddingDateTimeInPhoenixWithTimeZone = ZonedDateTime.of(2015, 3, 14, 9, 26, 53, 0, ZoneId.of("America/Phoenix"));
+        ZonedDateTime weddingDateTimeInPhoenixWithTimeZone = ZonedDateTime.of(2015, 3, 14, 9, 26, 53, 0, ZoneId.of("US/Arizona"));
         LocalDateTime weddingDateTimeInPhoenix = weddingDateTimeInPhoenixWithTimeZone.toLocalDateTime();
 
-        ZonedDateTime nowInPhoenixWithTimeZone = nowWithTimeZone.withZoneSameInstant(ZoneId.of("America/Phoenix"));
+        ZonedDateTime nowInPhoenixWithTimeZone = nowWithTimeZone.withZoneSameInstant(ZoneId.of("US/Arizona"));
         LocalDateTime nowInPhoenix = nowInPhoenixWithTimeZone.toLocalDateTime();
 
         /*
