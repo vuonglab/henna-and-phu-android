@@ -7,6 +7,14 @@ import java.time.ZonedDateTime;
 
 import static com.google.common.truth.Truth.assertThat;
 
+// Tests generated against timezone data version tzdata2018g
+// (https://mm.icann.org/pipermail/tz-announce/2018-October/000052.html)
+// in the JRE software.
+//
+// If the tests fail, find out which timezone version the system is using.
+// Then check https://www.oracle.com/technetwork/java/javase/tzdata-versions-138805.html
+// to see if the changes in the timezone data could explain why the tests failed.
+// Do this before checking DurationCalculator.getMarriedDuration() for bugs.
 public class TimeZoneDaylightSavingTimeUnitTests {
     @Test
     public void Etc_GMTplus12() {
