@@ -9,7 +9,11 @@ import java.util.Map;
 
 public class TimeZoneUnitTestGenerator {
 	public static void main(String[] args) {
+		System.out.println("*** Daylight saving time unit tests ***");
 		generateTimeZoneDaylightSavingTimeUnitTests();
+
+		System.out.println("*** Standard time unit tests ***");
+		generateTimeZoneStandardTimeUnitTests();
 	}
 
 	private static void generateTimeZoneDaylightSavingTimeUnitTests() {
@@ -19,6 +23,16 @@ public class TimeZoneUnitTestGenerator {
 		generateTimeZoneUnitTests(testDateTimeInPhoenix,
 			years, months, days,
 			hours, minutes, seconds
+		);
+	}
+
+	private static void generateTimeZoneStandardTimeUnitTests() {
+		final LocalDateTime testDateTimeInPhoenix = LocalDateTime.of(2017, 11, 1, 11, 35, 11);
+		final int years = 2, months = 7, days = 18;
+		final int hours = 2, minutes = 8, seconds = 18;
+		generateTimeZoneUnitTests(testDateTimeInPhoenix,
+				years, months, days,
+				hours, minutes, seconds
 		);
 	}
 
