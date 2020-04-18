@@ -9,12 +9,24 @@ import java.util.Map;
 
 public class TimeZoneUnitTestGenerator {
 	public static void main(String[] args) {
-		generateTimeZoneUnitTests();
+		generateTimeZoneDaylightSavingTimeUnitTests();
 	}
 
-	private static void generateTimeZoneUnitTests() {
+	private static void generateTimeZoneDaylightSavingTimeUnitTests() {
 		final LocalDateTime testDateTimeInPhoenix = LocalDateTime.of(2046, 7, 29, 18, 53, 46);
+		final int years = 31, months = 4, days = 15;
+		final int hours = 9, minutes = 26, seconds = 53;
+		generateTimeZoneUnitTests(testDateTimeInPhoenix,
+			years, months, days,
+			hours, minutes, seconds
+		);
+	}
 
+	private static void generateTimeZoneUnitTests(
+			LocalDateTime testDateTimeInPhoenix,
+		  	int years, int months, int days,
+		  	int hours, int minutes, int seconds)
+	{
 		Map<String, Integer> allTimeZoneNamesAndOffsets = getAllTimeZoneNamesAndOffsets(testDateTimeInPhoenix);
 
 		for (Map.Entry<String, Integer> timeZoneToTest : allTimeZoneNamesAndOffsets.entrySet()) {
@@ -32,7 +44,10 @@ public class TimeZoneUnitTestGenerator {
 
 			String timeZoneOffset = String.format("%+03d:%02d", offsetHours, offsetMinutes);
 
-			printUnitTest(unitTestName, testDateTime, timeZoneName, timeZoneOffset);
+			printUnitTest(unitTestName, testDateTime, timeZoneName, timeZoneOffset,
+				years, months, days,
+				hours, minutes, seconds
+			);
 		}
 	}
 
@@ -63,7 +78,11 @@ public class TimeZoneUnitTestGenerator {
 		return unitTestName;
 	}
 
-	private static void printUnitTest(String unitTestName, LocalDateTime testDateTime, String timeZoneName, String timeZoneOffset) {
+	private static void printUnitTest(String unitTestName, LocalDateTime testDateTime,
+									  String timeZoneName, String timeZoneOffset,
+									  int years, int months, int days,
+									  int hours, int minutes, int seconds)
+	{
 		System.out.println("@Test");
 		System.out.println(String.format("public void %s() {", unitTestName));
 		System.out.println(String.format("\tZonedDateTime now = getDateTimeInATimeZone(%d, %d, %d, %d, %d, %d, \"%s\"); // GMT%s",
@@ -71,7 +90,8 @@ public class TimeZoneUnitTestGenerator {
 				testDateTime.getHour(), testDateTime.getMinute(), testDateTime.getSecond(),
 				timeZoneName, timeZoneOffset));
 		System.out.println("\tDuration marriedDuration = DurationCalculator.getMarriedDuration(now);");
-		System.out.println("\tassertDuration(marriedDuration, new Duration(31, 4, 15, 9, 26, 53));");
+		System.out.println(String.format("\tassertDuration(marriedDuration, new Duration(%d, %d, %d, %d, %d, %d));",
+			years, months, days, hours, minutes, seconds));
 		System.out.println("}\n");
 	}
 }
