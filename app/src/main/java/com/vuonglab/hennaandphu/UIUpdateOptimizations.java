@@ -14,11 +14,6 @@ class UIUpdateOptimizations {
     }
 
     //<editor-fold desc="Seconds label and state">
-    private static boolean wasSecondsUpdateSkipped(long currentSecondsDuration, long previousSecondsDuration) {
-        long expectedSeconds = (previousSecondsDuration == 59 ? 0 : previousSecondsDuration+1);
-        return (expectedSeconds != currentSecondsDuration || previousSecondsDuration < 0);
-    }
-
     static LabelUpdate GetSecondsLabelUpdate(long currentSecondsDuration, long previousSecondsDuration) {
         boolean updateSkipped = wasSecondsUpdateSkipped(currentSecondsDuration, previousSecondsDuration);
 
@@ -42,6 +37,11 @@ class UIUpdateOptimizations {
         }
 
         return stateUpdate;
+    }
+
+    private static boolean wasSecondsUpdateSkipped(long currentSecondsDuration, long previousSecondsDuration) {
+        long expectedSeconds = (previousSecondsDuration == 59 ? 0 : previousSecondsDuration+1);
+        return (expectedSeconds != currentSecondsDuration || previousSecondsDuration < 0);
     }
     //</editor-fold>
 }
