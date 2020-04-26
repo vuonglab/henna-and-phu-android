@@ -197,23 +197,20 @@ public class MainActivity extends AppCompatActivity {
             if (marriedDuration.Seconds != previousMarriedDuration.Seconds) {
                 secondsCount.setText(String.valueOf(marriedDuration.Seconds));
 
-                long expectedSeconds = (previousMarriedDuration.Seconds == 59 ? 0 : previousMarriedDuration.Seconds+1);
-                boolean updateSkipped = (expectedSeconds != marriedDuration.Seconds || previousMarriedDuration.Seconds < 0);
-
-                if (marriedDuration.Seconds == 0 || marriedDuration.Seconds == 1)
+                UIUpdateOptimizations.LabelUpdate secondsLabelUpdate = UIUpdateOptimizations.GetSecondsLabelUpdate(marriedDuration.Seconds, previousMarriedDuration.Seconds);
+                if (secondsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
                     secondsLabel.setText(R.string.second);
-                else if (marriedDuration.Seconds == 2 || updateSkipped)
+                else if (secondsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
                     secondsLabel.setText(R.string.seconds);
 
-                if (marriedDuration.Seconds == 0) {
+                UIUpdateOptimizations.StateUpdate secondsStateUpdate = UIUpdateOptimizations.GetSecondsStateUpdate(marriedDuration.Seconds, previousMarriedDuration.Seconds);
+                if (secondsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
                     secondsCount.setEnabled(false);
                     secondsLabel.setEnabled(false);
-                } else if (marriedDuration.Seconds == 1 || updateSkipped) {
+                } else if (secondsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
                     secondsCount.setEnabled(true);
                     secondsLabel.setEnabled(true);
                 }
-
-                Log.d(TAG, "Seconds updated" + (updateSkipped ? "!" : ""));
             }
 
             previousMarriedDuration = marriedDuration;
