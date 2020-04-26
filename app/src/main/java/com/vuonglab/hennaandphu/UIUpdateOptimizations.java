@@ -13,6 +13,7 @@ class UIUpdateOptimizations {
         SHOW_ENABLED
     }
 
+    //<editor-fold desc="Seconds label and state">
     private static boolean wasSecondsUpdateSkipped(long currentSecondsDuration, long previousSecondsDuration) {
         long expectedSeconds = (previousSecondsDuration == 59 ? 0 : previousSecondsDuration+1);
         return (expectedSeconds != currentSecondsDuration || previousSecondsDuration < 0);
@@ -42,4 +43,5 @@ class UIUpdateOptimizations {
 
         return stateUpdate;
     }
+    //</editor-fold>
 }
