@@ -61,11 +61,10 @@ class UIUpdateOptimizations {
         boolean updateSkipped = wasMinutesUpdateSkipped(currentMinutesDuration, previousMinutesDuration);
 
         StateUpdate stateUpdate = StateUpdate.NOT_NEEDED;
-        if (currentMinutesDuration == 0) {
+        if (currentMinutesDuration == 0)
             stateUpdate = StateUpdate.SHOW_DISABLED;
-        } else if (currentMinutesDuration == 1 || updateSkipped) {
+        else if (currentMinutesDuration == 1 || updateSkipped)
             stateUpdate = StateUpdate.SHOW_ENABLED;
-        }
 
         return stateUpdate;
     }
@@ -93,11 +92,10 @@ class UIUpdateOptimizations {
         boolean updateSkipped = wasSecondsUpdateSkipped(currentSecondsDuration, previousSecondsDuration);
 
         StateUpdate stateUpdate = StateUpdate.NOT_NEEDED;
-        if (currentSecondsDuration == 0) {
+        if (currentSecondsDuration == 0)
             stateUpdate = StateUpdate.SHOW_DISABLED;
-        } else if (currentSecondsDuration == 1 || updateSkipped) {
+        else if (currentSecondsDuration == 1 || updateSkipped)
             stateUpdate = StateUpdate.SHOW_ENABLED;
-        }
 
         return stateUpdate;
     }
