@@ -13,6 +13,37 @@ class UIUpdateOptimizations {
         SHOW_ENABLED
     }
 
+    //<editor-fold desc="Years label and state">
+    static LabelUpdate GetYearsLabelUpdate(long currentYearsDuration, long previousYearsDuration) {
+        boolean updateSkipped = wasYearsUpdateSkipped(currentYearsDuration, previousYearsDuration);
+
+        LabelUpdate labelUpdate = LabelUpdate.NOT_NEEDED;
+        if (currentYearsDuration == 0 || currentYearsDuration == 1)
+            labelUpdate = LabelUpdate.SHOW_SINGULAR;
+        else if (currentYearsDuration == 2 || updateSkipped)
+            labelUpdate = LabelUpdate.SHOW_PLURAL;
+
+        return labelUpdate;
+    }
+
+    static StateUpdate GetYearsStateUpdate(long currentYearsDuration, long previousYearsDuration) {
+        boolean updateSkipped = wasYearsUpdateSkipped(currentYearsDuration, previousYearsDuration);
+
+        StateUpdate stateUpdate = StateUpdate.NOT_NEEDED;
+        if (currentYearsDuration == 0)
+            stateUpdate = StateUpdate.SHOW_DISABLED;
+        else if (currentYearsDuration == 1 || updateSkipped)
+            stateUpdate = StateUpdate.SHOW_ENABLED;
+
+        return stateUpdate;
+    }
+
+    private static boolean wasYearsUpdateSkipped(long currentYearsDuration, long previousYearsDuration) {
+        long expectedYears = previousYearsDuration + 1;
+        return (expectedYears != currentYearsDuration || previousYearsDuration < 0);
+    }
+    //</editor-fold>
+
     //<editor-fold desc="Months label and state">
     static LabelUpdate GetMonthsLabelUpdate(long currentMonthsDuration, long previousMonthsDuration) {
         boolean updateSkipped = wasMonthsUpdateSkipped(currentMonthsDuration, previousMonthsDuration);

@@ -84,23 +84,20 @@ public class MainActivity extends AppCompatActivity {
             if (marriedDuration.Years != previousMarriedDuration.Years) {
                 yearsCount.setText(String.valueOf(marriedDuration.Years));
 
-                long expectedYears = previousMarriedDuration.Years + 1;
-                boolean updateSkipped = (expectedYears != marriedDuration.Years || previousMarriedDuration.Years < 0);
-
-                if (marriedDuration.Years == 0 || marriedDuration.Years == 1)
+                UIUpdateOptimizations.LabelUpdate yearsLabelUpdate = UIUpdateOptimizations.GetYearsLabelUpdate(marriedDuration.Years, previousMarriedDuration.Years);
+                if (yearsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
                     yearsLabel.setText(R.string.year);
-                else if (marriedDuration.Years == 2 || updateSkipped)
+                else if (yearsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
                     yearsLabel.setText(R.string.years);
 
-                if (marriedDuration.Years == 0) {
+                UIUpdateOptimizations.StateUpdate yearsStateUpdate = UIUpdateOptimizations.GetYearsStateUpdate(marriedDuration.Years, previousMarriedDuration.Years);
+                if (yearsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
                     yearsCount.setEnabled(false);
                     yearsLabel.setEnabled(false);
-                } else if (marriedDuration.Years == 1 || updateSkipped) {
+                } else if (yearsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
                     yearsCount.setEnabled(true);
                     yearsLabel.setEnabled(true);
                 }
-
-                Log.d(TAG, "Years updated" + (updateSkipped ? "!" : ""));
             }
 
             if (marriedDuration.Months != previousMarriedDuration.Months) {
