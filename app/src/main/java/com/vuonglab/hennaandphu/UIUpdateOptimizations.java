@@ -13,6 +13,37 @@ class UIUpdateOptimizations {
         SHOW_ENABLED
     }
 
+    //<editor-fold desc="Hours label and state">
+    static LabelUpdate GetHoursLabelUpdate(long currentHoursDuration, long previousHoursDuration) {
+        boolean updateSkipped = wasHoursUpdateSkipped(currentHoursDuration, previousHoursDuration);
+
+        LabelUpdate labelUpdate = LabelUpdate.NOT_NEEDED;
+        if (currentHoursDuration == 0 || currentHoursDuration == 1)
+            labelUpdate = LabelUpdate.SHOW_SINGULAR;
+        else if (currentHoursDuration == 2 || updateSkipped)
+            labelUpdate = LabelUpdate.SHOW_PLURAL;
+
+        return labelUpdate;
+    }
+
+    static StateUpdate GetHoursStateUpdate(long currentHoursDuration, long previousHoursDuration) {
+        boolean updateSkipped = wasHoursUpdateSkipped(currentHoursDuration, previousHoursDuration);
+
+        StateUpdate stateUpdate = StateUpdate.NOT_NEEDED;
+        if (currentHoursDuration == 0)
+            stateUpdate = StateUpdate.SHOW_DISABLED;
+        else if (currentHoursDuration == 1 || updateSkipped)
+            stateUpdate = StateUpdate.SHOW_ENABLED;
+
+        return stateUpdate;
+    }
+
+    private static boolean wasHoursUpdateSkipped(long currentHoursDuration, long previousHoursDuration) {
+        long expectedHours = (previousHoursDuration == 23 ? 0 : previousHoursDuration+1);
+        return (expectedHours != currentHoursDuration || previousHoursDuration < 0);
+    }
+    //</editor-fold>
+
     //<editor-fold desc="Minutes label and state">
     static LabelUpdate GetMinutesLabelUpdate(long currentMinutesDuration, long previousMinutesDuration) {
         boolean updateSkipped = wasMinutesUpdateSkipped(currentMinutesDuration, previousMinutesDuration);

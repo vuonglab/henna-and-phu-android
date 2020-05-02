@@ -153,23 +153,20 @@ public class MainActivity extends AppCompatActivity {
             if (marriedDuration.Hours != previousMarriedDuration.Hours) {
                 hoursCount.setText(String.valueOf(marriedDuration.Hours));
 
-                long expectedHours = (previousMarriedDuration.Hours == 23 ? 0 : previousMarriedDuration.Hours+1);
-                boolean updateSkipped = (expectedHours != marriedDuration.Hours || previousMarriedDuration.Hours < 0);
-
-                if (marriedDuration.Hours == 0 || marriedDuration.Hours == 1)
+                UIUpdateOptimizations.LabelUpdate hoursLabelUpdate = UIUpdateOptimizations.GetHoursLabelUpdate(marriedDuration.Hours, previousMarriedDuration.Hours);
+                if (hoursLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
                     hoursLabel.setText(R.string.hour);
-                else if (marriedDuration.Hours == 2 || updateSkipped)
+                else if (hoursLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
                     hoursLabel.setText(R.string.hours);
 
-                if (marriedDuration.Hours == 0) {
+                UIUpdateOptimizations.StateUpdate hoursStateUpdate = UIUpdateOptimizations.GetHoursStateUpdate(marriedDuration.Hours, previousMarriedDuration.Hours);
+                if (hoursStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
                     hoursCount.setEnabled(false);
                     hoursLabel.setEnabled(false);
-                } else if (marriedDuration.Hours == 1 || updateSkipped) {
+                } else if (hoursStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
                     hoursCount.setEnabled(true);
                     hoursLabel.setEnabled(true);
                 }
-
-                Log.d(TAG, "Hours updated" + (updateSkipped ? "!" : ""));
             }
 
             if (marriedDuration.Minutes != previousMarriedDuration.Minutes) {
