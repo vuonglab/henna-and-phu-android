@@ -13,6 +13,41 @@ class UIUpdateOptimizations {
         SHOW_ENABLED
     }
 
+    //<editor-fold desc="Days label and state">
+    static LabelUpdate GetDaysLabelUpdate(long currentDaysDuration, long previousDaysDuration) {
+        boolean updateSkipped = wasDaysUpdateSkipped(currentDaysDuration, previousDaysDuration);
+
+        LabelUpdate labelUpdate = LabelUpdate.NOT_NEEDED;
+        if (currentDaysDuration == 0 || currentDaysDuration == 1)
+            labelUpdate = LabelUpdate.SHOW_SINGULAR;
+        else if (currentDaysDuration == 2 || updateSkipped)
+            labelUpdate = LabelUpdate.SHOW_PLURAL;
+
+        return labelUpdate;
+    }
+
+    static StateUpdate GetDaysStateUpdate(long currentDaysDuration, long previousDaysDuration) {
+        boolean updateSkipped = wasDaysUpdateSkipped(currentDaysDuration, previousDaysDuration);
+
+        StateUpdate stateUpdate = StateUpdate.NOT_NEEDED;
+        if (currentDaysDuration == 0)
+            stateUpdate = StateUpdate.SHOW_DISABLED;
+        else if (currentDaysDuration == 1 || updateSkipped)
+            stateUpdate = StateUpdate.SHOW_ENABLED;
+
+        return stateUpdate;
+    }
+
+    private static boolean wasDaysUpdateSkipped(long currentDaysDuration, long previousDaysDuration) {
+        boolean updateSkipped = true;
+        if (previousDaysDuration <= 26) {
+            long expectedDays = previousDaysDuration + 1;
+            updateSkipped = (expectedDays != currentDaysDuration || previousDaysDuration < 0);
+        }
+        return updateSkipped;
+    }
+    //</editor-fold>
+
     //<editor-fold desc="Hours label and state">
     static LabelUpdate GetHoursLabelUpdate(long currentHoursDuration, long previousHoursDuration) {
         boolean updateSkipped = wasHoursUpdateSkipped(currentHoursDuration, previousHoursDuration);

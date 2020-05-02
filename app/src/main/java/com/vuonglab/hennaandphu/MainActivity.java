@@ -128,26 +128,20 @@ public class MainActivity extends AppCompatActivity {
             if (marriedDuration.Days != previousMarriedDuration.Days) {
                 daysCount.setText(String.valueOf(marriedDuration.Days));
 
-                boolean updateSkipped = true;
-                if (previousMarriedDuration.Days <= 26) {
-                    long expectedDays = previousMarriedDuration.Days + 1;
-                    updateSkipped = (expectedDays != marriedDuration.Days || previousMarriedDuration.Days < 0);
-                }
-
-                if (marriedDuration.Days == 0 || marriedDuration.Days == 1)
+                UIUpdateOptimizations.LabelUpdate daysLabelUpdate = UIUpdateOptimizations.GetDaysLabelUpdate(marriedDuration.Days, previousMarriedDuration.Days);
+                if (daysLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
                     daysLabel.setText(R.string.day);
-                else if (marriedDuration.Days == 2 || updateSkipped)
+                else if (daysLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
                     daysLabel.setText(R.string.days);
 
-                if (marriedDuration.Days == 0) {
+                UIUpdateOptimizations.StateUpdate daysStateUpdate = UIUpdateOptimizations.GetDaysStateUpdate(marriedDuration.Days, previousMarriedDuration.Days);
+                if (daysStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
                     daysCount.setEnabled(false);
                     daysLabel.setEnabled(false);
-                } else if (marriedDuration.Days == 1 || updateSkipped) {
+                } else if (daysStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
                     daysCount.setEnabled(true);
                     daysLabel.setEnabled(true);
                 }
-
-                Log.d(TAG, "Days updated" + (updateSkipped ? "!" : ""));
             }
 
             if (marriedDuration.Hours != previousMarriedDuration.Hours) {
