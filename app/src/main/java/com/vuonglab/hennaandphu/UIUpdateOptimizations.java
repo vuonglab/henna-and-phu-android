@@ -13,6 +13,37 @@ class UIUpdateOptimizations {
         SHOW_ENABLED
     }
 
+    //<editor-fold desc="Months label and state">
+    static LabelUpdate GetMonthsLabelUpdate(long currentMonthsDuration, long previousMonthsDuration) {
+        boolean updateSkipped = wasMonthsUpdateSkipped(currentMonthsDuration, previousMonthsDuration);
+
+        LabelUpdate labelUpdate = LabelUpdate.NOT_NEEDED;
+        if (currentMonthsDuration == 0 || currentMonthsDuration == 1)
+            labelUpdate = LabelUpdate.SHOW_SINGULAR;
+        else if (currentMonthsDuration == 2 || updateSkipped)
+            labelUpdate = LabelUpdate.SHOW_PLURAL;
+
+        return labelUpdate;
+    }
+
+    static StateUpdate GetMonthsStateUpdate(long currentMonthsDuration, long previousMonthsDuration) {
+        boolean updateSkipped = wasMonthsUpdateSkipped(currentMonthsDuration, previousMonthsDuration);
+
+        StateUpdate stateUpdate = StateUpdate.NOT_NEEDED;
+        if (currentMonthsDuration == 0)
+            stateUpdate = StateUpdate.SHOW_DISABLED;
+        else if (currentMonthsDuration == 1 || updateSkipped)
+            stateUpdate = StateUpdate.SHOW_ENABLED;
+
+        return stateUpdate;
+    }
+
+    private static boolean wasMonthsUpdateSkipped(long currentMonthsDuration, long previousMonthsDuration) {
+        long expectedMonths = (previousMonthsDuration == 11 ? 0 : previousMonthsDuration+1);
+        return (expectedMonths != currentMonthsDuration || previousMonthsDuration < 0);
+    }
+    //</editor-fold>
+
     //<editor-fold desc="Days label and state">
     static LabelUpdate GetDaysLabelUpdate(long currentDaysDuration, long previousDaysDuration) {
         boolean updateSkipped = wasDaysUpdateSkipped(currentDaysDuration, previousDaysDuration);

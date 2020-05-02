@@ -106,23 +106,20 @@ public class MainActivity extends AppCompatActivity {
             if (marriedDuration.Months != previousMarriedDuration.Months) {
                 monthsCount.setText(String.valueOf(marriedDuration.Months));
 
-                long expectedMonths = (previousMarriedDuration.Months == 11 ? 0 : previousMarriedDuration.Months+1);
-                boolean updateSkipped = (expectedMonths != marriedDuration.Months || previousMarriedDuration.Months < 0);
-
-                if (marriedDuration.Months == 0 || marriedDuration.Months == 1)
+                UIUpdateOptimizations.LabelUpdate monthsLabelUpdate = UIUpdateOptimizations.GetMonthsLabelUpdate(marriedDuration.Months, previousMarriedDuration.Months);
+                if (monthsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
                     monthsLabel.setText(R.string.month);
-                else if (marriedDuration.Months == 2 || updateSkipped)
+                else if (monthsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
                     monthsLabel.setText(R.string.months);
 
-                if (marriedDuration.Months == 0) {
+                UIUpdateOptimizations.StateUpdate monthsStateUpdate = UIUpdateOptimizations.GetMonthsStateUpdate(marriedDuration.Months, previousMarriedDuration.Months);
+                if (monthsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
                     monthsCount.setEnabled(false);
                     monthsLabel.setEnabled(false);
-                } else if (marriedDuration.Months == 1 || updateSkipped) {
+                } else if (monthsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
                     monthsCount.setEnabled(true);
                     monthsLabel.setEnabled(true);
                 }
-
-                Log.d(TAG, "Months updated" + (updateSkipped ? "!" : ""));
             }
 
             if (marriedDuration.Days != previousMarriedDuration.Days) {
