@@ -15,15 +15,15 @@ class UIUpdateOptimizations {
 
     //<editor-fold desc="Years label and state">
     static LabelUpdate GetYearsLabelUpdate(long currentYearsDuration, long previousYearsDuration) {
-        boolean updateSkipped = wasYearsUpdateSkipped(currentYearsDuration, previousYearsDuration);
+        boolean currentYearsPlural = currentYearsDuration >= 2;
+        if (previousYearsDuration < 0)
+            return currentYearsPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
 
-        LabelUpdate labelUpdate = LabelUpdate.NOT_NEEDED;
-        if (currentYearsDuration == 0 || currentYearsDuration == 1)
-            labelUpdate = LabelUpdate.SHOW_SINGULAR;
-        else if (currentYearsDuration == 2 || updateSkipped)
-            labelUpdate = LabelUpdate.SHOW_PLURAL;
+        boolean previousYearsPlural = previousYearsDuration >= 2;
+        if (previousYearsPlural == currentYearsPlural)
+            return LabelUpdate.NOT_NEEDED;
 
-        return labelUpdate;
+        return currentYearsPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
     }
 
     static StateUpdate GetYearsStateUpdate(long currentYearsDuration, long previousYearsDuration) {
