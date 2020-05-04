@@ -27,20 +27,15 @@ class UIUpdateOptimizations {
     }
 
     static StateUpdate GetYearsStateUpdate(long currentYearsDuration, long previousYearsDuration) {
-        boolean updateSkipped = wasYearsUpdateSkipped(currentYearsDuration, previousYearsDuration);
+        boolean currentYearsEnabled = currentYearsDuration >= 1;
+        if (previousYearsDuration < 0)
+            return currentYearsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
 
-        StateUpdate stateUpdate = StateUpdate.NOT_NEEDED;
-        if (currentYearsDuration == 0)
-            stateUpdate = StateUpdate.SHOW_DISABLED;
-        else if (currentYearsDuration == 1 || updateSkipped)
-            stateUpdate = StateUpdate.SHOW_ENABLED;
+        boolean previousYearsEnabled = previousYearsDuration >= 1;
+        if (previousYearsEnabled == currentYearsEnabled)
+            return StateUpdate.NOT_NEEDED;
 
-        return stateUpdate;
-    }
-
-    private static boolean wasYearsUpdateSkipped(long currentYearsDuration, long previousYearsDuration) {
-        long expectedYears = previousYearsDuration + 1;
-        return (expectedYears != currentYearsDuration || previousYearsDuration < 0);
+        return currentYearsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
     }
     //</editor-fold>
 
