@@ -138,15 +138,15 @@ class UIUpdateOptimizations {
 
     //<editor-fold desc="Minutes label and state">
     static LabelUpdate GetMinutesLabelUpdate(long currentMinutesDuration, long previousMinutesDuration) {
-        boolean updateSkipped = wasMinutesUpdateSkipped(currentMinutesDuration, previousMinutesDuration);
+        boolean currentMinutesPlural = currentMinutesDuration >= 2;
+        if (previousMinutesDuration < 0)
+            return currentMinutesPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
 
-        LabelUpdate labelUpdate = LabelUpdate.NOT_NEEDED;
-        if (currentMinutesDuration == 0 || currentMinutesDuration == 1)
-            labelUpdate = LabelUpdate.SHOW_SINGULAR;
-        else if (currentMinutesDuration == 2 || updateSkipped)
-            labelUpdate = LabelUpdate.SHOW_PLURAL;
+        boolean previousMinutesPlural = previousMinutesDuration >= 2;
+        if (previousMinutesPlural == currentMinutesPlural)
+            return LabelUpdate.NOT_NEEDED;
 
-        return labelUpdate;
+        return currentMinutesPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
     }
 
     static StateUpdate GetMinutesStateUpdate(long currentMinutesDuration, long previousMinutesDuration) {
