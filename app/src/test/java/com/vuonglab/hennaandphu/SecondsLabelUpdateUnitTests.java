@@ -170,7 +170,7 @@ public class SecondsLabelUpdateUnitTests {
 
     @Test
     public void fiftyNineToFiftyEightSeconds() {
-        runTest(59, 3, LabelUpdate.NOT_NEEDED);
+        runTest(59, 58, LabelUpdate.NOT_NEEDED);
     }
 
     @Test

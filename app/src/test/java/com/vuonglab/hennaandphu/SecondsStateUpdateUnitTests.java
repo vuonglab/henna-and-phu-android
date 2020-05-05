@@ -170,7 +170,7 @@ public class SecondsStateUpdateUnitTests {
 
     @Test
     public void fiftyNineToFiftyEightSeconds() {
-        runTest(59, 3, StateUpdate.NOT_NEEDED);
+        runTest(59, 58, StateUpdate.NOT_NEEDED);
     }
 
     @Test
