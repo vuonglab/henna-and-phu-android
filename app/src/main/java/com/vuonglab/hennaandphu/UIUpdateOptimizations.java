@@ -181,20 +181,15 @@ class UIUpdateOptimizations {
     }
 
     static StateUpdate GetSecondsStateUpdate(long currentSecondsDuration, long previousSecondsDuration) {
-        boolean updateSkipped = wasSecondsUpdateSkipped(currentSecondsDuration, previousSecondsDuration);
+        boolean currentSecondsEnabled = currentSecondsDuration >= 1;
+        if (previousSecondsDuration < 0)
+            return currentSecondsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
 
-        StateUpdate stateUpdate = StateUpdate.NOT_NEEDED;
-        if (currentSecondsDuration == 0)
-            stateUpdate = StateUpdate.SHOW_DISABLED;
-        else if (currentSecondsDuration == 1 || updateSkipped)
-            stateUpdate = StateUpdate.SHOW_ENABLED;
+        boolean previousSecondsEnabled = previousSecondsDuration >= 1;
+        if (previousSecondsEnabled == currentSecondsEnabled)
+            return StateUpdate.NOT_NEEDED;
 
-        return stateUpdate;
-    }
-
-    private static boolean wasSecondsUpdateSkipped(long currentSecondsDuration, long previousSecondsDuration) {
-        long expectedSeconds = (previousSecondsDuration == 59 ? 0 : previousSecondsDuration+1);
-        return (expectedSeconds != currentSecondsDuration || previousSecondsDuration < 0);
+        return currentSecondsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
     }
     //</editor-fold>
 }
