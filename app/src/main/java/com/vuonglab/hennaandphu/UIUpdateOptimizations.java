@@ -119,20 +119,15 @@ class UIUpdateOptimizations {
     }
 
     static StateUpdate GetHoursStateUpdate(long currentHoursDuration, long previousHoursDuration) {
-        boolean updateSkipped = wasHoursUpdateSkipped(currentHoursDuration, previousHoursDuration);
+        boolean currentHoursEnabled = currentHoursDuration >= 1;
+        if (previousHoursDuration < 0)
+            return currentHoursEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
 
-        StateUpdate stateUpdate = StateUpdate.NOT_NEEDED;
-        if (currentHoursDuration == 0)
-            stateUpdate = StateUpdate.SHOW_DISABLED;
-        else if (currentHoursDuration == 1 || updateSkipped)
-            stateUpdate = StateUpdate.SHOW_ENABLED;
+        boolean previousHoursEnabled = previousHoursDuration >= 1;
+        if (previousHoursEnabled == currentHoursEnabled)
+            return StateUpdate.NOT_NEEDED;
 
-        return stateUpdate;
-    }
-
-    private static boolean wasHoursUpdateSkipped(long currentHoursDuration, long previousHoursDuration) {
-        long expectedHours = (previousHoursDuration == 23 ? 0 : previousHoursDuration+1);
-        return (expectedHours != currentHoursDuration || previousHoursDuration < 0);
+        return currentHoursEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
     }
     //</editor-fold>
 
