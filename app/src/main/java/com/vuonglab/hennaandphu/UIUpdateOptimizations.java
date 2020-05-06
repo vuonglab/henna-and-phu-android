@@ -107,15 +107,15 @@ class UIUpdateOptimizations {
 
     //<editor-fold desc="Hours label and state">
     static LabelUpdate GetHoursLabelUpdate(long currentHoursDuration, long previousHoursDuration) {
-        boolean updateSkipped = wasHoursUpdateSkipped(currentHoursDuration, previousHoursDuration);
+        boolean currentHoursPlural = currentHoursDuration >= 2;
+        if (previousHoursDuration < 0)
+            return currentHoursPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
 
-        LabelUpdate labelUpdate = LabelUpdate.NOT_NEEDED;
-        if (currentHoursDuration == 0 || currentHoursDuration == 1)
-            labelUpdate = LabelUpdate.SHOW_SINGULAR;
-        else if (currentHoursDuration == 2 || updateSkipped)
-            labelUpdate = LabelUpdate.SHOW_PLURAL;
+        boolean previousHoursPlural = previousHoursDuration >= 2;
+        if (previousHoursPlural == currentHoursPlural)
+            return LabelUpdate.NOT_NEEDED;
 
-        return labelUpdate;
+        return currentHoursPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
     }
 
     static StateUpdate GetHoursStateUpdate(long currentHoursDuration, long previousHoursDuration) {
