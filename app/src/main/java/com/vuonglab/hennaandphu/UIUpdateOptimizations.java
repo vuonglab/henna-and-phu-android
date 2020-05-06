@@ -150,20 +150,15 @@ class UIUpdateOptimizations {
     }
 
     static StateUpdate GetMinutesStateUpdate(long currentMinutesDuration, long previousMinutesDuration) {
-        boolean updateSkipped = wasMinutesUpdateSkipped(currentMinutesDuration, previousMinutesDuration);
+        boolean currentMinutesEnabled = currentMinutesDuration >= 1;
+        if (previousMinutesDuration < 0)
+            return currentMinutesEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
 
-        StateUpdate stateUpdate = StateUpdate.NOT_NEEDED;
-        if (currentMinutesDuration == 0)
-            stateUpdate = StateUpdate.SHOW_DISABLED;
-        else if (currentMinutesDuration == 1 || updateSkipped)
-            stateUpdate = StateUpdate.SHOW_ENABLED;
+        boolean previousMinutesEnabled = previousMinutesDuration >= 1;
+        if (previousMinutesEnabled == currentMinutesEnabled)
+            return StateUpdate.NOT_NEEDED;
 
-        return stateUpdate;
-    }
-
-    private static boolean wasMinutesUpdateSkipped(long currentMinutesDuration, long previousMinutesDuration) {
-        long expectedMinutes = (previousMinutesDuration == 59 ? 0 : previousMinutesDuration+1);
-        return (expectedMinutes != currentMinutesDuration || previousMinutesDuration < 0);
+        return currentMinutesEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
     }
     //</editor-fold>
 
