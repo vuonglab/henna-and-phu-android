@@ -53,20 +53,15 @@ class UIUpdateOptimizations {
     }
 
     static StateUpdate GetMonthsStateUpdate(long currentMonthsDuration, long previousMonthsDuration) {
-        boolean updateSkipped = wasMonthsUpdateSkipped(currentMonthsDuration, previousMonthsDuration);
+        boolean currentMonthsEnabled = currentMonthsDuration >= 1;
+        if (previousMonthsDuration < 0)
+            return currentMonthsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
 
-        StateUpdate stateUpdate = StateUpdate.NOT_NEEDED;
-        if (currentMonthsDuration == 0)
-            stateUpdate = StateUpdate.SHOW_DISABLED;
-        else if (currentMonthsDuration == 1 || updateSkipped)
-            stateUpdate = StateUpdate.SHOW_ENABLED;
+        boolean previousMonthsEnabled = previousMonthsDuration >= 1;
+        if (previousMonthsEnabled == currentMonthsEnabled)
+            return StateUpdate.NOT_NEEDED;
 
-        return stateUpdate;
-    }
-
-    private static boolean wasMonthsUpdateSkipped(long currentMonthsDuration, long previousMonthsDuration) {
-        long expectedMonths = (previousMonthsDuration == 11 ? 0 : previousMonthsDuration+1);
-        return (expectedMonths != currentMonthsDuration || previousMonthsDuration < 0);
+        return currentMonthsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
     }
     //</editor-fold>
 
