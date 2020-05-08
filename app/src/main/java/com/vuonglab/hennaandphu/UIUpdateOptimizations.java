@@ -67,15 +67,15 @@ class UIUpdateOptimizations {
 
     //<editor-fold desc="Days label and state">
     static LabelUpdate GetDaysLabelUpdate(long currentDaysDuration, long previousDaysDuration) {
-        boolean updateSkipped = wasDaysUpdateSkipped(currentDaysDuration, previousDaysDuration);
+        boolean currentDaysPlural = currentDaysDuration >= 2;
+        if (previousDaysDuration < 0)
+            return currentDaysPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
 
-        LabelUpdate labelUpdate = LabelUpdate.NOT_NEEDED;
-        if (currentDaysDuration == 0 || currentDaysDuration == 1)
-            labelUpdate = LabelUpdate.SHOW_SINGULAR;
-        else if (currentDaysDuration == 2 || updateSkipped)
-            labelUpdate = LabelUpdate.SHOW_PLURAL;
+        boolean previousDaysPlural = previousDaysDuration >= 2;
+        if (previousDaysPlural == currentDaysPlural)
+            return LabelUpdate.NOT_NEEDED;
 
-        return labelUpdate;
+        return currentDaysPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
     }
 
     static StateUpdate GetDaysStateUpdate(long currentDaysDuration, long previousDaysDuration) {
