@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             if (marriedDuration.Hours != previousMarriedDuration.Hours) {
                 hoursCount.setText(String.valueOf(marriedDuration.Hours));
 
-                UIUpdateOptimizations.LabelUpdate hoursLabelUpdate = UIUpdateOptimizations.GetHoursLabelUpdate(marriedDuration.Hours, previousMarriedDuration.Hours);
+                UIUpdateOptimizations.LabelUpdate hoursLabelUpdate = UIUpdateOptimizations.GetLabelUpdate(marriedDuration.Hours, previousMarriedDuration.Hours);
                 if (hoursLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
                     hoursLabel.setText(R.string.hour);
                 else if (hoursLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)

@@ -68,18 +68,6 @@ class UIUpdateOptimizations {
     //</editor-fold>
 
     //<editor-fold desc="Hours label and state">
-    static LabelUpdate GetHoursLabelUpdate(long currentHoursDuration, long previousHoursDuration) {
-        boolean currentHoursPlural = currentHoursDuration >= 2;
-        if (previousHoursDuration < 0)
-            return currentHoursPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
-
-        boolean previousHoursPlural = previousHoursDuration >= 2;
-        if (previousHoursPlural == currentHoursPlural)
-            return LabelUpdate.NOT_NEEDED;
-
-        return currentHoursPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
-    }
-
     static StateUpdate GetHoursStateUpdate(long currentHoursDuration, long previousHoursDuration) {
         boolean currentHoursEnabled = currentHoursDuration >= 1;
         if (previousHoursDuration < 0)
