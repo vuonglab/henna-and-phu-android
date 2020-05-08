@@ -37,20 +37,6 @@ class UIUpdateOptimizations {
         return currentsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
     }
 
-    //<editor-fold desc="Hours label and state">
-    static StateUpdate GetHoursStateUpdate(long currentHoursDuration, long previousHoursDuration) {
-        boolean currentHoursEnabled = currentHoursDuration >= 1;
-        if (previousHoursDuration < 0)
-            return currentHoursEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
-
-        boolean previousHoursEnabled = previousHoursDuration >= 1;
-        if (previousHoursEnabled == currentHoursEnabled)
-            return StateUpdate.NOT_NEEDED;
-
-        return currentHoursEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
-    }
-    //</editor-fold>
-
     //<editor-fold desc="Minutes label and state">
     static StateUpdate GetMinutesStateUpdate(long currentMinutesDuration, long previousMinutesDuration) {
         boolean currentMinutesEnabled = currentMinutesDuration >= 1;
