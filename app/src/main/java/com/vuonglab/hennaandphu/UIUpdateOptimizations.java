@@ -79,24 +79,15 @@ class UIUpdateOptimizations {
     }
 
     static StateUpdate GetDaysStateUpdate(long currentDaysDuration, long previousDaysDuration) {
-        boolean updateSkipped = wasDaysUpdateSkipped(currentDaysDuration, previousDaysDuration);
+        boolean currentDaysEnabled = currentDaysDuration >= 1;
+        if (previousDaysDuration < 0)
+            return currentDaysEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
 
-        StateUpdate stateUpdate = StateUpdate.NOT_NEEDED;
-        if (currentDaysDuration == 0)
-            stateUpdate = StateUpdate.SHOW_DISABLED;
-        else if (currentDaysDuration == 1 || updateSkipped)
-            stateUpdate = StateUpdate.SHOW_ENABLED;
+        boolean previousDaysEnabled = previousDaysDuration >= 1;
+        if (previousDaysEnabled == currentDaysEnabled)
+            return StateUpdate.NOT_NEEDED;
 
-        return stateUpdate;
-    }
-
-    private static boolean wasDaysUpdateSkipped(long currentDaysDuration, long previousDaysDuration) {
-        boolean updateSkipped = true;
-        if (previousDaysDuration <= 26) {
-            long expectedDays = previousDaysDuration + 1;
-            updateSkipped = (expectedDays != currentDaysDuration || previousDaysDuration < 0);
-        }
-        return updateSkipped;
+        return currentDaysEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
     }
     //</editor-fold>
 
