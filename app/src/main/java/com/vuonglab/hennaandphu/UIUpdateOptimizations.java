@@ -25,6 +25,18 @@ class UIUpdateOptimizations {
         return currentPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
     }
 
+    static StateUpdate GetStateUpdate(long currentsDuration, long previoussDuration) {
+        boolean currentsEnabled = currentsDuration >= 1;
+        if (previoussDuration < 0)
+            return currentsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
+
+        boolean previoussEnabled = previoussDuration >= 1;
+        if (previoussEnabled == currentsEnabled)
+            return StateUpdate.NOT_NEEDED;
+
+        return currentsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
+    }
+
     //<editor-fold desc="Years label and state">
     static StateUpdate GetYearsStateUpdate(long currentYearsDuration, long previousYearsDuration) {
         boolean currentYearsEnabled = currentYearsDuration >= 1;
