@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 else if (daysLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
                     daysLabel.setText(R.string.days);
 
-                UIUpdateOptimizations.StateUpdate daysStateUpdate = UIUpdateOptimizations.GetDaysStateUpdate(marriedDuration.Days, previousMarriedDuration.Days);
+                UIUpdateOptimizations.StateUpdate daysStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.Days, previousMarriedDuration.Days);
                 if (daysStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
                     daysCount.setEnabled(false);
                     daysLabel.setEnabled(false);

@@ -5,7 +5,7 @@ import com.vuonglab.hennaandphu.UIUpdateOptimizations.StateUpdate;
 import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;
-import static com.vuonglab.hennaandphu.UIUpdateOptimizations.GetDaysStateUpdate;
+import static com.vuonglab.hennaandphu.UIUpdateOptimizations.GetStateUpdate;
 
 public class DaysStateUpdateUnitTests {
     @Test
@@ -464,7 +464,7 @@ public class DaysStateUpdateUnitTests {
     }
 
     private void runTest(long previousDaysDuration, long currentDaysDuration, StateUpdate expectedStateUpdate) {
-        StateUpdate stateUpdate = GetDaysStateUpdate(currentDaysDuration, previousDaysDuration);
+        StateUpdate stateUpdate = GetStateUpdate(currentDaysDuration, previousDaysDuration);
         assertThat(stateUpdate).isEqualTo(expectedStateUpdate);
     }
 }
