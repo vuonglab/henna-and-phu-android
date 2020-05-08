@@ -37,20 +37,6 @@ class UIUpdateOptimizations {
         return currentsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
     }
 
-    //<editor-fold desc="Years label and state">
-    static StateUpdate GetYearsStateUpdate(long currentYearsDuration, long previousYearsDuration) {
-        boolean currentYearsEnabled = currentYearsDuration >= 1;
-        if (previousYearsDuration < 0)
-            return currentYearsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
-
-        boolean previousYearsEnabled = previousYearsDuration >= 1;
-        if (previousYearsEnabled == currentYearsEnabled)
-            return StateUpdate.NOT_NEEDED;
-
-        return currentYearsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
-    }
-    //</editor-fold>
-
     //<editor-fold desc="Months label and state">
     static StateUpdate GetMonthsStateUpdate(long currentMonthsDuration, long previousMonthsDuration) {
         boolean currentMonthsEnabled = currentMonthsDuration >= 1;

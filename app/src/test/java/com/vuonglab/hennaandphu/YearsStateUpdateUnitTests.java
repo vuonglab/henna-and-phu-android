@@ -5,7 +5,7 @@ import com.vuonglab.hennaandphu.UIUpdateOptimizations.StateUpdate;
 import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;
-import static com.vuonglab.hennaandphu.UIUpdateOptimizations.GetYearsStateUpdate;
+import static com.vuonglab.hennaandphu.UIUpdateOptimizations.GetStateUpdate;
 
 public class YearsStateUpdateUnitTests {
     @Test
@@ -128,7 +128,7 @@ public class YearsStateUpdateUnitTests {
     }
     //</editor-fold>
     private void runTest(long previousYearsDuration, long currentYearsDuration, StateUpdate expectedStateUpdate) {
-        StateUpdate stateUpdate = GetYearsStateUpdate(currentYearsDuration, previousYearsDuration);
+        StateUpdate stateUpdate = GetStateUpdate(currentYearsDuration, previousYearsDuration);
         assertThat(stateUpdate).isEqualTo(expectedStateUpdate);
     }
 }

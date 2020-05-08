@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 else if (yearsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
                     yearsLabel.setText(R.string.years);
 
-                UIUpdateOptimizations.StateUpdate yearsStateUpdate = UIUpdateOptimizations.GetYearsStateUpdate(marriedDuration.Years, previousMarriedDuration.Years);
+                UIUpdateOptimizations.StateUpdate yearsStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.Years, previousMarriedDuration.Years);
                 if (yearsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
                     yearsCount.setEnabled(false);
                     yearsLabel.setEnabled(false);
