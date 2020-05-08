@@ -13,6 +13,18 @@ class UIUpdateOptimizations {
         SHOW_ENABLED
     }
 
+    static LabelUpdate GetLabelUpdate(long currentDuration, long previousDuration) {
+        boolean currentPlural = currentDuration >= 2;
+        if (previousDuration < 0)
+            return currentPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
+
+        boolean previousPlural = previousDuration >= 2;
+        if (previousPlural == currentPlural)
+            return LabelUpdate.NOT_NEEDED;
+
+        return currentPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
+    }
+
     //<editor-fold desc="Years label and state">
     static LabelUpdate GetYearsLabelUpdate(long currentYearsDuration, long previousYearsDuration) {
         boolean currentYearsPlural = currentYearsDuration >= 2;
