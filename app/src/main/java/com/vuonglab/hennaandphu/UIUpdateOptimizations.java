@@ -40,18 +40,6 @@ class UIUpdateOptimizations {
     //</editor-fold>
 
     //<editor-fold desc="Months label and state">
-    static LabelUpdate GetMonthsLabelUpdate(long currentMonthsDuration, long previousMonthsDuration) {
-        boolean currentMonthsPlural = currentMonthsDuration >= 2;
-        if (previousMonthsDuration < 0)
-            return currentMonthsPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
-
-        boolean previousMonthsPlural = previousMonthsDuration >= 2;
-        if (previousMonthsPlural == currentMonthsPlural)
-            return LabelUpdate.NOT_NEEDED;
-
-        return currentMonthsPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
-    }
-
     static StateUpdate GetMonthsStateUpdate(long currentMonthsDuration, long previousMonthsDuration) {
         boolean currentMonthsEnabled = currentMonthsDuration >= 1;
         if (previousMonthsDuration < 0)

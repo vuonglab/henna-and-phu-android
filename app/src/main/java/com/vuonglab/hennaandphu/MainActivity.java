@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             if (marriedDuration.Months != previousMarriedDuration.Months) {
                 monthsCount.setText(String.valueOf(marriedDuration.Months));
 
-                UIUpdateOptimizations.LabelUpdate monthsLabelUpdate = UIUpdateOptimizations.GetMonthsLabelUpdate(marriedDuration.Months, previousMarriedDuration.Months);
+                UIUpdateOptimizations.LabelUpdate monthsLabelUpdate = UIUpdateOptimizations.GetLabelUpdate(marriedDuration.Months, previousMarriedDuration.Months);
                 if (monthsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
                     monthsLabel.setText(R.string.month);
                 else if (monthsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
