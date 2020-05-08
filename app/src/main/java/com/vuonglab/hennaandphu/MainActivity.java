@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                 else if (minutesLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
                     minutesLabel.setText(R.string.minutes);
 
-                UIUpdateOptimizations.StateUpdate minutesStateUpdate = UIUpdateOptimizations.GetMinutesStateUpdate(marriedDuration.Minutes, previousMarriedDuration.Minutes);
+                UIUpdateOptimizations.StateUpdate minutesStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.Minutes, previousMarriedDuration.Minutes);
                 if (minutesStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
                     minutesCount.setEnabled(false);
                     minutesLabel.setEnabled(false);
