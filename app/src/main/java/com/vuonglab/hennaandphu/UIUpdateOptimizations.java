@@ -96,18 +96,6 @@ class UIUpdateOptimizations {
     //</editor-fold>
 
     //<editor-fold desc="Seconds label and state">
-    static LabelUpdate GetSecondsLabelUpdate(long currentSecondsDuration, long previousSecondsDuration) {
-        boolean currentSecondsPlural = currentSecondsDuration >= 2;
-        if (previousSecondsDuration < 0)
-            return currentSecondsPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
-
-        boolean previousSecondsPlural = previousSecondsDuration >= 2;
-        if (previousSecondsPlural == currentSecondsPlural)
-            return LabelUpdate.NOT_NEEDED;
-
-        return currentSecondsPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
-    }
-
     static StateUpdate GetSecondsStateUpdate(long currentSecondsDuration, long previousSecondsDuration) {
         boolean currentSecondsEnabled = currentSecondsDuration >= 1;
         if (previousSecondsDuration < 0)

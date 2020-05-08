@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
             if (marriedDuration.Seconds != previousMarriedDuration.Seconds) {
                 secondsCount.setText(String.valueOf(marriedDuration.Seconds));
 
-                UIUpdateOptimizations.LabelUpdate secondsLabelUpdate = UIUpdateOptimizations.GetSecondsLabelUpdate(marriedDuration.Seconds, previousMarriedDuration.Seconds);
+                UIUpdateOptimizations.LabelUpdate secondsLabelUpdate = UIUpdateOptimizations.GetLabelUpdate(marriedDuration.Seconds, previousMarriedDuration.Seconds);
                 if (secondsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
                     secondsLabel.setText(R.string.second);
                 else if (secondsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
