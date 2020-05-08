@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             if (marriedDuration.Days != previousMarriedDuration.Days) {
                 daysCount.setText(String.valueOf(marriedDuration.Days));
 
-                UIUpdateOptimizations.LabelUpdate daysLabelUpdate = UIUpdateOptimizations.GetDaysLabelUpdate(marriedDuration.Days, previousMarriedDuration.Days);
+                UIUpdateOptimizations.LabelUpdate daysLabelUpdate = UIUpdateOptimizations.GetLabelUpdate(marriedDuration.Days, previousMarriedDuration.Days);
                 if (daysLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
                     daysLabel.setText(R.string.day);
                 else if (daysLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
