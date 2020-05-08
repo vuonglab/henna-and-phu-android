@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
             if (marriedDuration.Minutes != previousMarriedDuration.Minutes) {
                 minutesCount.setText(String.valueOf(marriedDuration.Minutes));
 
-                UIUpdateOptimizations.LabelUpdate minutesLabelUpdate = UIUpdateOptimizations.GetMinutesLabelUpdate(marriedDuration.Minutes, previousMarriedDuration.Minutes);
+                UIUpdateOptimizations.LabelUpdate minutesLabelUpdate = UIUpdateOptimizations.GetLabelUpdate(marriedDuration.Minutes, previousMarriedDuration.Minutes);
                 if (minutesLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
                     minutesLabel.setText(R.string.minute);
                 else if (minutesLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)

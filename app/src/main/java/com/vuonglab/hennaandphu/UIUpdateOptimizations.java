@@ -82,18 +82,6 @@ class UIUpdateOptimizations {
     //</editor-fold>
 
     //<editor-fold desc="Minutes label and state">
-    static LabelUpdate GetMinutesLabelUpdate(long currentMinutesDuration, long previousMinutesDuration) {
-        boolean currentMinutesPlural = currentMinutesDuration >= 2;
-        if (previousMinutesDuration < 0)
-            return currentMinutesPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
-
-        boolean previousMinutesPlural = previousMinutesDuration >= 2;
-        if (previousMinutesPlural == currentMinutesPlural)
-            return LabelUpdate.NOT_NEEDED;
-
-        return currentMinutesPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
-    }
-
     static StateUpdate GetMinutesStateUpdate(long currentMinutesDuration, long previousMinutesDuration) {
         boolean currentMinutesEnabled = currentMinutesDuration >= 1;
         if (previousMinutesDuration < 0)
