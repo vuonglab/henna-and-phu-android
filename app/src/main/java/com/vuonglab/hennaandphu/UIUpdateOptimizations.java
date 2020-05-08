@@ -36,18 +36,4 @@ class UIUpdateOptimizations {
 
         return currentsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
     }
-
-    //<editor-fold desc="Seconds label and state">
-    static StateUpdate GetSecondsStateUpdate(long currentSecondsDuration, long previousSecondsDuration) {
-        boolean currentSecondsEnabled = currentSecondsDuration >= 1;
-        if (previousSecondsDuration < 0)
-            return currentSecondsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
-
-        boolean previousSecondsEnabled = previousSecondsDuration >= 1;
-        if (previousSecondsEnabled == currentSecondsEnabled)
-            return StateUpdate.NOT_NEEDED;
-
-        return currentSecondsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
-    }
-    //</editor-fold>
 }

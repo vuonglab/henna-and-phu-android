@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
                 else if (secondsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
                     secondsLabel.setText(R.string.seconds);
 
-                UIUpdateOptimizations.StateUpdate secondsStateUpdate = UIUpdateOptimizations.GetSecondsStateUpdate(marriedDuration.Seconds, previousMarriedDuration.Seconds);
+                UIUpdateOptimizations.StateUpdate secondsStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.Seconds, previousMarriedDuration.Seconds);
                 if (secondsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
                     secondsCount.setEnabled(false);
                     secondsLabel.setEnabled(false);
