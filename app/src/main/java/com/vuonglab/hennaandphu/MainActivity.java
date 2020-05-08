@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 else if (monthsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
                     monthsLabel.setText(R.string.months);
 
-                UIUpdateOptimizations.StateUpdate monthsStateUpdate = UIUpdateOptimizations.GetMonthsStateUpdate(marriedDuration.Months, previousMarriedDuration.Months);
+                UIUpdateOptimizations.StateUpdate monthsStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.Months, previousMarriedDuration.Months);
                 if (monthsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
                     monthsCount.setEnabled(false);
                     monthsLabel.setEnabled(false);
