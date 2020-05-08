@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             if (marriedDuration.Years != previousMarriedDuration.Years) {
                 yearsCount.setText(String.valueOf(marriedDuration.Years));
 
-                UIUpdateOptimizations.LabelUpdate yearsLabelUpdate = UIUpdateOptimizations.GetYearsLabelUpdate(marriedDuration.Years, previousMarriedDuration.Years);
+                UIUpdateOptimizations.LabelUpdate yearsLabelUpdate = UIUpdateOptimizations.GetLabelUpdate(marriedDuration.Years, previousMarriedDuration.Years);
                 if (yearsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
                     yearsLabel.setText(R.string.year);
                 else if (yearsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)

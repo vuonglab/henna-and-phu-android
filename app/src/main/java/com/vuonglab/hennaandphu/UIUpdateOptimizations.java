@@ -26,18 +26,6 @@ class UIUpdateOptimizations {
     }
 
     //<editor-fold desc="Years label and state">
-    static LabelUpdate GetYearsLabelUpdate(long currentYearsDuration, long previousYearsDuration) {
-        boolean currentYearsPlural = currentYearsDuration >= 2;
-        if (previousYearsDuration < 0)
-            return currentYearsPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
-
-        boolean previousYearsPlural = previousYearsDuration >= 2;
-        if (previousYearsPlural == currentYearsPlural)
-            return LabelUpdate.NOT_NEEDED;
-
-        return currentYearsPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
-    }
-
     static StateUpdate GetYearsStateUpdate(long currentYearsDuration, long previousYearsDuration) {
         boolean currentYearsEnabled = currentYearsDuration >= 1;
         if (previousYearsDuration < 0)
