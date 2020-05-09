@@ -294,4 +294,58 @@ public class DateTimeStateUpdateTests {
         onView(withId(R.id.minutesLabel)).check(matches(isEnabled()));
     }
     // </editor-fold>
+
+    // <editor-fold desc="Seconds enabled/disabled tests">
+    @Test
+    public void secondsDisabledToEnabled() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateSecondsState(StateUpdate.SHOW_DISABLED));
+        onView(withId(R.id.secondsCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.secondsLabel)).check(matches(not(isEnabled())));
+
+        scenario.onActivity(activity -> activity.updateSecondsState(StateUpdate.SHOW_ENABLED));
+        onView(withId(R.id.secondsCount)).check(matches(isEnabled()));
+        onView(withId(R.id.secondsLabel)).check(matches(isEnabled()));
+    }
+
+    @Test
+    public void secondsDisabledNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateSecondsState(StateUpdate.SHOW_DISABLED));
+        onView(withId(R.id.secondsCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.secondsLabel)).check(matches(not(isEnabled())));
+
+        scenario.onActivity(activity -> activity.updateSecondsState(StateUpdate.NOT_NEEDED));
+        onView(withId(R.id.secondsCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.secondsLabel)).check(matches(not(isEnabled())));
+    }
+
+    @Test
+    public void secondsEnabledToDisabled() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateSecondsState(StateUpdate.SHOW_ENABLED));
+        onView(withId(R.id.secondsCount)).check(matches(isEnabled()));
+        onView(withId(R.id.secondsLabel)).check(matches(isEnabled()));
+
+        scenario.onActivity(activity -> activity.updateSecondsState(StateUpdate.SHOW_DISABLED));
+        onView(withId(R.id.secondsCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.secondsLabel)).check(matches(not(isEnabled())));
+    }
+
+    @Test
+    public void secondsEnabledNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateSecondsState(StateUpdate.SHOW_ENABLED));
+        onView(withId(R.id.secondsCount)).check(matches(isEnabled()));
+        onView(withId(R.id.secondsLabel)).check(matches(isEnabled()));
+
+        scenario.onActivity(activity -> activity.updateSecondsState(StateUpdate.NOT_NEEDED));
+        onView(withId(R.id.secondsCount)).check(matches(isEnabled()));
+        onView(withId(R.id.secondsLabel)).check(matches(isEnabled()));
+    }
+    // </editor-fold>
 }

@@ -138,13 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 updateSecondsLabel(secondsLabelUpdate);
 
                 UIUpdateOptimizations.StateUpdate secondsStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.Seconds, previousMarriedDuration.Seconds);
-                if (secondsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
-                    secondsCount.setEnabled(false);
-                    secondsLabel.setEnabled(false);
-                } else if (secondsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
-                    secondsCount.setEnabled(true);
-                    secondsLabel.setEnabled(true);
-                }
+                updateSecondsState(secondsStateUpdate);
             }
 
             previousMarriedDuration = marriedDuration;
@@ -241,5 +235,15 @@ public class MainActivity extends AppCompatActivity {
             secondsLabel.setText(R.string.second);
         else if (secondsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
             secondsLabel.setText(R.string.seconds);
+    }
+
+    void updateSecondsState(UIUpdateOptimizations.StateUpdate secondsStateUpdate) {
+        if (secondsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
+            secondsCount.setEnabled(false);
+            secondsLabel.setEnabled(false);
+        } else if (secondsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
+            secondsCount.setEnabled(true);
+            secondsLabel.setEnabled(true);
+        }
     }
 }
