@@ -252,4 +252,50 @@ public class DateTimeLabelUpdateTests {
         onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minutes)));
     }
     // </editor-fold>
+
+    // <editor-fold desc="Seconds grammatical number tests">
+    @Test
+    public void labelSecondToSeconds() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.SHOW_SINGULAR));
+        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.second)));
+
+        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.SHOW_PLURAL));
+        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.seconds)));
+    }
+
+    @Test
+    public void labelSecondNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.SHOW_SINGULAR));
+        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.second)));
+
+        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.NOT_NEEDED));
+        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.second)));
+    }
+
+    @Test
+    public void labelSecondsToSecond() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.SHOW_PLURAL));
+        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.seconds)));
+
+        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.SHOW_SINGULAR));
+        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.second)));
+    }
+
+    @Test
+    public void labelSecondsNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.SHOW_PLURAL));
+        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.seconds)));
+
+        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.NOT_NEEDED));
+        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.seconds)));
+    }
+    // </editor-fold>
 }
