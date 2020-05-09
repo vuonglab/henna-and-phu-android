@@ -160,4 +160,50 @@ public class DateTimeLabelUpdateTests {
         onView(withId(R.id.daysLabel)).check(matches(withText(R.string.days)));
     }
     // </editor-fold>
+
+    // <editor-fold desc="Hours grammatical number tests">
+    @Test
+    public void labelHourToHours() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.SHOW_SINGULAR));
+        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hour)));
+
+        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.SHOW_PLURAL));
+        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hours)));
+    }
+
+    @Test
+    public void labelHourNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.SHOW_SINGULAR));
+        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hour)));
+
+        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.NOT_NEEDED));
+        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hour)));
+    }
+
+    @Test
+    public void labelHoursToHour() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.SHOW_PLURAL));
+        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hours)));
+
+        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.SHOW_SINGULAR));
+        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hour)));
+    }
+
+    @Test
+    public void labelHoursNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.SHOW_PLURAL));
+        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hours)));
+
+        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.NOT_NEEDED));
+        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hours)));
+    }
+    // </editor-fold>
 }
