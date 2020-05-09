@@ -78,4 +78,58 @@ public class DateTimeStateUpdateTests {
         onView(withId(R.id.yearsLabel)).check(matches(isEnabled()));
     }
     // </editor-fold>
+
+    // <editor-fold desc="Months enabled/disabled tests">
+    @Test
+    public void monthsDisabledToEnabled() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMonthsState(StateUpdate.SHOW_DISABLED));
+        onView(withId(R.id.monthsCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.monthsLabel)).check(matches(not(isEnabled())));
+
+        scenario.onActivity(activity -> activity.updateMonthsState(StateUpdate.SHOW_ENABLED));
+        onView(withId(R.id.monthsCount)).check(matches(isEnabled()));
+        onView(withId(R.id.monthsLabel)).check(matches(isEnabled()));
+    }
+
+    @Test
+    public void monthsDisabledNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMonthsState(StateUpdate.SHOW_DISABLED));
+        onView(withId(R.id.monthsCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.monthsLabel)).check(matches(not(isEnabled())));
+
+        scenario.onActivity(activity -> activity.updateMonthsState(StateUpdate.NOT_NEEDED));
+        onView(withId(R.id.monthsCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.monthsLabel)).check(matches(not(isEnabled())));
+    }
+
+    @Test
+    public void monthsEnabledToDisabled() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMonthsState(StateUpdate.SHOW_ENABLED));
+        onView(withId(R.id.monthsCount)).check(matches(isEnabled()));
+        onView(withId(R.id.monthsLabel)).check(matches(isEnabled()));
+
+        scenario.onActivity(activity -> activity.updateMonthsState(StateUpdate.SHOW_DISABLED));
+        onView(withId(R.id.monthsCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.monthsLabel)).check(matches(not(isEnabled())));
+    }
+
+    @Test
+    public void monthsEnabledNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMonthsState(StateUpdate.SHOW_ENABLED));
+        onView(withId(R.id.monthsCount)).check(matches(isEnabled()));
+        onView(withId(R.id.monthsLabel)).check(matches(isEnabled()));
+
+        scenario.onActivity(activity -> activity.updateMonthsState(StateUpdate.NOT_NEEDED));
+        onView(withId(R.id.monthsCount)).check(matches(isEnabled()));
+        onView(withId(R.id.monthsLabel)).check(matches(isEnabled()));
+    }
+    // </editor-fold>
 }
