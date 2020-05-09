@@ -114,4 +114,50 @@ public class DateTimeLabelUpdateTests {
         onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.months)));
     }
     // </editor-fold>
+
+    // <editor-fold desc="Days grammatical number tests">
+    @Test
+    public void labelDayToDays() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.SHOW_SINGULAR));
+        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.day)));
+
+        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.SHOW_PLURAL));
+        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.days)));
+    }
+
+    @Test
+    public void labelDayNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.SHOW_SINGULAR));
+        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.day)));
+
+        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.NOT_NEEDED));
+        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.day)));
+    }
+
+    @Test
+    public void labelDaysToDay() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.SHOW_PLURAL));
+        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.days)));
+
+        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.SHOW_SINGULAR));
+        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.day)));
+    }
+
+    @Test
+    public void labelDaysNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.SHOW_PLURAL));
+        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.days)));
+
+        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.NOT_NEEDED));
+        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.days)));
+    }
+    // </editor-fold>
 }
