@@ -240,4 +240,58 @@ public class DateTimeStateUpdateTests {
         onView(withId(R.id.hoursLabel)).check(matches(isEnabled()));
     }
     // </editor-fold>
+
+    // <editor-fold desc="Minutes enabled/disabled tests">
+    @Test
+    public void minutesDisabledToEnabled() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMinutesState(StateUpdate.SHOW_DISABLED));
+        onView(withId(R.id.minutesCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.minutesLabel)).check(matches(not(isEnabled())));
+
+        scenario.onActivity(activity -> activity.updateMinutesState(StateUpdate.SHOW_ENABLED));
+        onView(withId(R.id.minutesCount)).check(matches(isEnabled()));
+        onView(withId(R.id.minutesLabel)).check(matches(isEnabled()));
+    }
+
+    @Test
+    public void minutesDisabledNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMinutesState(StateUpdate.SHOW_DISABLED));
+        onView(withId(R.id.minutesCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.minutesLabel)).check(matches(not(isEnabled())));
+
+        scenario.onActivity(activity -> activity.updateMinutesState(StateUpdate.NOT_NEEDED));
+        onView(withId(R.id.minutesCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.minutesLabel)).check(matches(not(isEnabled())));
+    }
+
+    @Test
+    public void minutesEnabledToDisabled() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMinutesState(StateUpdate.SHOW_ENABLED));
+        onView(withId(R.id.minutesCount)).check(matches(isEnabled()));
+        onView(withId(R.id.minutesLabel)).check(matches(isEnabled()));
+
+        scenario.onActivity(activity -> activity.updateMinutesState(StateUpdate.SHOW_DISABLED));
+        onView(withId(R.id.minutesCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.minutesLabel)).check(matches(not(isEnabled())));
+    }
+
+    @Test
+    public void minutesEnabledNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMinutesState(StateUpdate.SHOW_ENABLED));
+        onView(withId(R.id.minutesCount)).check(matches(isEnabled()));
+        onView(withId(R.id.minutesLabel)).check(matches(isEnabled()));
+
+        scenario.onActivity(activity -> activity.updateMinutesState(StateUpdate.NOT_NEEDED));
+        onView(withId(R.id.minutesCount)).check(matches(isEnabled()));
+        onView(withId(R.id.minutesLabel)).check(matches(isEnabled()));
+    }
+    // </editor-fold>
 }
