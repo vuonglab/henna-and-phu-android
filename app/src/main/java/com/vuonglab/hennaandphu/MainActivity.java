@@ -118,13 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 updateHoursLabel(hoursLabelUpdate);
 
                 UIUpdateOptimizations.StateUpdate hoursStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.Hours, previousMarriedDuration.Hours);
-                if (hoursStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
-                    hoursCount.setEnabled(false);
-                    hoursLabel.setEnabled(false);
-                } else if (hoursStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
-                    hoursCount.setEnabled(true);
-                    hoursLabel.setEnabled(true);
-                }
+                updateHoursState(hoursStateUpdate);
             }
 
             if (marriedDuration.Minutes != previousMarriedDuration.Minutes) {
@@ -225,5 +219,15 @@ public class MainActivity extends AppCompatActivity {
             hoursLabel.setText(R.string.hour);
         else if (hoursLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
             hoursLabel.setText(R.string.hours);
+    }
+
+    void updateHoursState(UIUpdateOptimizations.StateUpdate hoursStateUpdate) {
+        if (hoursStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
+            hoursCount.setEnabled(false);
+            hoursLabel.setEnabled(false);
+        } else if (hoursStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
+            hoursCount.setEnabled(true);
+            hoursLabel.setEnabled(true);
+        }
     }
 }
