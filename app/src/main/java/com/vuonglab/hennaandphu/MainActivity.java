@@ -85,10 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 yearsCount.setText(String.valueOf(marriedDuration.Years));
 
                 UIUpdateOptimizations.LabelUpdate yearsLabelUpdate = UIUpdateOptimizations.GetLabelUpdate(marriedDuration.Years, previousMarriedDuration.Years);
-                if (yearsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
-                    yearsLabel.setText(R.string.year);
-                else if (yearsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
-                    yearsLabel.setText(R.string.years);
+                updateYearsLabel(yearsLabelUpdate);
 
                 UIUpdateOptimizations.StateUpdate yearsStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.Years, previousMarriedDuration.Years);
                 if (yearsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
@@ -198,4 +195,11 @@ public class MainActivity extends AppCompatActivity {
             previousMarriedDuration = marriedDuration;
         }
     };
+
+    void updateYearsLabel(UIUpdateOptimizations.LabelUpdate yearsLabelUpdate) {
+        if (yearsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
+            yearsLabel.setText(R.string.year);
+        else if (yearsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
+            yearsLabel.setText(R.string.years);
+    }
 }
