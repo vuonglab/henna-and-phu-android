@@ -88,13 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 updateYearsLabel(yearsLabelUpdate);
 
                 UIUpdateOptimizations.StateUpdate yearsStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.Years, previousMarriedDuration.Years);
-                if (yearsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
-                    yearsCount.setEnabled(false);
-                    yearsLabel.setEnabled(false);
-                } else if (yearsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
-                    yearsCount.setEnabled(true);
-                    yearsLabel.setEnabled(true);
-                }
+                updateYearsState(yearsStateUpdate);
             }
 
             if (marriedDuration.Months != previousMarriedDuration.Months) {
@@ -201,5 +195,15 @@ public class MainActivity extends AppCompatActivity {
             yearsLabel.setText(R.string.year);
         else if (yearsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
             yearsLabel.setText(R.string.years);
+    }
+
+    void updateYearsState(UIUpdateOptimizations.StateUpdate yearsStateUpdate) {
+        if (yearsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
+            yearsCount.setEnabled(false);
+            yearsLabel.setEnabled(false);
+        } else if (yearsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
+            yearsCount.setEnabled(true);
+            yearsLabel.setEnabled(true);
+        }
     }
 }
