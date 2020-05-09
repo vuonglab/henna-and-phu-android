@@ -95,10 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 monthsCount.setText(String.valueOf(marriedDuration.Months));
 
                 UIUpdateOptimizations.LabelUpdate monthsLabelUpdate = UIUpdateOptimizations.GetLabelUpdate(marriedDuration.Months, previousMarriedDuration.Months);
-                if (monthsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
-                    monthsLabel.setText(R.string.month);
-                else if (monthsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
-                    monthsLabel.setText(R.string.months);
+                updateMonthsLabel(monthsLabelUpdate);
 
                 UIUpdateOptimizations.StateUpdate monthsStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.Months, previousMarriedDuration.Months);
                 if (monthsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
@@ -205,5 +202,12 @@ public class MainActivity extends AppCompatActivity {
             yearsCount.setEnabled(true);
             yearsLabel.setEnabled(true);
         }
+    }
+
+    void updateMonthsLabel(UIUpdateOptimizations.LabelUpdate monthsLabelUpdate) {
+        if (monthsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
+            monthsLabel.setText(R.string.month);
+        else if (monthsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
+            monthsLabel.setText(R.string.months);
     }
 }

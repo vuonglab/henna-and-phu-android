@@ -68,4 +68,50 @@ public class DateTimeLabelUpdateTests {
         onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.years)));
     }
     // </editor-fold>
+
+    // <editor-fold desc="Months grammatical number tests">
+    @Test
+    public void labelMonthToMonths() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.SHOW_SINGULAR));
+        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.month)));
+
+        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.SHOW_PLURAL));
+        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.months)));
+    }
+
+    @Test
+    public void labelMonthNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.SHOW_SINGULAR));
+        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.month)));
+
+        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.NOT_NEEDED));
+        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.month)));
+    }
+
+    @Test
+    public void labelMonthsToMonth() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.SHOW_PLURAL));
+        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.months)));
+
+        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.SHOW_SINGULAR));
+        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.month)));
+    }
+
+    @Test
+    public void labelMonthsNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.SHOW_PLURAL));
+        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.months)));
+
+        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.NOT_NEEDED));
+        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.months)));
+    }
+    // </editor-fold>
 }
