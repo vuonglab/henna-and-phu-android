@@ -14,6 +14,8 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import com.vuonglab.hennaandphu.UIUpdateOptimizations.LabelUpdate;
+
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class DateTimeLabelUpdateTests {
@@ -21,14 +23,15 @@ public class DateTimeLabelUpdateTests {
     public ActivityScenarioRule<MainActivity> rule
             = new ActivityScenarioRule<>(MainActivity.class);
 
+    // <editor-fold desc="Years grammatical number tests">
     @Test
     public void labelYearToYears() {
         ActivityScenario<MainActivity> scenario = rule.getScenario();
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR));
+        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.SHOW_SINGULAR));
         onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.year)));
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL));
+        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.SHOW_PLURAL));
         onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.years)));
     }
 
@@ -36,10 +39,10 @@ public class DateTimeLabelUpdateTests {
     public void labelYearNoChange() {
         ActivityScenario<MainActivity> scenario = rule.getScenario();
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR));
+        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.SHOW_SINGULAR));
         onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.year)));
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(UIUpdateOptimizations.LabelUpdate.NOT_NEEDED));
+        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.NOT_NEEDED));
         onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.year)));
     }
 
@@ -47,10 +50,10 @@ public class DateTimeLabelUpdateTests {
     public void labelYearsToYear() {
         ActivityScenario<MainActivity> scenario = rule.getScenario();
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL));
+        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.SHOW_PLURAL));
         onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.years)));
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR));
+        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.SHOW_SINGULAR));
         onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.year)));
     }
 
@@ -58,10 +61,11 @@ public class DateTimeLabelUpdateTests {
     public void labelYearsNoChange() {
         ActivityScenario<MainActivity> scenario = rule.getScenario();
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL));
+        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.SHOW_PLURAL));
         onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.years)));
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(UIUpdateOptimizations.LabelUpdate.NOT_NEEDED));
+        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.NOT_NEEDED));
         onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.years)));
     }
+    // </editor-fold>
 }
