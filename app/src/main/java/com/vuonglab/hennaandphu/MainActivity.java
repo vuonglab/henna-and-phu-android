@@ -11,6 +11,9 @@ import java.time.ZonedDateTime;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.vuonglab.hennaandphu.UIUpdateOptimizations.LabelUpdate;
+import com.vuonglab.hennaandphu.UIUpdateOptimizations.StateUpdate;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
@@ -146,102 +149,102 @@ public class MainActivity extends AppCompatActivity {
     };
 
     void updateYearsLabel(UIUpdateOptimizations.LabelUpdate yearsLabelUpdate) {
-        if (yearsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
+        if (yearsLabelUpdate == LabelUpdate.SHOW_SINGULAR)
             yearsLabel.setText(R.string.year);
-        else if (yearsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
+        else if (yearsLabelUpdate == LabelUpdate.SHOW_PLURAL)
             yearsLabel.setText(R.string.years);
     }
 
     void updateYearsState(UIUpdateOptimizations.StateUpdate yearsStateUpdate) {
-        if (yearsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
+        if (yearsStateUpdate == StateUpdate.SHOW_DISABLED) {
             yearsCount.setEnabled(false);
             yearsLabel.setEnabled(false);
-        } else if (yearsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
+        } else if (yearsStateUpdate == StateUpdate.SHOW_ENABLED) {
             yearsCount.setEnabled(true);
             yearsLabel.setEnabled(true);
         }
     }
 
     void updateMonthsLabel(UIUpdateOptimizations.LabelUpdate monthsLabelUpdate) {
-        if (monthsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
+        if (monthsLabelUpdate == LabelUpdate.SHOW_SINGULAR)
             monthsLabel.setText(R.string.month);
-        else if (monthsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
+        else if (monthsLabelUpdate == LabelUpdate.SHOW_PLURAL)
             monthsLabel.setText(R.string.months);
     }
 
     void updateMonthsState(UIUpdateOptimizations.StateUpdate monthsStateUpdate) {
-        if (monthsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
+        if (monthsStateUpdate == StateUpdate.SHOW_DISABLED) {
             monthsCount.setEnabled(false);
             monthsLabel.setEnabled(false);
-        } else if (monthsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
+        } else if (monthsStateUpdate == StateUpdate.SHOW_ENABLED) {
             monthsCount.setEnabled(true);
             monthsLabel.setEnabled(true);
         }
     }
 
     void updateDaysLabel(UIUpdateOptimizations.LabelUpdate daysLabelUpdate) {
-        if (daysLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
+        if (daysLabelUpdate == LabelUpdate.SHOW_SINGULAR)
             daysLabel.setText(R.string.day);
-        else if (daysLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
+        else if (daysLabelUpdate == LabelUpdate.SHOW_PLURAL)
             daysLabel.setText(R.string.days);
     }
 
     void updateDaysState(UIUpdateOptimizations.StateUpdate daysStateUpdate) {
-        if (daysStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
+        if (daysStateUpdate == StateUpdate.SHOW_DISABLED) {
             daysCount.setEnabled(false);
             daysLabel.setEnabled(false);
-        } else if (daysStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
+        } else if (daysStateUpdate == StateUpdate.SHOW_ENABLED) {
             daysCount.setEnabled(true);
             daysLabel.setEnabled(true);
         }
     }
 
     void updateHoursLabel(UIUpdateOptimizations.LabelUpdate hoursLabelUpdate) {
-        if (hoursLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
+        if (hoursLabelUpdate == LabelUpdate.SHOW_SINGULAR)
             hoursLabel.setText(R.string.hour);
-        else if (hoursLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
+        else if (hoursLabelUpdate == LabelUpdate.SHOW_PLURAL)
             hoursLabel.setText(R.string.hours);
     }
 
     void updateHoursState(UIUpdateOptimizations.StateUpdate hoursStateUpdate) {
-        if (hoursStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
+        if (hoursStateUpdate == StateUpdate.SHOW_DISABLED) {
             hoursCount.setEnabled(false);
             hoursLabel.setEnabled(false);
-        } else if (hoursStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
+        } else if (hoursStateUpdate == StateUpdate.SHOW_ENABLED) {
             hoursCount.setEnabled(true);
             hoursLabel.setEnabled(true);
         }
     }
 
     void updateMinutesLabel(UIUpdateOptimizations.LabelUpdate minutesLabelUpdate) {
-        if (minutesLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
+        if (minutesLabelUpdate == LabelUpdate.SHOW_SINGULAR)
             minutesLabel.setText(R.string.minute);
-        else if (minutesLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
+        else if (minutesLabelUpdate == LabelUpdate.SHOW_PLURAL)
             minutesLabel.setText(R.string.minutes);
     }
 
     void updateMinutesState(UIUpdateOptimizations.StateUpdate minutesStateUpdate) {
-        if (minutesStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
+        if (minutesStateUpdate == StateUpdate.SHOW_DISABLED) {
             minutesCount.setEnabled(false);
             minutesLabel.setEnabled(false);
-        } else if (minutesStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
+        } else if (minutesStateUpdate == StateUpdate.SHOW_ENABLED) {
             minutesCount.setEnabled(true);
             minutesLabel.setEnabled(true);
         }
     }
 
     void updateSecondsLabel(UIUpdateOptimizations.LabelUpdate secondsLabelUpdate) {
-        if (secondsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
+        if (secondsLabelUpdate == LabelUpdate.SHOW_SINGULAR)
             secondsLabel.setText(R.string.second);
-        else if (secondsLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
+        else if (secondsLabelUpdate == LabelUpdate.SHOW_PLURAL)
             secondsLabel.setText(R.string.seconds);
     }
 
     void updateSecondsState(UIUpdateOptimizations.StateUpdate secondsStateUpdate) {
-        if (secondsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
+        if (secondsStateUpdate == StateUpdate.SHOW_DISABLED) {
             secondsCount.setEnabled(false);
             secondsLabel.setEnabled(false);
-        } else if (secondsStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
+        } else if (secondsStateUpdate == StateUpdate.SHOW_ENABLED) {
             secondsCount.setEnabled(true);
             secondsLabel.setEnabled(true);
         }
