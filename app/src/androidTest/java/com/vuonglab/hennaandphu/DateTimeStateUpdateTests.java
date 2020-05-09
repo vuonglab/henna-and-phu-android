@@ -132,4 +132,58 @@ public class DateTimeStateUpdateTests {
         onView(withId(R.id.monthsLabel)).check(matches(isEnabled()));
     }
     // </editor-fold>
+
+    // <editor-fold desc="Days enabled/disabled tests">
+    @Test
+    public void daysDisabledToEnabled() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateDaysState(StateUpdate.SHOW_DISABLED));
+        onView(withId(R.id.daysCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.daysLabel)).check(matches(not(isEnabled())));
+
+        scenario.onActivity(activity -> activity.updateDaysState(StateUpdate.SHOW_ENABLED));
+        onView(withId(R.id.daysCount)).check(matches(isEnabled()));
+        onView(withId(R.id.daysLabel)).check(matches(isEnabled()));
+    }
+
+    @Test
+    public void daysDisabledNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateDaysState(StateUpdate.SHOW_DISABLED));
+        onView(withId(R.id.daysCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.daysLabel)).check(matches(not(isEnabled())));
+
+        scenario.onActivity(activity -> activity.updateDaysState(StateUpdate.NOT_NEEDED));
+        onView(withId(R.id.daysCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.daysLabel)).check(matches(not(isEnabled())));
+    }
+
+    @Test
+    public void daysEnabledToDisabled() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateDaysState(StateUpdate.SHOW_ENABLED));
+        onView(withId(R.id.daysCount)).check(matches(isEnabled()));
+        onView(withId(R.id.daysLabel)).check(matches(isEnabled()));
+
+        scenario.onActivity(activity -> activity.updateDaysState(StateUpdate.SHOW_DISABLED));
+        onView(withId(R.id.daysCount)).check(matches(not(isEnabled())));
+        onView(withId(R.id.daysLabel)).check(matches(not(isEnabled())));
+    }
+
+    @Test
+    public void daysEnabledNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateDaysState(StateUpdate.SHOW_ENABLED));
+        onView(withId(R.id.daysCount)).check(matches(isEnabled()));
+        onView(withId(R.id.daysLabel)).check(matches(isEnabled()));
+
+        scenario.onActivity(activity -> activity.updateDaysState(StateUpdate.NOT_NEEDED));
+        onView(withId(R.id.daysCount)).check(matches(isEnabled()));
+        onView(withId(R.id.daysLabel)).check(matches(isEnabled()));
+    }
+    // </editor-fold>
 }

@@ -108,13 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 updateDaysLabel(daysLabelUpdate);
 
                 UIUpdateOptimizations.StateUpdate daysStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.Days, previousMarriedDuration.Days);
-                if (daysStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
-                    daysCount.setEnabled(false);
-                    daysLabel.setEnabled(false);
-                } else if (daysStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
-                    daysCount.setEnabled(true);
-                    daysLabel.setEnabled(true);
-                }
+                updateDaysState(daysStateUpdate);
             }
 
             if (marriedDuration.Hours != previousMarriedDuration.Hours) {
@@ -217,5 +211,15 @@ public class MainActivity extends AppCompatActivity {
             daysLabel.setText(R.string.day);
         else if (daysLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
             daysLabel.setText(R.string.days);
+    }
+
+    void updateDaysState(UIUpdateOptimizations.StateUpdate daysStateUpdate) {
+        if (daysStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
+            daysCount.setEnabled(false);
+            daysLabel.setEnabled(false);
+        } else if (daysStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_ENABLED) {
+            daysCount.setEnabled(true);
+            daysLabel.setEnabled(true);
+        }
     }
 }
