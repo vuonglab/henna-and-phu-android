@@ -125,10 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 minutesCount.setText(String.valueOf(marriedDuration.Minutes));
 
                 UIUpdateOptimizations.LabelUpdate minutesLabelUpdate = UIUpdateOptimizations.GetLabelUpdate(marriedDuration.Minutes, previousMarriedDuration.Minutes);
-                if (minutesLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
-                    minutesLabel.setText(R.string.minute);
-                else if (minutesLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
-                    minutesLabel.setText(R.string.minutes);
+                updateMinutesLabel(minutesLabelUpdate);
 
                 UIUpdateOptimizations.StateUpdate minutesStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.Minutes, previousMarriedDuration.Minutes);
                 if (minutesStateUpdate == UIUpdateOptimizations.StateUpdate.SHOW_DISABLED) {
@@ -229,5 +226,12 @@ public class MainActivity extends AppCompatActivity {
             hoursCount.setEnabled(true);
             hoursLabel.setEnabled(true);
         }
+    }
+
+    void updateMinutesLabel(UIUpdateOptimizations.LabelUpdate minutesLabelUpdate) {
+        if (minutesLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_SINGULAR)
+            minutesLabel.setText(R.string.minute);
+        else if (minutesLabelUpdate == UIUpdateOptimizations.LabelUpdate.SHOW_PLURAL)
+            minutesLabel.setText(R.string.minutes);
     }
 }

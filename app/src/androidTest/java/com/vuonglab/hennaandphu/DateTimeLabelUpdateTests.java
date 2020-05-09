@@ -206,4 +206,50 @@ public class DateTimeLabelUpdateTests {
         onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hours)));
     }
     // </editor-fold>
+
+    // <editor-fold desc="Minutes grammatical number tests">
+    @Test
+    public void labelMinuteToMinutes() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.SHOW_SINGULAR));
+        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minute)));
+
+        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.SHOW_PLURAL));
+        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minutes)));
+    }
+
+    @Test
+    public void labelMinuteNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.SHOW_SINGULAR));
+        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minute)));
+
+        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.NOT_NEEDED));
+        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minute)));
+    }
+
+    @Test
+    public void labelMinutesToMinute() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.SHOW_PLURAL));
+        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minutes)));
+
+        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.SHOW_SINGULAR));
+        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minute)));
+    }
+
+    @Test
+    public void labelMinutesNoChange() {
+        ActivityScenario<MainActivity> scenario = rule.getScenario();
+
+        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.SHOW_PLURAL));
+        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minutes)));
+
+        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.NOT_NEEDED));
+        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minutes)));
+    }
+    // </editor-fold>
 }
