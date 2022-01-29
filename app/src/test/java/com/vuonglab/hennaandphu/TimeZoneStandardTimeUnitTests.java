@@ -423,13 +423,6 @@ public class TimeZoneStandardTimeUnitTests {
     }
 
     @Test
-    public void US_Pacific_New() {
-        ZonedDateTime now = getDateTimeInATimeZone(2017, 11, 1, 11, 35, 11, "US/Pacific-New"); // GMT-07:00
-        Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(2, 7, 18, 2, 8, 18));
-    }
-
-    @Test
     public void Asia_Samarkand() {
         ZonedDateTime now = getDateTimeInATimeZone(2017, 11, 1, 23, 35, 11, "Asia/Samarkand"); // GMT+05:00
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);

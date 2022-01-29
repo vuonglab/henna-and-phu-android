@@ -423,13 +423,6 @@ public class TimeZoneDaylightSavingTimeUnitTests {
     }
 
     @Test
-    public void US_Pacific_New() {
-        ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 29, 18, 53, 46, "US/Pacific-New"); // GMT-07:00
-        Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(31, 4, 15, 9, 26, 53));
-    }
-
-    @Test
     public void Asia_Samarkand() {
         ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 30, 6, 53, 46, "Asia/Samarkand"); // GMT+05:00
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
@@ -1355,7 +1348,7 @@ public class TimeZoneDaylightSavingTimeUnitTests {
 
     @Test
     public void Africa_Sao_Tome() {
-        ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 30, 2, 53, 46, "Africa/Sao_Tome"); // GMT+01:00
+        ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 30, 1, 53, 46, "Africa/Sao_Tome"); // GMT+00:00
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
         assertDuration(marriedDuration, new Duration(31, 4, 15, 9, 26, 53));
     }
@@ -1691,7 +1684,7 @@ public class TimeZoneDaylightSavingTimeUnitTests {
 
     @Test
     public void Antarctica_Macquarie() {
-        ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 30, 12, 53, 46, "Antarctica/Macquarie"); // GMT+11:00
+        ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 30, 11, 53, 46, "Antarctica/Macquarie"); // GMT+10:00
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
         assertDuration(marriedDuration, new Duration(31, 4, 15, 9, 26, 53));
     }
@@ -1768,7 +1761,7 @@ public class TimeZoneDaylightSavingTimeUnitTests {
 
     @Test
     public void Asia_Qyzylorda() {
-        ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 30, 7, 53, 46, "Asia/Qyzylorda"); // GMT+06:00
+        ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 30, 6, 53, 46, "Asia/Qyzylorda"); // GMT+05:00
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
         assertDuration(marriedDuration, new Duration(31, 4, 15, 9, 26, 53));
     }
@@ -1803,7 +1796,7 @@ public class TimeZoneDaylightSavingTimeUnitTests {
 
     @Test
     public void Antarctica_Casey() {
-        ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 30, 9, 53, 46, "Antarctica/Casey"); // GMT+08:00
+        ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 30, 12, 53, 46, "Antarctica/Casey"); // GMT+11:00
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
         assertDuration(marriedDuration, new Duration(31, 4, 15, 9, 26, 53));
     }
@@ -2279,6 +2272,7 @@ public class TimeZoneDaylightSavingTimeUnitTests {
 
     @Test
     public void Africa_El_Aaiun() {
+        // July should be GMT+01:00. Bug in Java timezone database?
         ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 30, 2, 53, 46, "Africa/El_Aaiun"); // GMT+01:00
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
         assertDuration(marriedDuration, new Duration(31, 4, 15, 9, 26, 53));
@@ -2972,9 +2966,9 @@ public class TimeZoneDaylightSavingTimeUnitTests {
 
     @Test
     public void Africa_Casablanca() {
-        ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 30, 2, 53, 46, "Africa/Casablanca"); // GMT+01:00
+        ZonedDateTime now = getDateTimeInATimeZone(2046, 4, 30, 2, 53, 46, "Africa/Casablanca"); // GMT+01:00
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(31, 4, 15, 9, 26, 53));
+        assertDuration(marriedDuration, new Duration(31, 1, 15, 9, 26, 53));
     }
 
     @Test
@@ -3308,7 +3302,7 @@ public class TimeZoneDaylightSavingTimeUnitTests {
 
     @Test
     public void Europe_Volgograd() {
-        ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 30, 5, 53, 46, "Europe/Volgograd"); // GMT+04:00
+        ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 30, 4, 53, 46, "Europe/Volgograd"); // GMT+03:00
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
         assertDuration(marriedDuration, new Duration(31, 4, 15, 9, 26, 53));
     }
@@ -3567,7 +3561,7 @@ public class TimeZoneDaylightSavingTimeUnitTests {
 
     @Test
     public void Africa_Juba() {
-        ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 30, 4, 53, 46, "Africa/Juba"); // GMT+03:00
+        ZonedDateTime now = getDateTimeInATimeZone(2046, 7, 30, 3, 53, 46, "Africa/Juba"); // GMT+02:00
         Duration marriedDuration = DurationCalculator.getMarriedDuration(now);
         assertDuration(marriedDuration, new Duration(31, 4, 15, 9, 26, 53));
     }
