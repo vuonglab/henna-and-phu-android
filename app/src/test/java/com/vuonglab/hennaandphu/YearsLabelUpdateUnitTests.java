@@ -3,7 +3,7 @@ package com.vuonglab.hennaandphu;
 import static com.google.common.truth.Truth.assertThat;
 import org.junit.Test;
 
-import static com.vuonglab.hennaandphu.UIUpdateOptimizations.GetLabelUpdate;
+import static com.vuonglab.hennaandphu.UIUpdateOptimizations.getLabelUpdate;
 import com.vuonglab.hennaandphu.UIUpdateOptimizations.LabelUpdate;
 
 public class YearsLabelUpdateUnitTests {
@@ -132,7 +132,7 @@ public class YearsLabelUpdateUnitTests {
     //</editor-fold>
 
     private void runTest(long previousYearsDuration, long currentYearsDuration, LabelUpdate expectedLabelUpdate) {
-        LabelUpdate labelUpdate = GetLabelUpdate(currentYearsDuration, previousYearsDuration);
+        LabelUpdate labelUpdate = getLabelUpdate(currentYearsDuration, previousYearsDuration);
         assertThat(labelUpdate).isEqualTo(expectedLabelUpdate);
     }
 }

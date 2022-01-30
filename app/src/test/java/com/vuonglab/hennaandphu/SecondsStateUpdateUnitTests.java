@@ -5,7 +5,7 @@ import com.vuonglab.hennaandphu.UIUpdateOptimizations.StateUpdate;
 import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;
-import static com.vuonglab.hennaandphu.UIUpdateOptimizations.GetStateUpdate;
+import static com.vuonglab.hennaandphu.UIUpdateOptimizations.getStateUpdate;
 
 public class SecondsStateUpdateUnitTests {
     @Test
@@ -179,7 +179,7 @@ public class SecondsStateUpdateUnitTests {
     }
 
     private void runTest(long previousSecondsDuration, long currentSecondsDuration, StateUpdate expectedStateUpdate) {
-        StateUpdate stateUpdate = GetStateUpdate(currentSecondsDuration, previousSecondsDuration);
+        StateUpdate stateUpdate = getStateUpdate(currentSecondsDuration, previousSecondsDuration);
         assertThat(stateUpdate).isEqualTo(expectedStateUpdate);
     }
 }

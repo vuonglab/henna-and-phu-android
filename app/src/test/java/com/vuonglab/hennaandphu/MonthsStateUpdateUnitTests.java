@@ -5,7 +5,7 @@ import com.vuonglab.hennaandphu.UIUpdateOptimizations.StateUpdate;
 import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;
-import static com.vuonglab.hennaandphu.UIUpdateOptimizations.GetStateUpdate;
+import static com.vuonglab.hennaandphu.UIUpdateOptimizations.getStateUpdate;
 
 public class MonthsStateUpdateUnitTests {
     @Test
@@ -169,7 +169,7 @@ public class MonthsStateUpdateUnitTests {
     }
 
     private void runTest(long previousMonthsDuration, long currentMonthsDuration, StateUpdate expectedStateUpdate) {
-        StateUpdate stateUpdate = GetStateUpdate(currentMonthsDuration, previousMonthsDuration);
+        StateUpdate stateUpdate = getStateUpdate(currentMonthsDuration, previousMonthsDuration);
         assertThat(stateUpdate).isEqualTo(expectedStateUpdate);
     }
 }

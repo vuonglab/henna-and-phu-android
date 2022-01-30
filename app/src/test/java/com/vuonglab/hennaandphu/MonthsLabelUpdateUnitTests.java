@@ -5,7 +5,7 @@ import com.vuonglab.hennaandphu.UIUpdateOptimizations.LabelUpdate;
 import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;
-import static com.vuonglab.hennaandphu.UIUpdateOptimizations.GetLabelUpdate;
+import static com.vuonglab.hennaandphu.UIUpdateOptimizations.getLabelUpdate;
 
 public class MonthsLabelUpdateUnitTests {
     @Test
@@ -169,7 +169,7 @@ public class MonthsLabelUpdateUnitTests {
     }
 
     private void runTest(long previousMonthsDuration, long currentMonthsDuration, LabelUpdate expectedLabelUpdate) {
-        LabelUpdate labelUpdate = GetLabelUpdate(currentMonthsDuration, previousMonthsDuration);
+        LabelUpdate labelUpdate = getLabelUpdate(currentMonthsDuration, previousMonthsDuration);
         assertThat(labelUpdate).isEqualTo(expectedLabelUpdate);
     }
 }

@@ -88,60 +88,60 @@ public class MainActivity extends AppCompatActivity {
             if (marriedDuration.getYears() != previousMarriedDuration.getYears()) {
                 yearsCount.setText(String.valueOf(marriedDuration.getYears()));
 
-                UIUpdateOptimizations.LabelUpdate yearsLabelUpdate = UIUpdateOptimizations.GetLabelUpdate(marriedDuration.getYears(), previousMarriedDuration.getYears());
+                UIUpdateOptimizations.LabelUpdate yearsLabelUpdate = UIUpdateOptimizations.getLabelUpdate(marriedDuration.getYears(), previousMarriedDuration.getYears());
                 updateYearsLabel(yearsLabelUpdate);
 
-                UIUpdateOptimizations.StateUpdate yearsStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.getYears(), previousMarriedDuration.getYears());
+                UIUpdateOptimizations.StateUpdate yearsStateUpdate = UIUpdateOptimizations.getStateUpdate(marriedDuration.getYears(), previousMarriedDuration.getYears());
                 updateYearsState(yearsStateUpdate);
             }
 
             if (marriedDuration.getMonths() != previousMarriedDuration.getMonths()) {
                 monthsCount.setText(String.valueOf(marriedDuration.getMonths()));
 
-                UIUpdateOptimizations.LabelUpdate monthsLabelUpdate = UIUpdateOptimizations.GetLabelUpdate(marriedDuration.getMonths(), previousMarriedDuration.getMonths());
+                UIUpdateOptimizations.LabelUpdate monthsLabelUpdate = UIUpdateOptimizations.getLabelUpdate(marriedDuration.getMonths(), previousMarriedDuration.getMonths());
                 updateMonthsLabel(monthsLabelUpdate);
 
-                UIUpdateOptimizations.StateUpdate monthsStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.getMonths(), previousMarriedDuration.getMonths());
+                UIUpdateOptimizations.StateUpdate monthsStateUpdate = UIUpdateOptimizations.getStateUpdate(marriedDuration.getMonths(), previousMarriedDuration.getMonths());
                 updateMonthsState(monthsStateUpdate);
             }
 
             if (marriedDuration.getDays() != previousMarriedDuration.getDays()) {
                 daysCount.setText(String.valueOf(marriedDuration.getDays()));
 
-                UIUpdateOptimizations.LabelUpdate daysLabelUpdate = UIUpdateOptimizations.GetLabelUpdate(marriedDuration.getDays(), previousMarriedDuration.getDays());
+                UIUpdateOptimizations.LabelUpdate daysLabelUpdate = UIUpdateOptimizations.getLabelUpdate(marriedDuration.getDays(), previousMarriedDuration.getDays());
                 updateDaysLabel(daysLabelUpdate);
 
-                UIUpdateOptimizations.StateUpdate daysStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.getDays(), previousMarriedDuration.getDays());
+                UIUpdateOptimizations.StateUpdate daysStateUpdate = UIUpdateOptimizations.getStateUpdate(marriedDuration.getDays(), previousMarriedDuration.getDays());
                 updateDaysState(daysStateUpdate);
             }
 
             if (marriedDuration.getHours() != previousMarriedDuration.getHours()) {
                 hoursCount.setText(String.valueOf(marriedDuration.getHours()));
 
-                UIUpdateOptimizations.LabelUpdate hoursLabelUpdate = UIUpdateOptimizations.GetLabelUpdate(marriedDuration.getHours(), previousMarriedDuration.getHours());
+                UIUpdateOptimizations.LabelUpdate hoursLabelUpdate = UIUpdateOptimizations.getLabelUpdate(marriedDuration.getHours(), previousMarriedDuration.getHours());
                 updateHoursLabel(hoursLabelUpdate);
 
-                UIUpdateOptimizations.StateUpdate hoursStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.getHours(), previousMarriedDuration.getHours());
+                UIUpdateOptimizations.StateUpdate hoursStateUpdate = UIUpdateOptimizations.getStateUpdate(marriedDuration.getHours(), previousMarriedDuration.getHours());
                 updateHoursState(hoursStateUpdate);
             }
 
             if (marriedDuration.getMinutes() != previousMarriedDuration.getMinutes()) {
                 minutesCount.setText(String.valueOf(marriedDuration.getMinutes()));
 
-                UIUpdateOptimizations.LabelUpdate minutesLabelUpdate = UIUpdateOptimizations.GetLabelUpdate(marriedDuration.getMinutes(), previousMarriedDuration.getMinutes());
+                UIUpdateOptimizations.LabelUpdate minutesLabelUpdate = UIUpdateOptimizations.getLabelUpdate(marriedDuration.getMinutes(), previousMarriedDuration.getMinutes());
                 updateMinutesLabel(minutesLabelUpdate);
 
-                UIUpdateOptimizations.StateUpdate minutesStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.getMinutes(), previousMarriedDuration.getMinutes());
+                UIUpdateOptimizations.StateUpdate minutesStateUpdate = UIUpdateOptimizations.getStateUpdate(marriedDuration.getMinutes(), previousMarriedDuration.getMinutes());
                 updateMinutesState(minutesStateUpdate);
             }
 
             if (marriedDuration.getSeconds() != previousMarriedDuration.getSeconds()) {
                 secondsCount.setText(String.valueOf(marriedDuration.getSeconds()));
 
-                UIUpdateOptimizations.LabelUpdate secondsLabelUpdate = UIUpdateOptimizations.GetLabelUpdate(marriedDuration.getSeconds(), previousMarriedDuration.getSeconds());
+                UIUpdateOptimizations.LabelUpdate secondsLabelUpdate = UIUpdateOptimizations.getLabelUpdate(marriedDuration.getSeconds(), previousMarriedDuration.getSeconds());
                 updateSecondsLabel(secondsLabelUpdate);
 
-                UIUpdateOptimizations.StateUpdate secondsStateUpdate = UIUpdateOptimizations.GetStateUpdate(marriedDuration.getSeconds(), previousMarriedDuration.getSeconds());
+                UIUpdateOptimizations.StateUpdate secondsStateUpdate = UIUpdateOptimizations.getStateUpdate(marriedDuration.getSeconds(), previousMarriedDuration.getSeconds());
                 updateSecondsState(secondsStateUpdate);
             }
 

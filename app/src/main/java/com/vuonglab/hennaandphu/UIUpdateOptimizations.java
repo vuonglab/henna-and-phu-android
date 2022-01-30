@@ -13,7 +13,7 @@ class UIUpdateOptimizations {
         SHOW_ENABLED
     }
 
-    static LabelUpdate GetLabelUpdate(long currentDuration, long previousDuration) {
+    static LabelUpdate getLabelUpdate(long currentDuration, long previousDuration) {
         boolean currentPlural = currentDuration >= 2;
         if (previousDuration < 0)
             return currentPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
@@ -25,13 +25,13 @@ class UIUpdateOptimizations {
         return currentPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
     }
 
-    static StateUpdate GetStateUpdate(long currentsDuration, long previoussDuration) {
+    static StateUpdate getStateUpdate(long currentsDuration, long previousDuration) {
         boolean currentsEnabled = currentsDuration >= 1;
-        if (previoussDuration < 0)
+        if (previousDuration < 0)
             return currentsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
 
-        boolean previoussEnabled = previoussDuration >= 1;
-        if (previoussEnabled == currentsEnabled)
+        boolean previousEnabled = previousDuration >= 1;
+        if (previousEnabled == currentsEnabled)
             return StateUpdate.NOT_NEEDED;
 
         return currentsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;

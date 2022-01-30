@@ -5,7 +5,7 @@ import com.vuonglab.hennaandphu.UIUpdateOptimizations.LabelUpdate;
 import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;
-import static com.vuonglab.hennaandphu.UIUpdateOptimizations.GetLabelUpdate;
+import static com.vuonglab.hennaandphu.UIUpdateOptimizations.getLabelUpdate;
 
 public class HoursLabelUpdateUnitTests {
     @Test
@@ -184,7 +184,7 @@ public class HoursLabelUpdateUnitTests {
     }
 
     private void runTest(long previousHoursDuration, long currentHoursDuration, LabelUpdate expectedLabelUpdate) {
-        LabelUpdate labelUpdate = GetLabelUpdate(currentHoursDuration, previousHoursDuration);
+        LabelUpdate labelUpdate = getLabelUpdate(currentHoursDuration, previousHoursDuration);
         assertThat(labelUpdate).isEqualTo(expectedLabelUpdate);
     }
 }
