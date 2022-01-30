@@ -47,14 +47,7 @@ class DurationCalculator {
 
         long seconds = tempDateTime.until( nowInPhoenix, ChronoUnit.SECONDS );
 
-        Duration marriedDuration = new Duration();
-        marriedDuration.Years = years;
-        marriedDuration.Months = months;
-        marriedDuration.Days = days;
-        marriedDuration.Hours = hours;
-        marriedDuration.Minutes = minutes;
-        marriedDuration.Seconds = seconds;
-
-        return marriedDuration;
+        return new Duration(years, months, days,
+                hours, minutes, seconds);
     }
 }

@@ -4210,12 +4210,12 @@ public class TimeZoneDaylightSavingTimeUnitTests {
 
     private void assertDuration(Duration actualDuration, Duration expectedDuration)
     {
-        assertThat(actualDuration.Years).isEqualTo(expectedDuration.Years);
-        assertThat(actualDuration.Months).isEqualTo(expectedDuration.Months);
-        assertThat(actualDuration.Days).isEqualTo(expectedDuration.Days);
+        assertThat(actualDuration.getYears()).isEqualTo(expectedDuration.getYears());
+        assertThat(actualDuration.getMonths()).isEqualTo(expectedDuration.getMonths());
+        assertThat(actualDuration.getDays()).isEqualTo(expectedDuration.getDays());
 
-        assertThat(actualDuration.Hours).isEqualTo(expectedDuration.Hours);
-        assertThat(actualDuration.Minutes).isEqualTo(expectedDuration.Minutes);
-        assertThat(actualDuration.Seconds).isEqualTo(expectedDuration.Seconds);
+        assertThat(actualDuration.getHours()).isEqualTo(expectedDuration.getHours());
+        assertThat(actualDuration.getMinutes()).isEqualTo(expectedDuration.getMinutes());
+        assertThat(actualDuration.getSeconds()).isEqualTo(expectedDuration.getSeconds());
     }
 }

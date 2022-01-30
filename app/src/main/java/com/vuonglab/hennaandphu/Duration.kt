@@ -1,22 +1,9 @@
-package com.vuonglab.hennaandphu;
+package com.vuonglab.hennaandphu
 
-class Duration {
-    long Years = -1;
-    long Months = -1;
-    long Days = -1;
-    long Hours = -1;
-    long Minutes = -1;
-    long Seconds = -1;
-
-    Duration() {}
-
-    Duration(long years, long months, long days, long hours, long minutes, long seconds)
-    {
-        Years = years;
-        Months = months;
-        Days = days;
-        Hours = hours;
-        Minutes = minutes;
-        Seconds = seconds;
-    }
-}
+data class Duration(
+    val Years: Long,
+    val Months: Long,
+    val Days: Long,
+    val Hours: Long,
+    val Minutes: Long,
+    val Seconds: Long)
