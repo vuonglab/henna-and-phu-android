@@ -181,6 +181,13 @@ class LeapYearUnitTests {
         assertDuration(marriedDuration, Duration(24, 11, 28, 23, 59, 59))
     }
 
+    @Test
+    fun different_date_time() {
+        val now = getPhoenixDateTime(2016, 4, 15, 10, 27, 54)
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(1, 1, 1, 1, 1, 1))
+    }
+
     private fun getPhoenixDateTime(
         year: Int,
         month: Int,
