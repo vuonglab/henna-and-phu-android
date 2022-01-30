@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final Runnable runnable = new Runnable() {
         public void run() {
-            Duration marriedDuration = DurationCalculator.getMarriedDuration(ZonedDateTime.now());
+            Duration marriedDuration = DurationCalculatorKt.getMarriedDuration(ZonedDateTime.now());
 
             if (marriedDuration.getYears() != previousMarriedDuration.getYears()) {
                 yearsCount.setText(String.valueOf(marriedDuration.getYears()));

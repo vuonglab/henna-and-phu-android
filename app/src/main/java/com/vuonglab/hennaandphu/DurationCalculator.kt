@@ -1,53 +1,43 @@
-package com.vuonglab.hennaandphu;
+package com.vuonglab.hennaandphu
 
-import android.util.Log;
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.temporal.ChronoUnit
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
+fun getMarriedDuration(nowWithTimeZone: ZonedDateTime): Duration {
+    // Credit: https://stackoverflow.com/questions/25747499/java-8-calculate-difference-between-two-localdatetime
+    val weddingDateTimeInPhoenixWithTimeZone =
+        ZonedDateTime.of(2015, 3, 14, 9, 26, 53, 0, ZoneId.of("US/Arizona"))
+    val weddingDateTimeInPhoenix = weddingDateTimeInPhoenixWithTimeZone.toLocalDateTime()
+    val nowInPhoenixWithTimeZone = nowWithTimeZone.withZoneSameInstant(ZoneId.of("US/Arizona"))
+    val nowInPhoenix = nowInPhoenixWithTimeZone.toLocalDateTime()
 
-class DurationCalculator {
-    private static final String TAG = "DurationCalculator";
+    /*
+    val TAG = "DurationCalculator"
+    Log.d(TAG, "   Wedding date-time in Phoenix (with timezone): " + weddingDateTimeInPhoenixWithTimeZone.toString());
+    Log.d(TAG, "Wedding date-time in Phoenix (without timezone): " + weddingDateTimeInPhoenix.toString());
 
-    static Duration getMarriedDuration(ZonedDateTime nowWithTimeZone) {
-        // Credit: https://stackoverflow.com/questions/25747499/java-8-calculate-difference-between-two-localdatetime
-        ZonedDateTime weddingDateTimeInPhoenixWithTimeZone = ZonedDateTime.of(2015, 3, 14, 9, 26, 53, 0, ZoneId.of("US/Arizona"));
-        LocalDateTime weddingDateTimeInPhoenix = weddingDateTimeInPhoenixWithTimeZone.toLocalDateTime();
+    Log.d(TAG, "       Current date-time, local (with timezone): " + nowWithTimeZone.toString());
 
-        ZonedDateTime nowInPhoenixWithTimeZone = nowWithTimeZone.withZoneSameInstant(ZoneId.of("US/Arizona"));
-        LocalDateTime nowInPhoenix = nowInPhoenixWithTimeZone.toLocalDateTime();
+    Log.d(TAG, "   Current date-time in Phoenix (with timezone): " + nowInPhoenixWithTimeZone.toString());
+    Log.d(TAG, "Current date-time in Phoenix (without timezone): " + nowInPhoenix.toString());
+    */
 
-        /*
-        Log.d(TAG, "   Wedding date-time in Phoenix (with timezone): " + weddingDateTimeInPhoenixWithTimeZone.toString());
-        Log.d(TAG, "Wedding date-time in Phoenix (without timezone): " + weddingDateTimeInPhoenix.toString());
-
-        Log.d(TAG, "       Current date-time, local (with timezone): " + nowWithTimeZone.toString());
-
-        Log.d(TAG, "   Current date-time in Phoenix (with timezone): " + nowInPhoenixWithTimeZone.toString());
-        Log.d(TAG, "Current date-time in Phoenix (without timezone): " + nowInPhoenix.toString());
-        */
-
-        LocalDateTime tempDateTime = LocalDateTime.from( weddingDateTimeInPhoenix );
-
-        long years = tempDateTime.until( nowInPhoenix, ChronoUnit.YEARS );
-        tempDateTime = tempDateTime.plusYears( years );
-
-        long months = tempDateTime.until( nowInPhoenix, ChronoUnit.MONTHS );
-        tempDateTime = tempDateTime.plusMonths( months );
-
-        long days = tempDateTime.until( nowInPhoenix, ChronoUnit.DAYS );
-        tempDateTime = tempDateTime.plusDays( days );
-
-        long hours = tempDateTime.until( nowInPhoenix, ChronoUnit.HOURS );
-        tempDateTime = tempDateTime.plusHours( hours );
-
-        long minutes = tempDateTime.until( nowInPhoenix, ChronoUnit.MINUTES );
-        tempDateTime = tempDateTime.plusMinutes( minutes );
-
-        long seconds = tempDateTime.until( nowInPhoenix, ChronoUnit.SECONDS );
-
-        return new Duration(years, months, days,
-                hours, minutes, seconds);
-    }
+    var tempDateTime = LocalDateTime.from(weddingDateTimeInPhoenix)
+    val years = tempDateTime.until(nowInPhoenix, ChronoUnit.YEARS)
+    tempDateTime = tempDateTime.plusYears(years)
+    val months = tempDateTime.until(nowInPhoenix, ChronoUnit.MONTHS)
+    tempDateTime = tempDateTime.plusMonths(months)
+    val days = tempDateTime.until(nowInPhoenix, ChronoUnit.DAYS)
+    tempDateTime = tempDateTime.plusDays(days)
+    val hours = tempDateTime.until(nowInPhoenix, ChronoUnit.HOURS)
+    tempDateTime = tempDateTime.plusHours(hours)
+    val minutes = tempDateTime.until(nowInPhoenix, ChronoUnit.MINUTES)
+    tempDateTime = tempDateTime.plusMinutes(minutes)
+    val seconds = tempDateTime.until(nowInPhoenix, ChronoUnit.SECONDS)
+    return Duration(
+        years, months, days,
+        hours, minutes, seconds
+    )
 }
