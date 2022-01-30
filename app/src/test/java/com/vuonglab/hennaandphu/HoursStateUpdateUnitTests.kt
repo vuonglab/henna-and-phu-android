@@ -1,188 +1,190 @@
-package com.vuonglab.hennaandphu;
+package com.vuonglab.hennaandphu
 
-import org.junit.Test;
+import com.google.common.truth.Truth
+import org.junit.Test
 
-import static com.google.common.truth.Truth.assertThat;
-import static com.vuonglab.hennaandphu.UIUpdateOptimizationsKt.getStateUpdate;
-
-public class HoursStateUpdateUnitTests {
+class HoursStateUpdateUnitTests {
     @Test
-    public void appStartZeroHour() {
-        runTest(-1, 0, StateUpdate.SHOW_DISABLED);
+    fun appStartZeroHour() {
+        runTest(-1, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void appStartOneHour() {
-        runTest(-1, 1, StateUpdate.SHOW_ENABLED);
+    fun appStartOneHour() {
+        runTest(-1, 1, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void appStartTwoHours() {
-        runTest(-1, 2, StateUpdate.SHOW_ENABLED);
+    fun appStartTwoHours() {
+        runTest(-1, 2, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void appStartTwentyThreeHours() {
-        runTest(-1, 23, StateUpdate.SHOW_ENABLED);
+    fun appStartTwentyThreeHours() {
+        runTest(-1, 23, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroToOneHour() {
-        runTest(0, 1, StateUpdate.SHOW_ENABLED);
+    fun zeroToOneHour() {
+        runTest(0, 1, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroToTwoHours() {
-        runTest(0, 2, StateUpdate.SHOW_ENABLED);
+    fun zeroToTwoHours() {
+        runTest(0, 2, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroToTwentyThreeHours() {
-        runTest(0, 23, StateUpdate.SHOW_ENABLED);
+    fun zeroToTwentyThreeHours() {
+        runTest(0, 23, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroToZeroHour() {
-        runTest(0, 0, StateUpdate.NOT_NEEDED);
+    fun zeroToZeroHour() {
+        runTest(0, 0, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void oneToTwoHours() {
-        runTest(1, 2, StateUpdate.NOT_NEEDED);
+    fun oneToTwoHours() {
+        runTest(1, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void oneToTwentyThreeHours() {
-        runTest(1, 23, StateUpdate.NOT_NEEDED);
+    fun oneToTwentyThreeHours() {
+        runTest(1, 23, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void oneToZeroHour() {
-        runTest(1, 0, StateUpdate.SHOW_DISABLED);
+    fun oneToZeroHour() {
+        runTest(1, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void oneToOneHour() {
-        runTest(1, 1, StateUpdate.NOT_NEEDED);
+    fun oneToOneHour() {
+        runTest(1, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToThreeHours() {
-        runTest(2, 3, StateUpdate.NOT_NEEDED);
+    fun twoToThreeHours() {
+        runTest(2, 3, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToSeventeenHours() {
-        runTest(2, 17, StateUpdate.NOT_NEEDED);
+    fun twoToSeventeenHours() {
+        runTest(2, 17, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToTwentyThreeHours() {
-        runTest(2, 23, StateUpdate.NOT_NEEDED);
+    fun twoToTwentyThreeHours() {
+        runTest(2, 23, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToZeroHour() {
-        runTest(2, 0, StateUpdate.SHOW_DISABLED);
+    fun twoToZeroHour() {
+        runTest(2, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void twoToOneHour() {
-        runTest(2, 1, StateUpdate.NOT_NEEDED);
+    fun twoToOneHour() {
+        runTest(2, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToTwoHours() {
-        runTest(2, 2, StateUpdate.NOT_NEEDED);
+    fun twoToTwoHours() {
+        runTest(2, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeToFourHours() {
-        runTest(3, 4, StateUpdate.NOT_NEEDED);
+    fun threeToFourHours() {
+        runTest(3, 4, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeToFourteenHours() {
-        runTest(3, 14, StateUpdate.NOT_NEEDED);
+    fun threeToFourteenHours() {
+        runTest(3, 14, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeToTwentyThreeHours() {
-        runTest(3, 23, StateUpdate.NOT_NEEDED);
+    fun threeToTwentyThreeHours() {
+        runTest(3, 23, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeToZeroHour() {
-        runTest(3, 0, StateUpdate.SHOW_DISABLED);
+    fun threeToZeroHour() {
+        runTest(3, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void threeToOneHour() {
-        runTest(3, 1, StateUpdate.NOT_NEEDED);
+    fun threeToOneHour() {
+        runTest(3, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeToTwoHours() {
-        runTest(3, 2, StateUpdate.NOT_NEEDED);
+    fun threeToTwoHours() {
+        runTest(3, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeToThreeHours() {
-        runTest(3, 3, StateUpdate.NOT_NEEDED);
+    fun threeToThreeHours() {
+        runTest(3, 3, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void sixteenToTwentyThreeHours() {
-        runTest(16, 23, StateUpdate.NOT_NEEDED);
+    fun sixteenToTwentyThreeHours() {
+        runTest(16, 23, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void sixteenToZeroHour() {
-        runTest(16, 0, StateUpdate.SHOW_DISABLED);
+    fun sixteenToZeroHour() {
+        runTest(16, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void sixteenToOneHour() {
-        runTest(16, 1, StateUpdate.NOT_NEEDED);
+    fun sixteenToOneHour() {
+        runTest(16, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void sixteenToTwoHours() {
-        runTest(16, 2, StateUpdate.NOT_NEEDED);
+    fun sixteenToTwoHours() {
+        runTest(16, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twentyThreeToZeroHour() {
-        runTest(23, 0, StateUpdate.SHOW_DISABLED);
+    fun twentyThreeToZeroHour() {
+        runTest(23, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void twentyThreeToOneHour() {
-        runTest(23, 1, StateUpdate.NOT_NEEDED);
+    fun twentyThreeToOneHour() {
+        runTest(23, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twentyThreeToTwoHours() {
-        runTest(23, 2, StateUpdate.NOT_NEEDED);
+    fun twentyThreeToTwoHours() {
+        runTest(23, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twentyThreeToTenHours() {
-        runTest(23, 10, StateUpdate.NOT_NEEDED);
+    fun twentyThreeToTenHours() {
+        runTest(23, 10, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twentyThreeToTwentyHours() {
-        runTest(23, 20, StateUpdate.NOT_NEEDED);
+    fun twentyThreeToTwentyHours() {
+        runTest(23, 20, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twentyThreeToTwentyThreeHours() {
-        runTest(23, 23, StateUpdate.NOT_NEEDED);
+    fun twentyThreeToTwentyThreeHours() {
+        runTest(23, 23, StateUpdate.NOT_NEEDED)
     }
 
-    private void runTest(long previousHoursDuration, long currentHoursDuration, StateUpdate expectedStateUpdate) {
-        StateUpdate stateUpdate = getStateUpdate(currentHoursDuration, previousHoursDuration);
-        assertThat(stateUpdate).isEqualTo(expectedStateUpdate);
+    private fun runTest(
+        previousHoursDuration: Long,
+        currentHoursDuration: Long,
+        expectedStateUpdate: StateUpdate
+    ) {
+        val stateUpdate = getStateUpdate(currentHoursDuration, previousHoursDuration)
+        Truth.assertThat(stateUpdate).isEqualTo(expectedStateUpdate)
     }
 }
