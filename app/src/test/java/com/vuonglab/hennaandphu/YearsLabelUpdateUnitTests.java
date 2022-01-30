@@ -3,8 +3,7 @@ package com.vuonglab.hennaandphu;
 import static com.google.common.truth.Truth.assertThat;
 import org.junit.Test;
 
-import static com.vuonglab.hennaandphu.UIUpdateOptimizations.getLabelUpdate;
-import com.vuonglab.hennaandphu.UIUpdateOptimizations.LabelUpdate;
+import static com.vuonglab.hennaandphu.UIUpdateOptimizationsKt.getLabelUpdate;
 
 public class YearsLabelUpdateUnitTests {
     @Test

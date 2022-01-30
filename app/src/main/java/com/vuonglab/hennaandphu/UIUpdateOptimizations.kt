@@ -1,39 +1,25 @@
-package com.vuonglab.hennaandphu;
+package com.vuonglab.hennaandphu
 
-class UIUpdateOptimizations {
-    public enum LabelUpdate {
-        NOT_NEEDED,
-        SHOW_SINGULAR,
-        SHOW_PLURAL
-    }
+fun getLabelUpdate(currentDuration: Long, previousDuration: Long): LabelUpdate {
+    val currentPlural = currentDuration >= 2
+    if (previousDuration < 0) return if (currentPlural) LabelUpdate.SHOW_PLURAL else LabelUpdate.SHOW_SINGULAR
+    val previousPlural = previousDuration >= 2
+    if (previousPlural == currentPlural) return LabelUpdate.NOT_NEEDED
+    return if (currentPlural) LabelUpdate.SHOW_PLURAL else LabelUpdate.SHOW_SINGULAR
+}
 
-    public enum StateUpdate {
-        NOT_NEEDED,
-        SHOW_DISABLED,
-        SHOW_ENABLED
-    }
+fun getStateUpdate(currentsDuration: Long, previousDuration: Long): StateUpdate {
+    val currentsEnabled = currentsDuration >= 1
+    if (previousDuration < 0) return if (currentsEnabled) StateUpdate.SHOW_ENABLED else StateUpdate.SHOW_DISABLED
+    val previousEnabled = previousDuration >= 1
+    if (previousEnabled == currentsEnabled) return StateUpdate.NOT_NEEDED
+    return if (currentsEnabled) StateUpdate.SHOW_ENABLED else StateUpdate.SHOW_DISABLED
+}
 
-    static LabelUpdate getLabelUpdate(long currentDuration, long previousDuration) {
-        boolean currentPlural = currentDuration >= 2;
-        if (previousDuration < 0)
-            return currentPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
+enum class LabelUpdate {
+    NOT_NEEDED, SHOW_SINGULAR, SHOW_PLURAL
+}
 
-        boolean previousPlural = previousDuration >= 2;
-        if (previousPlural == currentPlural)
-            return LabelUpdate.NOT_NEEDED;
-
-        return currentPlural ? LabelUpdate.SHOW_PLURAL : LabelUpdate.SHOW_SINGULAR;
-    }
-
-    static StateUpdate getStateUpdate(long currentsDuration, long previousDuration) {
-        boolean currentsEnabled = currentsDuration >= 1;
-        if (previousDuration < 0)
-            return currentsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
-
-        boolean previousEnabled = previousDuration >= 1;
-        if (previousEnabled == currentsEnabled)
-            return StateUpdate.NOT_NEEDED;
-
-        return currentsEnabled ? StateUpdate.SHOW_ENABLED : StateUpdate.SHOW_DISABLED;
-    }
+enum class StateUpdate {
+    NOT_NEEDED, SHOW_DISABLED, SHOW_ENABLED
 }

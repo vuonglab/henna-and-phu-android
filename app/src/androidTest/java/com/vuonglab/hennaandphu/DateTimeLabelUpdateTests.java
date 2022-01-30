@@ -14,8 +14,6 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
-import com.vuonglab.hennaandphu.UIUpdateOptimizations.LabelUpdate;
-
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class DateTimeLabelUpdateTests {

@@ -16,8 +16,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 import static org.hamcrest.CoreMatchers.not;
 
-import com.vuonglab.hennaandphu.UIUpdateOptimizations.StateUpdate;
-
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class DateTimeStateUpdateTests {

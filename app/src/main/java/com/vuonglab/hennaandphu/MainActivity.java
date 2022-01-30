@@ -11,9 +11,6 @@ import java.time.ZonedDateTime;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.vuonglab.hennaandphu.UIUpdateOptimizations.LabelUpdate;
-import com.vuonglab.hennaandphu.UIUpdateOptimizations.StateUpdate;
-
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
@@ -88,60 +85,60 @@ public class MainActivity extends AppCompatActivity {
             if (marriedDuration.getYears() != previousMarriedDuration.getYears()) {
                 yearsCount.setText(String.valueOf(marriedDuration.getYears()));
 
-                UIUpdateOptimizations.LabelUpdate yearsLabelUpdate = UIUpdateOptimizations.getLabelUpdate(marriedDuration.getYears(), previousMarriedDuration.getYears());
+                LabelUpdate yearsLabelUpdate = UIUpdateOptimizationsKt.getLabelUpdate(marriedDuration.getYears(), previousMarriedDuration.getYears());
                 updateYearsLabel(yearsLabelUpdate);
 
-                UIUpdateOptimizations.StateUpdate yearsStateUpdate = UIUpdateOptimizations.getStateUpdate(marriedDuration.getYears(), previousMarriedDuration.getYears());
+                StateUpdate yearsStateUpdate = UIUpdateOptimizationsKt.getStateUpdate(marriedDuration.getYears(), previousMarriedDuration.getYears());
                 updateYearsState(yearsStateUpdate);
             }
 
             if (marriedDuration.getMonths() != previousMarriedDuration.getMonths()) {
                 monthsCount.setText(String.valueOf(marriedDuration.getMonths()));
 
-                UIUpdateOptimizations.LabelUpdate monthsLabelUpdate = UIUpdateOptimizations.getLabelUpdate(marriedDuration.getMonths(), previousMarriedDuration.getMonths());
+                LabelUpdate monthsLabelUpdate = UIUpdateOptimizationsKt.getLabelUpdate(marriedDuration.getMonths(), previousMarriedDuration.getMonths());
                 updateMonthsLabel(monthsLabelUpdate);
 
-                UIUpdateOptimizations.StateUpdate monthsStateUpdate = UIUpdateOptimizations.getStateUpdate(marriedDuration.getMonths(), previousMarriedDuration.getMonths());
+                StateUpdate monthsStateUpdate = UIUpdateOptimizationsKt.getStateUpdate(marriedDuration.getMonths(), previousMarriedDuration.getMonths());
                 updateMonthsState(monthsStateUpdate);
             }
 
             if (marriedDuration.getDays() != previousMarriedDuration.getDays()) {
                 daysCount.setText(String.valueOf(marriedDuration.getDays()));
 
-                UIUpdateOptimizations.LabelUpdate daysLabelUpdate = UIUpdateOptimizations.getLabelUpdate(marriedDuration.getDays(), previousMarriedDuration.getDays());
+                LabelUpdate daysLabelUpdate = UIUpdateOptimizationsKt.getLabelUpdate(marriedDuration.getDays(), previousMarriedDuration.getDays());
                 updateDaysLabel(daysLabelUpdate);
 
-                UIUpdateOptimizations.StateUpdate daysStateUpdate = UIUpdateOptimizations.getStateUpdate(marriedDuration.getDays(), previousMarriedDuration.getDays());
+                StateUpdate daysStateUpdate = UIUpdateOptimizationsKt.getStateUpdate(marriedDuration.getDays(), previousMarriedDuration.getDays());
                 updateDaysState(daysStateUpdate);
             }
 
             if (marriedDuration.getHours() != previousMarriedDuration.getHours()) {
                 hoursCount.setText(String.valueOf(marriedDuration.getHours()));
 
-                UIUpdateOptimizations.LabelUpdate hoursLabelUpdate = UIUpdateOptimizations.getLabelUpdate(marriedDuration.getHours(), previousMarriedDuration.getHours());
+                LabelUpdate hoursLabelUpdate = UIUpdateOptimizationsKt.getLabelUpdate(marriedDuration.getHours(), previousMarriedDuration.getHours());
                 updateHoursLabel(hoursLabelUpdate);
 
-                UIUpdateOptimizations.StateUpdate hoursStateUpdate = UIUpdateOptimizations.getStateUpdate(marriedDuration.getHours(), previousMarriedDuration.getHours());
+                StateUpdate hoursStateUpdate = UIUpdateOptimizationsKt.getStateUpdate(marriedDuration.getHours(), previousMarriedDuration.getHours());
                 updateHoursState(hoursStateUpdate);
             }
 
             if (marriedDuration.getMinutes() != previousMarriedDuration.getMinutes()) {
                 minutesCount.setText(String.valueOf(marriedDuration.getMinutes()));
 
-                UIUpdateOptimizations.LabelUpdate minutesLabelUpdate = UIUpdateOptimizations.getLabelUpdate(marriedDuration.getMinutes(), previousMarriedDuration.getMinutes());
+                LabelUpdate minutesLabelUpdate = UIUpdateOptimizationsKt.getLabelUpdate(marriedDuration.getMinutes(), previousMarriedDuration.getMinutes());
                 updateMinutesLabel(minutesLabelUpdate);
 
-                UIUpdateOptimizations.StateUpdate minutesStateUpdate = UIUpdateOptimizations.getStateUpdate(marriedDuration.getMinutes(), previousMarriedDuration.getMinutes());
+                StateUpdate minutesStateUpdate = UIUpdateOptimizationsKt.getStateUpdate(marriedDuration.getMinutes(), previousMarriedDuration.getMinutes());
                 updateMinutesState(minutesStateUpdate);
             }
 
             if (marriedDuration.getSeconds() != previousMarriedDuration.getSeconds()) {
                 secondsCount.setText(String.valueOf(marriedDuration.getSeconds()));
 
-                UIUpdateOptimizations.LabelUpdate secondsLabelUpdate = UIUpdateOptimizations.getLabelUpdate(marriedDuration.getSeconds(), previousMarriedDuration.getSeconds());
+                LabelUpdate secondsLabelUpdate = UIUpdateOptimizationsKt.getLabelUpdate(marriedDuration.getSeconds(), previousMarriedDuration.getSeconds());
                 updateSecondsLabel(secondsLabelUpdate);
 
-                UIUpdateOptimizations.StateUpdate secondsStateUpdate = UIUpdateOptimizations.getStateUpdate(marriedDuration.getSeconds(), previousMarriedDuration.getSeconds());
+                StateUpdate secondsStateUpdate = UIUpdateOptimizationsKt.getStateUpdate(marriedDuration.getSeconds(), previousMarriedDuration.getSeconds());
                 updateSecondsState(secondsStateUpdate);
             }
 
@@ -149,14 +146,14 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    void updateYearsLabel(UIUpdateOptimizations.LabelUpdate yearsLabelUpdate) {
+    void updateYearsLabel(LabelUpdate yearsLabelUpdate) {
         if (yearsLabelUpdate == LabelUpdate.SHOW_SINGULAR)
             yearsLabel.setText(R.string.year);
         else if (yearsLabelUpdate == LabelUpdate.SHOW_PLURAL)
             yearsLabel.setText(R.string.years);
     }
 
-    void updateYearsState(UIUpdateOptimizations.StateUpdate yearsStateUpdate) {
+    void updateYearsState(StateUpdate yearsStateUpdate) {
         if (yearsStateUpdate == StateUpdate.SHOW_DISABLED) {
             yearsCount.setEnabled(false);
             yearsLabel.setEnabled(false);
@@ -166,14 +163,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void updateMonthsLabel(UIUpdateOptimizations.LabelUpdate monthsLabelUpdate) {
+    void updateMonthsLabel(LabelUpdate monthsLabelUpdate) {
         if (monthsLabelUpdate == LabelUpdate.SHOW_SINGULAR)
             monthsLabel.setText(R.string.month);
         else if (monthsLabelUpdate == LabelUpdate.SHOW_PLURAL)
             monthsLabel.setText(R.string.months);
     }
 
-    void updateMonthsState(UIUpdateOptimizations.StateUpdate monthsStateUpdate) {
+    void updateMonthsState(StateUpdate monthsStateUpdate) {
         if (monthsStateUpdate == StateUpdate.SHOW_DISABLED) {
             monthsCount.setEnabled(false);
             monthsLabel.setEnabled(false);
@@ -183,14 +180,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void updateDaysLabel(UIUpdateOptimizations.LabelUpdate daysLabelUpdate) {
+    void updateDaysLabel(LabelUpdate daysLabelUpdate) {
         if (daysLabelUpdate == LabelUpdate.SHOW_SINGULAR)
             daysLabel.setText(R.string.day);
         else if (daysLabelUpdate == LabelUpdate.SHOW_PLURAL)
             daysLabel.setText(R.string.days);
     }
 
-    void updateDaysState(UIUpdateOptimizations.StateUpdate daysStateUpdate) {
+    void updateDaysState(StateUpdate daysStateUpdate) {
         if (daysStateUpdate == StateUpdate.SHOW_DISABLED) {
             daysCount.setEnabled(false);
             daysLabel.setEnabled(false);
@@ -200,14 +197,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void updateHoursLabel(UIUpdateOptimizations.LabelUpdate hoursLabelUpdate) {
+    void updateHoursLabel(LabelUpdate hoursLabelUpdate) {
         if (hoursLabelUpdate == LabelUpdate.SHOW_SINGULAR)
             hoursLabel.setText(R.string.hour);
         else if (hoursLabelUpdate == LabelUpdate.SHOW_PLURAL)
             hoursLabel.setText(R.string.hours);
     }
 
-    void updateHoursState(UIUpdateOptimizations.StateUpdate hoursStateUpdate) {
+    void updateHoursState(StateUpdate hoursStateUpdate) {
         if (hoursStateUpdate == StateUpdate.SHOW_DISABLED) {
             hoursCount.setEnabled(false);
             hoursLabel.setEnabled(false);
@@ -217,14 +214,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void updateMinutesLabel(UIUpdateOptimizations.LabelUpdate minutesLabelUpdate) {
+    void updateMinutesLabel(LabelUpdate minutesLabelUpdate) {
         if (minutesLabelUpdate == LabelUpdate.SHOW_SINGULAR)
             minutesLabel.setText(R.string.minute);
         else if (minutesLabelUpdate == LabelUpdate.SHOW_PLURAL)
             minutesLabel.setText(R.string.minutes);
     }
 
-    void updateMinutesState(UIUpdateOptimizations.StateUpdate minutesStateUpdate) {
+    void updateMinutesState(StateUpdate minutesStateUpdate) {
         if (minutesStateUpdate == StateUpdate.SHOW_DISABLED) {
             minutesCount.setEnabled(false);
             minutesLabel.setEnabled(false);
@@ -234,14 +231,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void updateSecondsLabel(UIUpdateOptimizations.LabelUpdate secondsLabelUpdate) {
+    void updateSecondsLabel(LabelUpdate secondsLabelUpdate) {
         if (secondsLabelUpdate == LabelUpdate.SHOW_SINGULAR)
             secondsLabel.setText(R.string.second);
         else if (secondsLabelUpdate == LabelUpdate.SHOW_PLURAL)
             secondsLabel.setText(R.string.seconds);
     }
 
-    void updateSecondsState(UIUpdateOptimizations.StateUpdate secondsStateUpdate) {
+    void updateSecondsState(StateUpdate secondsStateUpdate) {
         if (secondsStateUpdate == StateUpdate.SHOW_DISABLED) {
             secondsCount.setEnabled(false);
             secondsLabel.setEnabled(false);

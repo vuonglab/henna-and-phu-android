@@ -1,11 +1,9 @@
 package com.vuonglab.hennaandphu;
 
-import com.vuonglab.hennaandphu.UIUpdateOptimizations.StateUpdate;
-
 import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;
-import static com.vuonglab.hennaandphu.UIUpdateOptimizations.getStateUpdate;
+import static com.vuonglab.hennaandphu.UIUpdateOptimizationsKt.getStateUpdate;
 
 public class MinutesStateUpdateUnitTests {
     @Test
