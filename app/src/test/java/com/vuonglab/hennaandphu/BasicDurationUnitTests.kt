@@ -1,116 +1,126 @@
-package com.vuonglab.hennaandphu;
+package com.vuonglab.hennaandphu
 
-import static com.google.common.truth.Truth.assertThat;
-import org.junit.Test;
+import com.google.common.truth.Truth
+import org.junit.Test
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-
-public class BasicDurationUnitTests {
+class BasicDurationUnitTests {
     @Test
-    public void zero_duration() {
-        ZonedDateTime now = getPhoenixDateTime(2015, 3, 14, 9, 26, 53);
-        Duration marriedDuration = DurationCalculatorKt.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(0, 0, 0, 0, 0, 0));
-    }
-
-    @Test
-    public void _1_second() {
-        ZonedDateTime now = getPhoenixDateTime(2015, 3, 14, 9, 26, 54);
-        Duration marriedDuration = DurationCalculatorKt.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(0, 0, 0, 0, 0, 1));
+    fun zero_duration() {
+        val now = getPhoenixDateTime(2015, 3, 14, 9, 26, 53)
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(0, 0, 0, 0, 0, 0))
     }
 
     @Test
-    public void _59_seconds() {
-        ZonedDateTime now = getPhoenixDateTime(2015, 3, 14, 9, 27, 52);
-        Duration marriedDuration = DurationCalculatorKt.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(0, 0, 0, 0, 0, 59));
+    fun one_second() {
+        val now = getPhoenixDateTime(2015, 3, 14, 9, 26, 54)
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(0, 0, 0, 0, 0, 1))
     }
 
     @Test
-    public void _1_minute() {
-        ZonedDateTime now = getPhoenixDateTime(2015, 3, 14, 9, 27, 53);
-        Duration marriedDuration = DurationCalculatorKt.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(0, 0, 0, 0, 1, 0));
+    fun fifty_nine_seconds() {
+        val now = getPhoenixDateTime(2015, 3, 14, 9, 27, 52)
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(0, 0, 0, 0, 0, 59))
     }
 
     @Test
-    public void _59_minutes() {
-        ZonedDateTime now = getPhoenixDateTime(2015, 3, 14, 10, 25, 53);
-        Duration marriedDuration = DurationCalculatorKt.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(0, 0, 0, 0, 59, 0));
+    fun one_minute() {
+        val now = getPhoenixDateTime(2015, 3, 14, 9, 27, 53)
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(0, 0, 0, 0, 1, 0))
     }
 
     @Test
-    public void _1_hour() {
-        ZonedDateTime now = getPhoenixDateTime(2015, 3, 14, 10, 26, 53);
-        Duration marriedDuration = DurationCalculatorKt.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(0, 0, 0, 1, 0, 0));
+    fun fifty_nine_minutes() {
+        val now = getPhoenixDateTime(2015, 3, 14, 10, 25, 53)
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(0, 0, 0, 0, 59, 0))
     }
 
     @Test
-    public void _23_hours() {
-        ZonedDateTime now = getPhoenixDateTime(2015, 3, 15, 8, 26, 53);
-        Duration marriedDuration = DurationCalculatorKt.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(0, 0, 0, 23, 0, 0));
+    fun one_hour() {
+        val now = getPhoenixDateTime(2015, 3, 14, 10, 26, 53)
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(0, 0, 0, 1, 0, 0))
     }
 
     @Test
-    public void _1_day() {
-        ZonedDateTime now = getPhoenixDateTime(2015, 3, 15, 9, 26, 53);
-        Duration marriedDuration = DurationCalculatorKt.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(0, 0, 1, 0, 0, 0));
+    fun twenty_three_hours() {
+        val now = getPhoenixDateTime(2015, 3, 15, 8, 26, 53)
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(0, 0, 0, 23, 0, 0))
     }
 
     @Test
-    public void _30_days() {
-        ZonedDateTime now = getPhoenixDateTime(2015, 4, 13, 9, 26, 53);
-        Duration marriedDuration = DurationCalculatorKt.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(0, 0, 30, 0, 0, 0));
+    fun one_day() {
+        val now = getPhoenixDateTime(2015, 3, 15, 9, 26, 53)
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(0, 0, 1, 0, 0, 0))
     }
 
     @Test
-    public void _1_month() {
-        ZonedDateTime now = getPhoenixDateTime(2015, 4, 14, 9, 26, 53);
-        Duration marriedDuration = DurationCalculatorKt.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(0, 1, 0, 0, 0, 0));
+    fun thirty_days() {
+        val now = getPhoenixDateTime(2015, 4, 13, 9, 26, 53)
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(0, 0, 30, 0, 0, 0))
     }
 
     @Test
-    public void _11_months() {
-        ZonedDateTime now = getPhoenixDateTime(2016, 2, 14, 9, 26, 53);
-        Duration marriedDuration = DurationCalculatorKt.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(0, 11, 0, 0, 0, 0));
+    fun one_month() {
+        val now = getPhoenixDateTime(2015, 4, 14, 9, 26, 53)
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(0, 1, 0, 0, 0, 0))
     }
 
     @Test
-    public void _1_year() {
-        ZonedDateTime now = getPhoenixDateTime(2016, 3, 14, 9, 26, 53);
-        Duration marriedDuration = DurationCalculatorKt.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(1, 0, 0, 0, 0, 0));
+    fun eleven_months() {
+        val now = getPhoenixDateTime(2016, 2, 14, 9, 26, 53)
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(0, 11, 0, 0, 0, 0))
     }
 
     @Test
-    public void _5_years() {
-        ZonedDateTime now = getPhoenixDateTime(2020, 3, 14, 9, 26, 53);
-        Duration marriedDuration = DurationCalculatorKt.getMarriedDuration(now);
-        assertDuration(marriedDuration, new Duration(5, 0, 0, 0, 0, 0));
+    fun one_year() {
+        val now = getPhoenixDateTime(2016, 3, 14, 9, 26, 53)
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(1, 0, 0, 0, 0, 0))
     }
 
-    private ZonedDateTime getPhoenixDateTime(int year, int month, int dayOfMonth, int hour, int minute, int second)
-    {
-        return ZonedDateTime.of(year, month, dayOfMonth, hour, minute, second, 0, ZoneId.of("US/Arizona"));
+    @Test
+    fun five_years() {
+        val now = getPhoenixDateTime(2020, 3, 14, 9, 26, 53)
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(5, 0, 0, 0, 0, 0))
     }
 
-    private void assertDuration(Duration actualDuration, Duration expectedDuration)
-    {
-        assertThat(actualDuration.getYears()).isEqualTo(expectedDuration.getYears());
-        assertThat(actualDuration.getMonths()).isEqualTo(expectedDuration.getMonths());
-        assertThat(actualDuration.getDays()).isEqualTo(expectedDuration.getDays());
+    private fun getPhoenixDateTime(
+        year: Int,
+        month: Int,
+        dayOfMonth: Int,
+        hour: Int,
+        minute: Int,
+        second: Int
+    ) = ZonedDateTime.of(
+        year,
+        month,
+        dayOfMonth,
+        hour,
+        minute,
+        second,
+        0,
+        ZoneId.of("US/Arizona")
+    )
 
-        assertThat(actualDuration.getHours()).isEqualTo(expectedDuration.getHours());
-        assertThat(actualDuration.getMinutes()).isEqualTo(expectedDuration.getMinutes());
-        assertThat(actualDuration.getSeconds()).isEqualTo(expectedDuration.getSeconds());
+    private fun assertDuration(actualDuration: Duration, expectedDuration: Duration) {
+        Truth.assertThat(actualDuration.Years).isEqualTo(expectedDuration.Years)
+        Truth.assertThat(actualDuration.Months).isEqualTo(expectedDuration.Months)
+        Truth.assertThat(actualDuration.Days).isEqualTo(expectedDuration.Days)
+        Truth.assertThat(actualDuration.Hours).isEqualTo(expectedDuration.Hours)
+        Truth.assertThat(actualDuration.Minutes).isEqualTo(expectedDuration.Minutes)
+        Truth.assertThat(actualDuration.Seconds).isEqualTo(expectedDuration.Seconds)
     }
 }
