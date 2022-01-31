@@ -1,173 +1,175 @@
-package com.vuonglab.hennaandphu;
+package com.vuonglab.hennaandphu
 
-import org.junit.Test;
+import com.google.common.truth.Truth
+import org.junit.Test
 
-import static com.google.common.truth.Truth.assertThat;
-import static com.vuonglab.hennaandphu.UIUpdateOptimizationsKt.getStateUpdate;
-
-public class MonthsStateUpdateUnitTests {
+class MonthsStateUpdateUnitTests {
     @Test
-    public void appStartZeroMonth() {
-        runTest(-1, 0, StateUpdate.SHOW_DISABLED);
+    fun appStartZeroMonth() {
+        runTest(-1, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void appStartOneMonth() {
-        runTest(-1, 1, StateUpdate.SHOW_ENABLED);
+    fun appStartOneMonth() {
+        runTest(-1, 1, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void appStartTwoMonths() {
-        runTest(-1, 2, StateUpdate.SHOW_ENABLED);
+    fun appStartTwoMonths() {
+        runTest(-1, 2, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void appStartFourMonths() {
-        runTest(-1, 4, StateUpdate.SHOW_ENABLED);
+    fun appStartFourMonths() {
+        runTest(-1, 4, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void appStartElevenMonths() {
-        runTest(-1, 11, StateUpdate.SHOW_ENABLED);
+    fun appStartElevenMonths() {
+        runTest(-1, 11, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroToOneMonth() {
-        runTest(0, 1, StateUpdate.SHOW_ENABLED);
+    fun zeroToOneMonth() {
+        runTest(0, 1, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroToTwoMonths() {
-        runTest(0, 2, StateUpdate.SHOW_ENABLED);
+    fun zeroToTwoMonths() {
+        runTest(0, 2, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroToSixMonths() {
-        runTest(0, 6, StateUpdate.SHOW_ENABLED);
+    fun zeroToSixMonths() {
+        runTest(0, 6, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroToElevenMonths() {
-        runTest(0, 11, StateUpdate.SHOW_ENABLED);
+    fun zeroToElevenMonths() {
+        runTest(0, 11, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroToZeroMonth() {
-        runTest(0, 0, StateUpdate.NOT_NEEDED);
+    fun zeroToZeroMonth() {
+        runTest(0, 0, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void oneToTwoMonths() {
-        runTest(1, 2, StateUpdate.NOT_NEEDED);
+    fun oneToTwoMonths() {
+        runTest(1, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void oneToTenMonths() {
-        runTest(1, 10, StateUpdate.NOT_NEEDED);
+    fun oneToTenMonths() {
+        runTest(1, 10, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void oneToElevenMonths() {
-        runTest(1, 11, StateUpdate.NOT_NEEDED);
+    fun oneToElevenMonths() {
+        runTest(1, 11, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void oneToZeroMonth() {
-        runTest(1, 0, StateUpdate.SHOW_DISABLED);
+    fun oneToZeroMonth() {
+        runTest(1, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void oneToOneMonth() {
-        runTest(1, 1, StateUpdate.NOT_NEEDED);
+    fun oneToOneMonth() {
+        runTest(1, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToThreeMonths() {
-        runTest(2, 3, StateUpdate.NOT_NEEDED);
+    fun twoToThreeMonths() {
+        runTest(2, 3, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToFiveMonths() {
-        runTest(2, 5, StateUpdate.NOT_NEEDED);
+    fun twoToFiveMonths() {
+        runTest(2, 5, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToElevenMonths() {
-        runTest(2, 11, StateUpdate.NOT_NEEDED);
+    fun twoToElevenMonths() {
+        runTest(2, 11, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToZeroMonth() {
-        runTest(2, 0, StateUpdate.SHOW_DISABLED);
+    fun twoToZeroMonth() {
+        runTest(2, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void twoToOneMonth() {
-        runTest(2, 1, StateUpdate.NOT_NEEDED);
+    fun twoToOneMonth() {
+        runTest(2, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToTwoMonths() {
-        runTest(2, 2, StateUpdate.NOT_NEEDED);
+    fun twoToTwoMonths() {
+        runTest(2, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void sixToNineMonths() {
-        runTest(6, 9, StateUpdate.NOT_NEEDED);
+    fun sixToNineMonths() {
+        runTest(6, 9, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void sixToElevenMonths() {
-        runTest(6, 11, StateUpdate.NOT_NEEDED);
+    fun sixToElevenMonths() {
+        runTest(6, 11, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void sixToZeroMonth() {
-        runTest(6, 0, StateUpdate.SHOW_DISABLED);
+    fun sixToZeroMonth() {
+        runTest(6, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void sixToOneMonth() {
-        runTest(6, 1, StateUpdate.NOT_NEEDED);
+    fun sixToOneMonth() {
+        runTest(6, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void sixToTwoMonths() {
-        runTest(6, 2, StateUpdate.NOT_NEEDED);
+    fun sixToTwoMonths() {
+        runTest(6, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void sixToFiveMonths() {
-        runTest(6, 5, StateUpdate.NOT_NEEDED);
+    fun sixToFiveMonths() {
+        runTest(6, 5, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void elevenToElevenMonths() {
-        runTest(11, 11, StateUpdate.NOT_NEEDED);
+    fun elevenToElevenMonths() {
+        runTest(11, 11, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void elevenToZeroMonth() {
-        runTest(11, 0, StateUpdate.SHOW_DISABLED);
+    fun elevenToZeroMonth() {
+        runTest(11, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void elevenToOneMonth() {
-        runTest(11, 1, StateUpdate.NOT_NEEDED);
+    fun elevenToOneMonth() {
+        runTest(11, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void elevenToTwoMonths() {
-        runTest(11, 2, StateUpdate.NOT_NEEDED);
+    fun elevenToTwoMonths() {
+        runTest(11, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void elevenToTenMonths() {
-        runTest(11, 10, StateUpdate.NOT_NEEDED);
+    fun elevenToTenMonths() {
+        runTest(11, 10, StateUpdate.NOT_NEEDED)
     }
 
-    private void runTest(long previousMonthsDuration, long currentMonthsDuration, StateUpdate expectedStateUpdate) {
-        StateUpdate stateUpdate = getStateUpdate(currentMonthsDuration, previousMonthsDuration);
-        assertThat(stateUpdate).isEqualTo(expectedStateUpdate);
+    private fun runTest(
+        previousMonthsDuration: Long,
+        currentMonthsDuration: Long,
+        expectedStateUpdate: StateUpdate
+    ) {
+        val stateUpdate = getStateUpdate(currentMonthsDuration, previousMonthsDuration)
+        Truth.assertThat(stateUpdate).isEqualTo(expectedStateUpdate)
     }
 }
