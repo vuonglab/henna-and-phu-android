@@ -2365,7 +2365,8 @@ class TimeZoneDaylightSavingTimeUnitTests {
 
     @Test
     fun tz_Africa_El_Aaiun() {
-        // July should be GMT+01:00. Bug in Java timezone database?
+        // July should be GMT+01:00. Source: https://www.zeitverschiebung.net/en/timezone/africa--el_aaiun
+        // Bug in Java timezone database?
         val now = getDateTimeInATimeZone(2046, 7, 30, 2, 53, 46, "Africa/El_Aaiun") // GMT+01:00
         val marriedDuration = getMarriedDuration(now)
         assertDuration(marriedDuration, Duration(31, 4, 15, 9, 26, 53))
@@ -4417,6 +4418,13 @@ class TimeZoneDaylightSavingTimeUnitTests {
         val now = getDateTimeInATimeZone(2046, 7, 30, 3, 53, 46, "Europe/Monaco") // GMT+02:00
         val marriedDuration = getMarriedDuration(now)
         assertDuration(marriedDuration, Duration(31, 4, 15, 9, 26, 53))
+    }
+
+    @Test
+    fun different_date_time() {
+        val now = getDateTimeInATimeZone(2015, 3, 14, 9, 26, 53, "America/Phoenix") // GMT-07:00
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(0, 0, 0, 0, 0, 0))
     }
 
     private fun getDateTimeInATimeZone(
