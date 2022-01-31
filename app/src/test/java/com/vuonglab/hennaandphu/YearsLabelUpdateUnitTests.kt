@@ -1,137 +1,139 @@
-package com.vuonglab.hennaandphu;
+package com.vuonglab.hennaandphu
 
-import static com.google.common.truth.Truth.assertThat;
-import org.junit.Test;
+import com.google.common.truth.Truth
+import org.junit.Test
 
-import static com.vuonglab.hennaandphu.UIUpdateOptimizationsKt.getLabelUpdate;
-
-public class YearsLabelUpdateUnitTests {
+class YearsLabelUpdateUnitTests {
     @Test
-    public void appStartZeroYear() {
-        runTest(-1, 0, LabelUpdate.SHOW_SINGULAR);
+    fun appStartZeroYear() {
+        runTest(-1, 0, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void appStartOneYear() {
-        runTest(-1, 1, LabelUpdate.SHOW_SINGULAR);
+    fun appStartOneYear() {
+        runTest(-1, 1, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void appStartTwoYears() {
-        runTest(-1, 2, LabelUpdate.SHOW_PLURAL);
+    fun appStartTwoYears() {
+        runTest(-1, 2, LabelUpdate.SHOW_PLURAL)
     }
 
     @Test
-    public void appStartFiftyYears() {
-        runTest(-1, 50, LabelUpdate.SHOW_PLURAL);
+    fun appStartFiftyYears() {
+        runTest(-1, 50, LabelUpdate.SHOW_PLURAL)
     }
 
     @Test
-    public void zeroYearToOneYear() {
-        runTest(0, 1, LabelUpdate.NOT_NEEDED);
+    fun zeroYearToOneYear() {
+        runTest(0, 1, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void zeroYearToTwoYears() {
-        runTest(0, 2, LabelUpdate.SHOW_PLURAL);
+    fun zeroYearToTwoYears() {
+        runTest(0, 2, LabelUpdate.SHOW_PLURAL)
     }
 
     @Test
-    public void zeroYearToThreeYears() {
-        runTest(0, 3, LabelUpdate.SHOW_PLURAL);
+    fun zeroYearToThreeYears() {
+        runTest(0, 3, LabelUpdate.SHOW_PLURAL)
     }
 
     @Test
-    public void oneYearToTwoYears() {
-        runTest(1, 2, LabelUpdate.SHOW_PLURAL);
+    fun oneYearToTwoYears() {
+        runTest(1, 2, LabelUpdate.SHOW_PLURAL)
     }
 
     @Test
-    public void oneYearToThreeYears() {
-        runTest(1, 2, LabelUpdate.SHOW_PLURAL);
+    fun oneYearToThreeYears() {
+        runTest(1, 2, LabelUpdate.SHOW_PLURAL)
     }
 
     @Test
-    public void twoYearsToThreeYears() {
-        runTest(2, 3, LabelUpdate.NOT_NEEDED);
+    fun twoYearsToThreeYears() {
+        runTest(2, 3, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoYearsToFourYears() {
-        runTest(2, 4, LabelUpdate.NOT_NEEDED);
+    fun twoYearsToFourYears() {
+        runTest(2, 4, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeYearsToFourYears() {
-        runTest(3, 4, LabelUpdate.NOT_NEEDED);
+    fun threeYearsToFourYears() {
+        runTest(3, 4, LabelUpdate.NOT_NEEDED)
     }
 
     //<editor-fold desc="Decreasing years (theoretical)">
     @Test
-    public void fourYearsToThreeYears() {
-        runTest(4, 3, LabelUpdate.NOT_NEEDED);
+    fun fourYearsToThreeYears() {
+        runTest(4, 3, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fourYearsToTwoYears() {
-        runTest(4, 2, LabelUpdate.NOT_NEEDED);
+    fun fourYearsToTwoYears() {
+        runTest(4, 2, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeYearsToTwoYears() {
-        runTest(3, 2, LabelUpdate.NOT_NEEDED);
+    fun threeYearsToTwoYears() {
+        runTest(3, 2, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeYearsToOneYear() {
-        runTest(3, 1, LabelUpdate.SHOW_SINGULAR);
+    fun threeYearsToOneYear() {
+        runTest(3, 1, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void threeYearsToZeroYear() {
-        runTest(3, 0, LabelUpdate.SHOW_SINGULAR);
+    fun threeYearsToZeroYear() {
+        runTest(3, 0, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void twoYearsToOneYear() {
-        runTest(2, 1, LabelUpdate.SHOW_SINGULAR);
+    fun twoYearsToOneYear() {
+        runTest(2, 1, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void twoYearsToZeroYear() {
-        runTest(2, 0, LabelUpdate.SHOW_SINGULAR);
+    fun twoYearsToZeroYear() {
+        runTest(2, 0, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void oneYearToZeroYear() {
-        runTest(1, 0, LabelUpdate.NOT_NEEDED);
+    fun oneYearToZeroYear() {
+        runTest(1, 0, LabelUpdate.NOT_NEEDED)
     }
+
     //</editor-fold>
-
     //<editor-fold desc="Same years (theoretical)">
     @Test
-    public void zeroYearToZeroYear() {
-        runTest(0, 0, LabelUpdate.NOT_NEEDED);
+    fun zeroYearToZeroYear() {
+        runTest(0, 0, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void oneYearToOneYear() {
-        runTest(1, 1, LabelUpdate.NOT_NEEDED);
+    fun oneYearToOneYear() {
+        runTest(1, 1, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoYearsToTwoYears() {
-        runTest(2, 2, LabelUpdate.NOT_NEEDED);
+    fun twoYearsToTwoYears() {
+        runTest(2, 2, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void FiftyYearsToFiftyYears() {
-        runTest(2, 2, LabelUpdate.NOT_NEEDED);
+    fun fiftyYearsToFiftyYears() {
+        runTest(2, 2, LabelUpdate.NOT_NEEDED)
     }
+
     //</editor-fold>
-
-    private void runTest(long previousYearsDuration, long currentYearsDuration, LabelUpdate expectedLabelUpdate) {
-        LabelUpdate labelUpdate = getLabelUpdate(currentYearsDuration, previousYearsDuration);
-        assertThat(labelUpdate).isEqualTo(expectedLabelUpdate);
+    private fun runTest(
+        previousYearsDuration: Long,
+        currentYearsDuration: Long,
+        expectedLabelUpdate: LabelUpdate
+    ) {
+        val labelUpdate = getLabelUpdate(currentYearsDuration, previousYearsDuration)
+        Truth.assertThat(labelUpdate).isEqualTo(expectedLabelUpdate)
     }
 }

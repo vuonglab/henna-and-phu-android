@@ -1,132 +1,139 @@
-package com.vuonglab.hennaandphu;
+package com.vuonglab.hennaandphu
 
-import org.junit.Test;
+import com.google.common.truth.Truth
+import org.junit.Test
 
-import static com.google.common.truth.Truth.assertThat;
-import static com.vuonglab.hennaandphu.UIUpdateOptimizationsKt.getStateUpdate;
-
-public class YearsStateUpdateUnitTests {
+class YearsStateUpdateUnitTests {
     @Test
-    public void appStartZeroYear() { runTest(-1, 0, StateUpdate.SHOW_DISABLED); }
-
-    @Test
-    public void appStartOneYear() { runTest(-1, 1, StateUpdate.SHOW_ENABLED); }
-
-    @Test
-    public void appStartTwoYears() {
-        runTest(-1, 2, StateUpdate.SHOW_ENABLED);
+    fun appStartZeroYear() {
+        runTest(-1, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void appStartFiftyYears() {
-        runTest(-1, 50, StateUpdate.SHOW_ENABLED);
+    fun appStartOneYear() {
+        runTest(-1, 1, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroYearToOneYear() {
-        runTest(0, 1, StateUpdate.SHOW_ENABLED);
+    fun appStartTwoYears() {
+        runTest(-1, 2, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroYearToTwoYears() {
-        runTest(0, 2, StateUpdate.SHOW_ENABLED);
+    fun appStartFiftyYears() {
+        runTest(-1, 50, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroYearToThreeYears() {
-        runTest(0, 3, StateUpdate.SHOW_ENABLED);
+    fun zeroYearToOneYear() {
+        runTest(0, 1, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void oneYearToTwoYears() {
-        runTest(1, 2, StateUpdate.NOT_NEEDED);
+    fun zeroYearToTwoYears() {
+        runTest(0, 2, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void oneYearToThreeYears() {
-        runTest(1, 2, StateUpdate.NOT_NEEDED);
+    fun zeroYearToThreeYears() {
+        runTest(0, 3, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void twoYearsToThreeYears() {
-        runTest(2, 3, StateUpdate.NOT_NEEDED);
+    fun oneYearToTwoYears() {
+        runTest(1, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoYearsToFourYears() {
-        runTest(2, 4, StateUpdate.NOT_NEEDED);
+    fun oneYearToThreeYears() {
+        runTest(1, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeYearsToFourYears() {
-        runTest(3, 4, StateUpdate.NOT_NEEDED);
+    fun twoYearsToThreeYears() {
+        runTest(2, 3, StateUpdate.NOT_NEEDED)
+    }
+
+    @Test
+    fun twoYearsToFourYears() {
+        runTest(2, 4, StateUpdate.NOT_NEEDED)
+    }
+
+    @Test
+    fun threeYearsToFourYears() {
+        runTest(3, 4, StateUpdate.NOT_NEEDED)
     }
 
     //<editor-fold desc="Decreasing years (theoretical)">
     @Test
-    public void fourYearsToThreeYears() {
-        runTest(4, 3, StateUpdate.NOT_NEEDED);
+    fun fourYearsToThreeYears() {
+        runTest(4, 3, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fourYearsToTwoYears() {
-        runTest(4, 2, StateUpdate.NOT_NEEDED);
+    fun fourYearsToTwoYears() {
+        runTest(4, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeYearsToTwoYears() {
-        runTest(3, 2, StateUpdate.NOT_NEEDED);
+    fun threeYearsToTwoYears() {
+        runTest(3, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeYearsToOneYear() {
-        runTest(3, 1, StateUpdate.NOT_NEEDED);
+    fun threeYearsToOneYear() {
+        runTest(3, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeYearsToZeroYear() {
-        runTest(3, 0, StateUpdate.SHOW_DISABLED);
+    fun threeYearsToZeroYear() {
+        runTest(3, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void twoYearsToOneYear() {
-        runTest(2, 1, StateUpdate.NOT_NEEDED);
+    fun twoYearsToOneYear() {
+        runTest(2, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoYearsToZeroYear() {
-        runTest(2, 0, StateUpdate.SHOW_DISABLED);
+    fun twoYearsToZeroYear() {
+        runTest(2, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void oneYearToZeroYear() {
-        runTest(1, 0, StateUpdate.SHOW_DISABLED);
+    fun oneYearToZeroYear() {
+        runTest(1, 0, StateUpdate.SHOW_DISABLED)
     }
+
     //</editor-fold>
-
     //<editor-fold desc="Same years (theoretical)">
     @Test
-    public void zeroYearToZeroYear() {
-        runTest(0, 0, StateUpdate.NOT_NEEDED);
+    fun zeroYearToZeroYear() {
+        runTest(0, 0, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void oneYearToOneYear() {
-        runTest(1, 1, StateUpdate.NOT_NEEDED);
+    fun oneYearToOneYear() {
+        runTest(1, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoYearsToTwoYears() {
-        runTest(2, 2, StateUpdate.NOT_NEEDED);
+    fun twoYearsToTwoYears() {
+        runTest(2, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void FiftyYearsToFiftyYears() {
-        runTest(2, 2, StateUpdate.NOT_NEEDED);
+    fun fiftyYearsToFiftyYears() {
+        runTest(2, 2, StateUpdate.NOT_NEEDED)
     }
+
     //</editor-fold>
-    private void runTest(long previousYearsDuration, long currentYearsDuration, StateUpdate expectedStateUpdate) {
-        StateUpdate stateUpdate = getStateUpdate(currentYearsDuration, previousYearsDuration);
-        assertThat(stateUpdate).isEqualTo(expectedStateUpdate);
+    private fun runTest(
+        previousYearsDuration: Long,
+        currentYearsDuration: Long,
+        expectedStateUpdate: StateUpdate
+    ) {
+        val stateUpdate = getStateUpdate(currentYearsDuration, previousYearsDuration)
+        Truth.assertThat(stateUpdate).isEqualTo(expectedStateUpdate)
     }
 }
