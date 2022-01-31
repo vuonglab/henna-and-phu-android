@@ -1,183 +1,185 @@
-package com.vuonglab.hennaandphu;
+package com.vuonglab.hennaandphu
 
-import org.junit.Test;
+import com.google.common.truth.Truth
+import org.junit.Test
 
-import static com.google.common.truth.Truth.assertThat;
-import static com.vuonglab.hennaandphu.UIUpdateOptimizationsKt.getLabelUpdate;
-
-public class SecondsLabelUpdateUnitTests {
+class SecondsLabelUpdateUnitTests {
     @Test
-    public void appStartZeroSecond() {
-        runTest(-1, 0, LabelUpdate.SHOW_SINGULAR);
+    fun appStartZeroSecond() {
+        runTest(-1, 0, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void appStartOneSecond() {
-        runTest(-1, 1, LabelUpdate.SHOW_SINGULAR);
+    fun appStartOneSecond() {
+        runTest(-1, 1, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void appStartTwoSeconds() {
-        runTest(-1, 2, LabelUpdate.SHOW_PLURAL);
+    fun appStartTwoSeconds() {
+        runTest(-1, 2, LabelUpdate.SHOW_PLURAL)
     }
 
     @Test
-    public void appStartFiftyNineSeconds() {
-        runTest(-1, 59, LabelUpdate.SHOW_PLURAL);
+    fun appStartFiftyNineSeconds() {
+        runTest(-1, 59, LabelUpdate.SHOW_PLURAL)
     }
 
     @Test
-    public void zeroToOneSecond() {
-        runTest(0, 1, LabelUpdate.NOT_NEEDED);
+    fun zeroToOneSecond() {
+        runTest(0, 1, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void zeroToTwoSeconds() {
-        runTest(0, 2, LabelUpdate.SHOW_PLURAL);
+    fun zeroToTwoSeconds() {
+        runTest(0, 2, LabelUpdate.SHOW_PLURAL)
     }
 
     @Test
-    public void zeroToFiftyNineSeconds() {
-        runTest(0, 59, LabelUpdate.SHOW_PLURAL);
+    fun zeroToFiftyNineSeconds() {
+        runTest(0, 59, LabelUpdate.SHOW_PLURAL)
     }
 
     @Test
-    public void zeroToZeroSecond() {
-        runTest(0, 0, LabelUpdate.NOT_NEEDED);
+    fun zeroToZeroSecond() {
+        runTest(0, 0, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void oneToTwoSeconds() {
-        runTest(1, 2, LabelUpdate.SHOW_PLURAL);
+    fun oneToTwoSeconds() {
+        runTest(1, 2, LabelUpdate.SHOW_PLURAL)
     }
 
     @Test
-    public void oneToFiftyNineSeconds() {
-        runTest(1, 59, LabelUpdate.SHOW_PLURAL);
+    fun oneToFiftyNineSeconds() {
+        runTest(1, 59, LabelUpdate.SHOW_PLURAL)
     }
 
     @Test
-    public void oneToZeroSecond() {
-        runTest(1, 0, LabelUpdate.NOT_NEEDED);
+    fun oneToZeroSecond() {
+        runTest(1, 0, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void oneToOneSecond() {
-        runTest(1, 1, LabelUpdate.NOT_NEEDED);
+    fun oneToOneSecond() {
+        runTest(1, 1, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToThreeSeconds() {
-        runTest(2, 3, LabelUpdate.NOT_NEEDED);
+    fun twoToThreeSeconds() {
+        runTest(2, 3, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToFiftyNineSeconds() {
-        runTest(2, 59, LabelUpdate.NOT_NEEDED);
+    fun twoToFiftyNineSeconds() {
+        runTest(2, 59, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToZeroSecond() {
-        runTest(2, 0, LabelUpdate.SHOW_SINGULAR);
+    fun twoToZeroSecond() {
+        runTest(2, 0, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void twoToOneSecond() {
-        runTest(2, 1, LabelUpdate.SHOW_SINGULAR);
+    fun twoToOneSecond() {
+        runTest(2, 1, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void twoToTwoSeconds() {
-        runTest(2, 2, LabelUpdate.NOT_NEEDED);
+    fun twoToTwoSeconds() {
+        runTest(2, 2, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeToFourSeconds() {
-        runTest(3, 4, LabelUpdate.NOT_NEEDED);
+    fun threeToFourSeconds() {
+        runTest(3, 4, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeToFiftyNineSeconds() {
-        runTest(3, 59, LabelUpdate.NOT_NEEDED);
+    fun threeToFiftyNineSeconds() {
+        runTest(3, 59, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeToZeroSecond() {
-        runTest(3, 0, LabelUpdate.SHOW_SINGULAR);
+    fun threeToZeroSecond() {
+        runTest(3, 0, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void threeToOneSecond() {
-        runTest(3, 1, LabelUpdate.SHOW_SINGULAR);
+    fun threeToOneSecond() {
+        runTest(3, 1, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void threeToTwoSeconds() {
-        runTest(3, 2, LabelUpdate.NOT_NEEDED);
+    fun threeToTwoSeconds() {
+        runTest(3, 2, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeToThreeSeconds() {
-        runTest(3, 3, LabelUpdate.NOT_NEEDED);
+    fun threeToThreeSeconds() {
+        runTest(3, 3, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyEightToFiftyNineSeconds() {
-        runTest(58, 59, LabelUpdate.NOT_NEEDED);
+    fun fiftyEightToFiftyNineSeconds() {
+        runTest(58, 59, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyEightToZeroSecond() {
-        runTest(58, 0, LabelUpdate.SHOW_SINGULAR);
+    fun fiftyEightToZeroSecond() {
+        runTest(58, 0, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void fiftyEightToOneSecond() {
-        runTest(58, 1, LabelUpdate.SHOW_SINGULAR);
+    fun fiftyEightToOneSecond() {
+        runTest(58, 1, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void fiftyEightToTwoSeconds() {
-        runTest(58, 2, LabelUpdate.NOT_NEEDED);
+    fun fiftyEightToTwoSeconds() {
+        runTest(58, 2, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyEightToFiftyEightSeconds() {
-        runTest(58, 58, LabelUpdate.NOT_NEEDED);
+    fun fiftyEightToFiftyEightSeconds() {
+        runTest(58, 58, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyNineToZeroSecond() {
-        runTest(59, 0, LabelUpdate.SHOW_SINGULAR);
+    fun fiftyNineToZeroSecond() {
+        runTest(59, 0, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void fiftyNineToOneSecond() {
-        runTest(59, 1, LabelUpdate.SHOW_SINGULAR);
+    fun fiftyNineToOneSecond() {
+        runTest(59, 1, LabelUpdate.SHOW_SINGULAR)
     }
 
     @Test
-    public void fiftyNineToTwoSeconds() {
-        runTest(59, 2, LabelUpdate.NOT_NEEDED);
+    fun fiftyNineToTwoSeconds() {
+        runTest(59, 2, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyNineToThreeSeconds() {
-        runTest(59, 3, LabelUpdate.NOT_NEEDED);
+    fun fiftyNineToThreeSeconds() {
+        runTest(59, 3, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyNineToFiftyEightSeconds() {
-        runTest(59, 58, LabelUpdate.NOT_NEEDED);
+    fun fiftyNineToFiftyEightSeconds() {
+        runTest(59, 58, LabelUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyNineToFiftyNineSeconds() {
-        runTest(59, 59, LabelUpdate.NOT_NEEDED);
+    fun fiftyNineToFiftyNineSeconds() {
+        runTest(59, 59, LabelUpdate.NOT_NEEDED)
     }
 
-    private void runTest(long previousSecondsDuration, long currentSecondsDuration, LabelUpdate expectedLabelUpdate) {
-        LabelUpdate labelUpdate = getLabelUpdate(currentSecondsDuration, previousSecondsDuration);
-        assertThat(labelUpdate).isEqualTo(expectedLabelUpdate);
+    private fun runTest(
+        previousSecondsDuration: Long,
+        currentSecondsDuration: Long,
+        expectedLabelUpdate: LabelUpdate
+    ) {
+        val labelUpdate = getLabelUpdate(currentSecondsDuration, previousSecondsDuration)
+        Truth.assertThat(labelUpdate).isEqualTo(expectedLabelUpdate)
     }
 }

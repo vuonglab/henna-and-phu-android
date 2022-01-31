@@ -1,183 +1,185 @@
-package com.vuonglab.hennaandphu;
+package com.vuonglab.hennaandphu
 
-import org.junit.Test;
+import com.google.common.truth.Truth
+import org.junit.Test
 
-import static com.google.common.truth.Truth.assertThat;
-import static com.vuonglab.hennaandphu.UIUpdateOptimizationsKt.getStateUpdate;
-
-public class SecondsStateUpdateUnitTests {
+class SecondsStateUpdateUnitTests {
     @Test
-    public void appStartZeroSecond() {
-        runTest(-1, 0, StateUpdate.SHOW_DISABLED);
+    fun appStartZeroSecond() {
+        runTest(-1, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void appStartOneSecond() {
-        runTest(-1, 1, StateUpdate.SHOW_ENABLED);
+    fun appStartOneSecond() {
+        runTest(-1, 1, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void appStartTwoSeconds() {
-        runTest(-1, 2, StateUpdate.SHOW_ENABLED);
+    fun appStartTwoSeconds() {
+        runTest(-1, 2, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void appStartFiftyNineSeconds() {
-        runTest(-1, 59, StateUpdate.SHOW_ENABLED);
+    fun appStartFiftyNineSeconds() {
+        runTest(-1, 59, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroToOneSecond() {
-        runTest(0, 1, StateUpdate.SHOW_ENABLED);
+    fun zeroToOneSecond() {
+        runTest(0, 1, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroToTwoSeconds() {
-        runTest(0, 2, StateUpdate.SHOW_ENABLED);
+    fun zeroToTwoSeconds() {
+        runTest(0, 2, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroToFiftyNineSeconds() {
-        runTest(0, 59, StateUpdate.SHOW_ENABLED);
+    fun zeroToFiftyNineSeconds() {
+        runTest(0, 59, StateUpdate.SHOW_ENABLED)
     }
 
     @Test
-    public void zeroToZeroSecond() {
-        runTest(0, 0, StateUpdate.NOT_NEEDED);
+    fun zeroToZeroSecond() {
+        runTest(0, 0, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void oneToTwoSeconds() {
-        runTest(1, 2, StateUpdate.NOT_NEEDED);
+    fun oneToTwoSeconds() {
+        runTest(1, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void oneToFiftyNineSeconds() {
-        runTest(1, 59, StateUpdate.NOT_NEEDED);
+    fun oneToFiftyNineSeconds() {
+        runTest(1, 59, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void oneToZeroSecond() {
-        runTest(1, 0, StateUpdate.SHOW_DISABLED);
+    fun oneToZeroSecond() {
+        runTest(1, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void oneToOneSecond() {
-        runTest(1, 1, StateUpdate.NOT_NEEDED);
+    fun oneToOneSecond() {
+        runTest(1, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToThreeSeconds() {
-        runTest(2, 3, StateUpdate.NOT_NEEDED);
+    fun twoToThreeSeconds() {
+        runTest(2, 3, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToFiftyNineSeconds() {
-        runTest(2, 59, StateUpdate.NOT_NEEDED);
+    fun twoToFiftyNineSeconds() {
+        runTest(2, 59, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToZeroSecond() {
-        runTest(2, 0, StateUpdate.SHOW_DISABLED);
+    fun twoToZeroSecond() {
+        runTest(2, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void twoToOneSecond() {
-        runTest(2, 1, StateUpdate.NOT_NEEDED);
+    fun twoToOneSecond() {
+        runTest(2, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void twoToTwoSeconds() {
-        runTest(2, 2, StateUpdate.NOT_NEEDED);
+    fun twoToTwoSeconds() {
+        runTest(2, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeToFourSeconds() {
-        runTest(3, 4, StateUpdate.NOT_NEEDED);
+    fun threeToFourSeconds() {
+        runTest(3, 4, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeToFiftyNineSeconds() {
-        runTest(3, 59, StateUpdate.NOT_NEEDED);
+    fun threeToFiftyNineSeconds() {
+        runTest(3, 59, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeToZeroSecond() {
-        runTest(3, 0, StateUpdate.SHOW_DISABLED);
+    fun threeToZeroSecond() {
+        runTest(3, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void threeToOneSecond() {
-        runTest(3, 1, StateUpdate.NOT_NEEDED);
+    fun threeToOneSecond() {
+        runTest(3, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeToTwoSeconds() {
-        runTest(3, 2, StateUpdate.NOT_NEEDED);
+    fun threeToTwoSeconds() {
+        runTest(3, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void threeToThreeSeconds() {
-        runTest(3, 3, StateUpdate.NOT_NEEDED);
+    fun threeToThreeSeconds() {
+        runTest(3, 3, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyEightToFiftyNineSeconds() {
-        runTest(58, 59, StateUpdate.NOT_NEEDED);
+    fun fiftyEightToFiftyNineSeconds() {
+        runTest(58, 59, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyEightToZeroSecond() {
-        runTest(58, 0, StateUpdate.SHOW_DISABLED);
+    fun fiftyEightToZeroSecond() {
+        runTest(58, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void fiftyEightToOneSecond() {
-        runTest(58, 1, StateUpdate.NOT_NEEDED);
+    fun fiftyEightToOneSecond() {
+        runTest(58, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyEightToTwoSeconds() {
-        runTest(58, 2, StateUpdate.NOT_NEEDED);
+    fun fiftyEightToTwoSeconds() {
+        runTest(58, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyEightToFiftyEightSeconds() {
-        runTest(58, 58, StateUpdate.NOT_NEEDED);
+    fun fiftyEightToFiftyEightSeconds() {
+        runTest(58, 58, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyNineToZeroSecond() {
-        runTest(59, 0, StateUpdate.SHOW_DISABLED);
+    fun fiftyNineToZeroSecond() {
+        runTest(59, 0, StateUpdate.SHOW_DISABLED)
     }
 
     @Test
-    public void fiftyNineToOneSecond() {
-        runTest(59, 1, StateUpdate.NOT_NEEDED);
+    fun fiftyNineToOneSecond() {
+        runTest(59, 1, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyNineToTwoSeconds() {
-        runTest(59, 2, StateUpdate.NOT_NEEDED);
+    fun fiftyNineToTwoSeconds() {
+        runTest(59, 2, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyNineToThreeSeconds() {
-        runTest(59, 3, StateUpdate.NOT_NEEDED);
+    fun fiftyNineToThreeSeconds() {
+        runTest(59, 3, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyNineToFiftyEightSeconds() {
-        runTest(59, 58, StateUpdate.NOT_NEEDED);
+    fun fiftyNineToFiftyEightSeconds() {
+        runTest(59, 58, StateUpdate.NOT_NEEDED)
     }
 
     @Test
-    public void fiftyNineToFiftyNineSeconds() {
-        runTest(59, 59, StateUpdate.NOT_NEEDED);
+    fun fiftyNineToFiftyNineSeconds() {
+        runTest(59, 59, StateUpdate.NOT_NEEDED)
     }
 
-    private void runTest(long previousSecondsDuration, long currentSecondsDuration, StateUpdate expectedStateUpdate) {
-        StateUpdate stateUpdate = getStateUpdate(currentSecondsDuration, previousSecondsDuration);
-        assertThat(stateUpdate).isEqualTo(expectedStateUpdate);
+    private fun runTest(
+        previousSecondsDuration: Long,
+        currentSecondsDuration: Long,
+        expectedStateUpdate: StateUpdate
+    ) {
+        val stateUpdate = getStateUpdate(currentSecondsDuration, previousSecondsDuration)
+        Truth.assertThat(stateUpdate).isEqualTo(expectedStateUpdate)
     }
 }
