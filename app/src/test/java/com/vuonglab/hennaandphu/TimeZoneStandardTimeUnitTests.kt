@@ -4411,6 +4411,13 @@ class TimeZoneStandardTimeUnitTests {
         assertDuration(marriedDuration, Duration(2, 7, 18, 2, 8, 18))
     }
 
+    @Test
+    fun different_date_time() {
+        val now = getDateTimeInATimeZone(2017, 5, 16, 11, 28, 55, "America/Phoenix") // GMT-07:00
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(2, 2, 2, 2, 2, 2))
+    }
+
     private fun getDateTimeInATimeZone(
         year: Int,
         month: Int,
