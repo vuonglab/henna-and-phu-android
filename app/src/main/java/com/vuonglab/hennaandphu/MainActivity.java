@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
+        // override fun onStop() {
         super.onStop();
         timer.cancel();
 
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onRestart() {
+        // override fun onResume() {
         super.onRestart();
 
         timer = new Timer();
