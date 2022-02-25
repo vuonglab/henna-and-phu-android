@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import com.vuonglab.hennaandphu.databinding.ActivityMainBinding
 import java.time.ZonedDateTime
 import java.util.*
@@ -20,10 +19,8 @@ class MainActivity : AppCompatActivity() {
     )
 
     private var timer: Timer? = null
-    private val TAG = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -37,14 +34,11 @@ class MainActivity : AppCompatActivity() {
                 handler.postDelayed(runnable, 0)
             }
         }, 0, 1000)
-        Log.d(TAG, "Created timer.")
     }
 
     override fun onStop() {
-        // override fun onStop() {
         super.onStop()
         timer!!.cancel()
-        Log.d(TAG, "Canceled timer.")
     }
 
     override fun onRestart() {
@@ -56,7 +50,6 @@ class MainActivity : AppCompatActivity() {
                 handler.postDelayed(runnable, 0)
             }
         }, 0, 1000)
-        Log.d(TAG, "Restarted timer.")
     }
 
     private val runnable = Runnable {
