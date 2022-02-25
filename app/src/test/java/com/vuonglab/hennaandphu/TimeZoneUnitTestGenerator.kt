@@ -1,10 +1,8 @@
 package com.vuonglab.hennaandphu
 
-import kotlin.jvm.JvmStatic
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
-import java.util.HashMap
 
 // suppress missing package statement warning from Android Studio
 object TimeZoneUnitTestGenerator {
@@ -83,7 +81,8 @@ object TimeZoneUnitTestGenerator {
     }
 
     private fun generateUnitTestName(timeZoneName: String): String {
-        var unitTestName = timeZoneName.replace('/', '_')
+        var unitTestName = "tz_" + timeZoneName
+        unitTestName = unitTestName.replace('/', '_')
         unitTestName = unitTestName.replace("+", "plus")
         val unitTestNameParts = unitTestName.split("-".toRegex()).toTypedArray()
         val nameContainsNegativeNumber =
@@ -99,15 +98,15 @@ object TimeZoneUnitTestGenerator {
         hours: Int, minutes: Int, seconds: Int
     ) {
         println("@Test")
-        println("public void ${unitTestName}() {")
-        println("\tZonedDateTime now = getDateTimeInATimeZone("
+        println("fun ${unitTestName}() {")
+        println("\tval now = getDateTimeInATimeZone("
                 + "${testDateTime.year}, ${testDateTime.monthValue}, ${testDateTime.dayOfMonth}, "
                 + "${testDateTime.hour}, ${testDateTime.minute}, ${testDateTime.second}, "
-                + "\"${timeZoneName}\"); // GMT${timeZoneOffset}"
+                + "\"${timeZoneName}\") // GMT${timeZoneOffset}"
         )
-        println("\tDuration marriedDuration = DurationCalculator.getMarriedDuration(now);")
-        println("\tassertDuration(marriedDuration, new Duration("
-                + "$years, $months, $days, $hours, $minutes, $seconds));"
+        println("\tval marriedDuration = getMarriedDuration(now)")
+        println("\tassertDuration(marriedDuration, Duration("
+                + "$years, $months, $days, $hours, $minutes, $seconds))"
         )
         println("}\n")
     }
