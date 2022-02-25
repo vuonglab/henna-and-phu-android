@@ -1,253 +1,250 @@
-package com.vuonglab.hennaandphu;
+package com.vuonglab.hennaandphu
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import com.vuonglab.hennaandphu.databinding.ActivityMainBinding
+import java.time.ZonedDateTime
+import java.util.*
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.widget.TextView;
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
 
-import java.time.ZonedDateTime;
-import java.util.Timer;
-import java.util.TimerTask;
+    private lateinit var handler: Handler
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
+    private var previousMarriedDuration = Duration(
+        -1, -1, -1,
+        -1, -1, -1
+    )
 
-    private Timer timer;
+    private var timer: Timer? = null
+    private val TAG = "MainActivity"
 
-    private final Handler handler = new Handler();
-
-    private TextView yearsCount, monthsCount, daysCount;
-    private TextView hoursCount, minutesCount, secondsCount;
-
-    private TextView yearsLabel, monthsLabel, daysLabel;
-    private TextView hoursLabel, minutesLabel, secondsLabel;
-
-    private Duration previousMarriedDuration = new Duration(-1, -1, -1,
-            -1, -1, -1);
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         // override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        super.onCreate(savedInstanceState)
 
-        yearsCount = findViewById(R.id.yearsCount);
-        monthsCount = findViewById(R.id.monthsCount);
-        daysCount = findViewById(R.id.daysCount);
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        hoursCount = findViewById(R.id.hoursCount);
-        minutesCount = findViewById(R.id.minutesCount);
-        secondsCount = findViewById(R.id.secondsCount);
+        handler = Handler(Looper.getMainLooper())
 
-        yearsLabel = findViewById(R.id.yearsLabel);
-        monthsLabel = findViewById(R.id.monthsLabel);
-        daysLabel = findViewById(R.id.daysLabel);
-
-        hoursLabel = findViewById(R.id.hoursLabel);
-        minutesLabel = findViewById(R.id.minutesLabel);
-        secondsLabel = findViewById(R.id.secondsLabel);
-
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() { handler.postDelayed(runnable, 0); }
-        }, 0, 1000);
-
-        Log.d(TAG, "Created timer.");
+        timer = Timer()
+        timer!!.schedule(object : TimerTask() {
+            override fun run() {
+                handler.postDelayed(runnable, 0)
+            }
+        }, 0, 1000)
+        Log.d(TAG, "Created timer.")
     }
 
-    @Override
-    protected void onStop() {
+    override fun onStop() {
         // override fun onStop() {
-        super.onStop();
-        timer.cancel();
-
-        Log.d(TAG, "Canceled timer.");
+        super.onStop()
+        timer!!.cancel()
+        Log.d(TAG, "Canceled timer.")
     }
 
-    @Override
-    protected void onRestart() {
+    override fun onRestart() {
         // override fun onResume() {
-        super.onRestart();
-
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() { handler.postDelayed(runnable, 0); }
-        }, 0, 1000);
-
-        Log.d(TAG, "Restarted timer.");
+        super.onRestart()
+        timer = Timer()
+        timer!!.schedule(object : TimerTask() {
+            override fun run() {
+                handler.postDelayed(runnable, 0)
+            }
+        }, 0, 1000)
+        Log.d(TAG, "Restarted timer.")
     }
 
-    private final Runnable runnable = new Runnable() {
-        public void run() {
-            Duration marriedDuration = DurationCalculatorKt.getMarriedDuration(ZonedDateTime.now());
+    private val runnable = Runnable {
+        val marriedDuration = getMarriedDuration(ZonedDateTime.now())
 
-            if (marriedDuration.getYears() != previousMarriedDuration.getYears()) {
-                yearsCount.setText(String.valueOf(marriedDuration.getYears()));
-
-                LabelUpdate yearsLabelUpdate = UIUpdateOptimizationsKt.getLabelUpdate(marriedDuration.getYears(), previousMarriedDuration.getYears());
-                updateYearsLabel(yearsLabelUpdate);
-
-                StateUpdate yearsStateUpdate = UIUpdateOptimizationsKt.getStateUpdate(marriedDuration.getYears(), previousMarriedDuration.getYears());
-                updateYearsState(yearsStateUpdate);
+        binding.apply {
+            if (marriedDuration.Years != previousMarriedDuration.Years) {
+                yearsCount.text = marriedDuration.Years.toString()
+                val yearsLabelUpdate =
+                    getLabelUpdate(marriedDuration.Years, previousMarriedDuration.Years)
+                updateYearsLabel(yearsLabelUpdate)
+                val yearsStateUpdate =
+                    getStateUpdate(marriedDuration.Years, previousMarriedDuration.Years)
+                updateYearsState(yearsStateUpdate)
             }
-
-            if (marriedDuration.getMonths() != previousMarriedDuration.getMonths()) {
-                monthsCount.setText(String.valueOf(marriedDuration.getMonths()));
-
-                LabelUpdate monthsLabelUpdate = UIUpdateOptimizationsKt.getLabelUpdate(marriedDuration.getMonths(), previousMarriedDuration.getMonths());
-                updateMonthsLabel(monthsLabelUpdate);
-
-                StateUpdate monthsStateUpdate = UIUpdateOptimizationsKt.getStateUpdate(marriedDuration.getMonths(), previousMarriedDuration.getMonths());
-                updateMonthsState(monthsStateUpdate);
+            if (marriedDuration.Months != previousMarriedDuration.Months) {
+                monthsCount.text = marriedDuration.Months.toString()
+                val monthsLabelUpdate =
+                    getLabelUpdate(marriedDuration.Months, previousMarriedDuration.Months)
+                updateMonthsLabel(monthsLabelUpdate)
+                val monthsStateUpdate =
+                    getStateUpdate(marriedDuration.Months, previousMarriedDuration.Months)
+                updateMonthsState(monthsStateUpdate)
             }
-
-            if (marriedDuration.getDays() != previousMarriedDuration.getDays()) {
-                daysCount.setText(String.valueOf(marriedDuration.getDays()));
-
-                LabelUpdate daysLabelUpdate = UIUpdateOptimizationsKt.getLabelUpdate(marriedDuration.getDays(), previousMarriedDuration.getDays());
-                updateDaysLabel(daysLabelUpdate);
-
-                StateUpdate daysStateUpdate = UIUpdateOptimizationsKt.getStateUpdate(marriedDuration.getDays(), previousMarriedDuration.getDays());
-                updateDaysState(daysStateUpdate);
+            if (marriedDuration.Days != previousMarriedDuration.Days) {
+                daysCount.text = marriedDuration.Days.toString()
+                val daysLabelUpdate =
+                    getLabelUpdate(marriedDuration.Days, previousMarriedDuration.Days)
+                updateDaysLabel(daysLabelUpdate)
+                val daysStateUpdate =
+                    getStateUpdate(marriedDuration.Days, previousMarriedDuration.Days)
+                updateDaysState(daysStateUpdate)
             }
-
-            if (marriedDuration.getHours() != previousMarriedDuration.getHours()) {
-                hoursCount.setText(String.valueOf(marriedDuration.getHours()));
-
-                LabelUpdate hoursLabelUpdate = UIUpdateOptimizationsKt.getLabelUpdate(marriedDuration.getHours(), previousMarriedDuration.getHours());
-                updateHoursLabel(hoursLabelUpdate);
-
-                StateUpdate hoursStateUpdate = UIUpdateOptimizationsKt.getStateUpdate(marriedDuration.getHours(), previousMarriedDuration.getHours());
-                updateHoursState(hoursStateUpdate);
+            if (marriedDuration.Hours != previousMarriedDuration.Hours) {
+                hoursCount.text = marriedDuration.Hours.toString()
+                val hoursLabelUpdate =
+                    getLabelUpdate(marriedDuration.Hours, previousMarriedDuration.Hours)
+                updateHoursLabel(hoursLabelUpdate)
+                val hoursStateUpdate =
+                    getStateUpdate(marriedDuration.Hours, previousMarriedDuration.Hours)
+                updateHoursState(hoursStateUpdate)
             }
-
-            if (marriedDuration.getMinutes() != previousMarriedDuration.getMinutes()) {
-                minutesCount.setText(String.valueOf(marriedDuration.getMinutes()));
-
-                LabelUpdate minutesLabelUpdate = UIUpdateOptimizationsKt.getLabelUpdate(marriedDuration.getMinutes(), previousMarriedDuration.getMinutes());
-                updateMinutesLabel(minutesLabelUpdate);
-
-                StateUpdate minutesStateUpdate = UIUpdateOptimizationsKt.getStateUpdate(marriedDuration.getMinutes(), previousMarriedDuration.getMinutes());
-                updateMinutesState(minutesStateUpdate);
+            if (marriedDuration.Minutes != previousMarriedDuration.Minutes) {
+                minutesCount.text = marriedDuration.Minutes.toString()
+                val minutesLabelUpdate =
+                    getLabelUpdate(marriedDuration.Minutes, previousMarriedDuration.Minutes)
+                updateMinutesLabel(minutesLabelUpdate)
+                val minutesStateUpdate =
+                    getStateUpdate(marriedDuration.Minutes, previousMarriedDuration.Minutes)
+                updateMinutesState(minutesStateUpdate)
             }
-
-            if (marriedDuration.getSeconds() != previousMarriedDuration.getSeconds()) {
-                secondsCount.setText(String.valueOf(marriedDuration.getSeconds()));
-
-                LabelUpdate secondsLabelUpdate = UIUpdateOptimizationsKt.getLabelUpdate(marriedDuration.getSeconds(), previousMarriedDuration.getSeconds());
-                updateSecondsLabel(secondsLabelUpdate);
-
-                StateUpdate secondsStateUpdate = UIUpdateOptimizationsKt.getStateUpdate(marriedDuration.getSeconds(), previousMarriedDuration.getSeconds());
-                updateSecondsState(secondsStateUpdate);
+            if (marriedDuration.Seconds != previousMarriedDuration.Seconds) {
+                secondsCount.text = marriedDuration.Seconds.toString()
+                val secondsLabelUpdate =
+                    getLabelUpdate(marriedDuration.Seconds, previousMarriedDuration.Seconds)
+                updateSecondsLabel(secondsLabelUpdate)
+                val secondsStateUpdate =
+                    getStateUpdate(marriedDuration.Seconds, previousMarriedDuration.Seconds)
+                updateSecondsState(secondsStateUpdate)
             }
-
-            previousMarriedDuration = marriedDuration;
         }
-    };
 
-    void updateYearsLabel(LabelUpdate yearsLabelUpdate) {
-        if (yearsLabelUpdate == LabelUpdate.SHOW_SINGULAR)
-            yearsLabel.setText(R.string.year);
-        else if (yearsLabelUpdate == LabelUpdate.SHOW_PLURAL)
-            yearsLabel.setText(R.string.years);
+        previousMarriedDuration = marriedDuration
     }
 
-    void updateYearsState(StateUpdate yearsStateUpdate) {
-        if (yearsStateUpdate == StateUpdate.SHOW_DISABLED) {
-            yearsCount.setEnabled(false);
-            yearsLabel.setEnabled(false);
-        } else if (yearsStateUpdate == StateUpdate.SHOW_ENABLED) {
-            yearsCount.setEnabled(true);
-            yearsLabel.setEnabled(true);
+    fun updateYearsLabel(yearsLabelUpdate: LabelUpdate) {
+        binding.apply {
+            if (yearsLabelUpdate === LabelUpdate.SHOW_SINGULAR)
+                yearsLabel.setText(R.string.year)
+            else if (yearsLabelUpdate === LabelUpdate.SHOW_PLURAL)
+                yearsLabel.setText(R.string.years)
         }
     }
 
-    void updateMonthsLabel(LabelUpdate monthsLabelUpdate) {
-        if (monthsLabelUpdate == LabelUpdate.SHOW_SINGULAR)
-            monthsLabel.setText(R.string.month);
-        else if (monthsLabelUpdate == LabelUpdate.SHOW_PLURAL)
-            monthsLabel.setText(R.string.months);
-    }
-
-    void updateMonthsState(StateUpdate monthsStateUpdate) {
-        if (monthsStateUpdate == StateUpdate.SHOW_DISABLED) {
-            monthsCount.setEnabled(false);
-            monthsLabel.setEnabled(false);
-        } else if (monthsStateUpdate == StateUpdate.SHOW_ENABLED) {
-            monthsCount.setEnabled(true);
-            monthsLabel.setEnabled(true);
+    fun updateYearsState(yearsStateUpdate: StateUpdate) {
+        binding.apply {
+            if (yearsStateUpdate === StateUpdate.SHOW_DISABLED) {
+                yearsCount.isEnabled = false
+                yearsLabel.isEnabled = false
+            } else if (yearsStateUpdate === StateUpdate.SHOW_ENABLED) {
+                yearsCount.isEnabled = true
+                yearsLabel.isEnabled = true
+            }
         }
     }
 
-    void updateDaysLabel(LabelUpdate daysLabelUpdate) {
-        if (daysLabelUpdate == LabelUpdate.SHOW_SINGULAR)
-            daysLabel.setText(R.string.day);
-        else if (daysLabelUpdate == LabelUpdate.SHOW_PLURAL)
-            daysLabel.setText(R.string.days);
-    }
-
-    void updateDaysState(StateUpdate daysStateUpdate) {
-        if (daysStateUpdate == StateUpdate.SHOW_DISABLED) {
-            daysCount.setEnabled(false);
-            daysLabel.setEnabled(false);
-        } else if (daysStateUpdate == StateUpdate.SHOW_ENABLED) {
-            daysCount.setEnabled(true);
-            daysLabel.setEnabled(true);
+    fun updateMonthsLabel(monthsLabelUpdate: LabelUpdate) {
+        binding.apply {
+            if (monthsLabelUpdate === LabelUpdate.SHOW_SINGULAR)
+                monthsLabel.setText(R.string.month)
+            else if (monthsLabelUpdate === LabelUpdate.SHOW_PLURAL)
+                monthsLabel.setText(R.string.months)
         }
     }
 
-    void updateHoursLabel(LabelUpdate hoursLabelUpdate) {
-        if (hoursLabelUpdate == LabelUpdate.SHOW_SINGULAR)
-            hoursLabel.setText(R.string.hour);
-        else if (hoursLabelUpdate == LabelUpdate.SHOW_PLURAL)
-            hoursLabel.setText(R.string.hours);
-    }
-
-    void updateHoursState(StateUpdate hoursStateUpdate) {
-        if (hoursStateUpdate == StateUpdate.SHOW_DISABLED) {
-            hoursCount.setEnabled(false);
-            hoursLabel.setEnabled(false);
-        } else if (hoursStateUpdate == StateUpdate.SHOW_ENABLED) {
-            hoursCount.setEnabled(true);
-            hoursLabel.setEnabled(true);
+    fun updateMonthsState(monthsStateUpdate: StateUpdate) {
+        binding.apply {
+            if (monthsStateUpdate === StateUpdate.SHOW_DISABLED) {
+                monthsCount.isEnabled = false
+                monthsLabel.isEnabled = false
+            } else if (monthsStateUpdate === StateUpdate.SHOW_ENABLED) {
+                monthsCount.isEnabled = true
+                monthsLabel.isEnabled = true
+            }
         }
     }
 
-    void updateMinutesLabel(LabelUpdate minutesLabelUpdate) {
-        if (minutesLabelUpdate == LabelUpdate.SHOW_SINGULAR)
-            minutesLabel.setText(R.string.minute);
-        else if (minutesLabelUpdate == LabelUpdate.SHOW_PLURAL)
-            minutesLabel.setText(R.string.minutes);
-    }
-
-    void updateMinutesState(StateUpdate minutesStateUpdate) {
-        if (minutesStateUpdate == StateUpdate.SHOW_DISABLED) {
-            minutesCount.setEnabled(false);
-            minutesLabel.setEnabled(false);
-        } else if (minutesStateUpdate == StateUpdate.SHOW_ENABLED) {
-            minutesCount.setEnabled(true);
-            minutesLabel.setEnabled(true);
+    fun updateDaysLabel(daysLabelUpdate: LabelUpdate) {
+        binding.apply {
+            if (daysLabelUpdate === LabelUpdate.SHOW_SINGULAR)
+                daysLabel.setText(R.string.day)
+            else if (daysLabelUpdate === LabelUpdate.SHOW_PLURAL)
+                daysLabel.setText(R.string.days)
         }
     }
 
-    void updateSecondsLabel(LabelUpdate secondsLabelUpdate) {
-        if (secondsLabelUpdate == LabelUpdate.SHOW_SINGULAR)
-            secondsLabel.setText(R.string.second);
-        else if (secondsLabelUpdate == LabelUpdate.SHOW_PLURAL)
-            secondsLabel.setText(R.string.seconds);
+    fun updateDaysState(daysStateUpdate: StateUpdate) {
+        binding.apply {
+            if (daysStateUpdate === StateUpdate.SHOW_DISABLED) {
+                daysCount.isEnabled = false
+                daysLabel.isEnabled = false
+            } else if (daysStateUpdate === StateUpdate.SHOW_ENABLED) {
+                daysCount.isEnabled = true
+                daysLabel.isEnabled = true
+            }
+        }
     }
 
-    void updateSecondsState(StateUpdate secondsStateUpdate) {
-        if (secondsStateUpdate == StateUpdate.SHOW_DISABLED) {
-            secondsCount.setEnabled(false);
-            secondsLabel.setEnabled(false);
-        } else if (secondsStateUpdate == StateUpdate.SHOW_ENABLED) {
-            secondsCount.setEnabled(true);
-            secondsLabel.setEnabled(true);
+    fun updateHoursLabel(hoursLabelUpdate: LabelUpdate) {
+        binding.apply {
+            if (hoursLabelUpdate === LabelUpdate.SHOW_SINGULAR)
+                hoursLabel.setText(R.string.hour)
+            else if (hoursLabelUpdate === LabelUpdate.SHOW_PLURAL)
+                hoursLabel.setText(R.string.hours)
+        }
+    }
+
+    fun updateHoursState(hoursStateUpdate: StateUpdate) {
+        binding.apply {
+            if (hoursStateUpdate === StateUpdate.SHOW_DISABLED) {
+                hoursCount.isEnabled = false
+                hoursLabel.isEnabled = false
+            } else if (hoursStateUpdate === StateUpdate.SHOW_ENABLED) {
+                hoursCount.isEnabled = true
+                hoursLabel.isEnabled = true
+            }
+        }
+    }
+
+    fun updateMinutesLabel(minutesLabelUpdate: LabelUpdate) {
+        binding.apply {
+            if (minutesLabelUpdate === LabelUpdate.SHOW_SINGULAR)
+                minutesLabel.setText(R.string.minute)
+            else if (minutesLabelUpdate === LabelUpdate.SHOW_PLURAL)
+                minutesLabel.setText(R.string.minutes)
+        }
+    }
+
+    fun updateMinutesState(minutesStateUpdate: StateUpdate) {
+        binding.apply {
+            if (minutesStateUpdate === StateUpdate.SHOW_DISABLED) {
+                minutesCount.isEnabled = false
+                minutesLabel.isEnabled = false
+            } else if (minutesStateUpdate === StateUpdate.SHOW_ENABLED) {
+                minutesCount.isEnabled = true
+                minutesLabel.isEnabled = true
+            }
+        }
+    }
+
+    fun updateSecondsLabel(secondsLabelUpdate: LabelUpdate) {
+        binding.apply {
+            if (secondsLabelUpdate === LabelUpdate.SHOW_SINGULAR)
+                secondsLabel.setText(R.string.second)
+            else if (secondsLabelUpdate === LabelUpdate.SHOW_PLURAL)
+                secondsLabel.setText(R.string.seconds)
+        }
+    }
+
+    fun updateSecondsState(secondsStateUpdate: StateUpdate) {
+        binding.apply {
+            if (secondsStateUpdate === StateUpdate.SHOW_DISABLED) {
+                secondsCount.isEnabled = false
+                secondsLabel.isEnabled = false
+            } else if (secondsStateUpdate === StateUpdate.SHOW_ENABLED) {
+                secondsCount.isEnabled = true
+                secondsLabel.isEnabled = true
+            }
         }
     }
 }
