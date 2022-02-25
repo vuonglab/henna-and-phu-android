@@ -5,14 +5,10 @@ import org.junit.Test
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
-// Tests generated against timezone data version tzdata2018g
-// (https://mm.icann.org/pipermail/tz-announce/2018-October/000052.html)
-// in the JRE software.
+// Tests generated against timezone data version 2021a (version number from /jre/lib/tzdb.dat).
 //
-// If the tests fail, find out which timezone version the system is using.
-// Then check https://www.oracle.com/technetwork/java/javase/tzdata-versions-138805.html
-// to see if the changes in the timezone data could explain why the tests failed.
-// Do this before checking DurationCalculatorKt.getMarriedDuration() for bugs.
+// Java timezone database versions:
+// https://www.oracle.com/technetwork/java/javase/tzdata-versions-138805.html
 class TimeZoneDaylightSavingTimeUnitTests {
     @Test
     fun tz_Asia_Aden() {
@@ -1618,6 +1614,13 @@ class TimeZoneDaylightSavingTimeUnitTests {
     }
 
     @Test
+    fun tz_Asia_Qostanay() {
+        val now = getDateTimeInATimeZone(2046, 7, 30, 7, 53, 46, "Asia/Qostanay") // GMT+06:00
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(31, 4, 15, 9, 26, 53))
+    }
+
+    @Test
     fun tz_Europe_Simferopol() {
         val now = getDateTimeInATimeZone(2046, 7, 30, 4, 53, 46, "Europe/Simferopol") // GMT+03:00
         val marriedDuration = getMarriedDuration(now)
@@ -2365,9 +2368,7 @@ class TimeZoneDaylightSavingTimeUnitTests {
 
     @Test
     fun tz_Africa_El_Aaiun() {
-        // July should be GMT+01:00. Source: https://www.zeitverschiebung.net/en/timezone/africa--el_aaiun
-        // Bug in Java timezone database?
-        val now = getDateTimeInATimeZone(2046, 7, 30, 2, 53, 46, "Africa/El_Aaiun") // GMT+01:00
+        val now = getDateTimeInATimeZone(2046, 7, 30, 1, 53, 46, "Africa/El_Aaiun") // GMT+00:00
         val marriedDuration = getMarriedDuration(now)
         assertDuration(marriedDuration, Duration(31, 4, 15, 9, 26, 53))
     }
@@ -3118,9 +3119,9 @@ class TimeZoneDaylightSavingTimeUnitTests {
 
     @Test
     fun tz_Africa_Casablanca() {
-        val now = getDateTimeInATimeZone(2046, 4, 30, 2, 53, 46, "Africa/Casablanca") // GMT+01:00
+        val now = getDateTimeInATimeZone(2046, 7, 30, 1, 53, 46, "Africa/Casablanca") // GMT+00:00
         val marriedDuration = getMarriedDuration(now)
-        assertDuration(marriedDuration, Duration(31, 1, 15, 9, 26, 53))
+        assertDuration(marriedDuration, Duration(31, 4, 15, 9, 26, 53))
     }
 
     @Test
@@ -4080,6 +4081,13 @@ class TimeZoneDaylightSavingTimeUnitTests {
     @Test
     fun tz_Etc_GMTminus11() {
         val now = getDateTimeInATimeZone(2046, 7, 30, 12, 53, 46, "Etc/GMT-11") // GMT+11:00
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(31, 4, 15, 9, 26, 53))
+    }
+
+    @Test
+    fun tz_America_Nuuk() {
+        val now = getDateTimeInATimeZone(2046, 7, 29, 23, 53, 46, "America/Nuuk") // GMT-02:00
         val marriedDuration = getMarriedDuration(now)
         assertDuration(marriedDuration, Duration(31, 4, 15, 9, 26, 53))
     }
