@@ -5,14 +5,10 @@ import org.junit.Test
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
-// Tests generated against timezone data version tzdata2018g
-// (https://mm.icann.org/pipermail/tz-announce/2018-October/000052.html)
-// in the JRE software.
+// Tests generated against timezone data version 2021a (version number from /jre/lib/tzdb.dat).
 //
-// If the tests fail, find out which timezone version the system is using.
-// Then check https://www.oracle.com/technetwork/java/javase/tzdata-versions-138805.html
-// to see if the changes in the timezone data could explain why the tests failed.
-// Do this before checking DurationCalculatorKt.getMarriedDuration() for bugs.
+// Java timezone database versions:
+// https://www.oracle.com/technetwork/java/javase/tzdata-versions-138805.html
 class TimeZoneStandardTimeUnitTests {
     @Test
     fun tz_Asia_Aden() {
@@ -1613,6 +1609,13 @@ class TimeZoneStandardTimeUnitTests {
     @Test
     fun tz_America_Paramaribo() {
         val now = getDateTimeInATimeZone(2017, 11, 1, 15, 35, 11, "America/Paramaribo") // GMT-03:00
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(2, 7, 18, 2, 8, 18))
+    }
+
+    @Test
+    fun tz_Asia_Qostanay() {
+        val now = getDateTimeInATimeZone(2017, 11, 2, 0, 35, 11, "Asia/Qostanay") // GMT+06:00
         val marriedDuration = getMarriedDuration(now)
         assertDuration(marriedDuration, Duration(2, 7, 18, 2, 8, 18))
     }
@@ -4072,6 +4075,13 @@ class TimeZoneStandardTimeUnitTests {
     @Test
     fun tz_Etc_GMTminus11() {
         val now = getDateTimeInATimeZone(2017, 11, 2, 5, 35, 11, "Etc/GMT-11") // GMT+11:00
+        val marriedDuration = getMarriedDuration(now)
+        assertDuration(marriedDuration, Duration(2, 7, 18, 2, 8, 18))
+    }
+
+    @Test
+    fun tz_America_Nuuk() {
+        val now = getDateTimeInATimeZone(2017, 11, 1, 15, 35, 11, "America/Nuuk") // GMT-03:00
         val marriedDuration = getMarriedDuration(now)
         assertDuration(marriedDuration, Duration(2, 7, 18, 2, 8, 18))
     }
