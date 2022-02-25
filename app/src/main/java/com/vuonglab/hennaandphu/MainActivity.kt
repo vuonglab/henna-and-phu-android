@@ -38,68 +38,68 @@ class MainActivity : AppCompatActivity() {
 
     private val updateDurationTask = object : Runnable {
         override fun run() {
-        handler.postDelayed(this, 1000)
+            handler.postDelayed(this, 1000)
 
-        val marriedDuration = getMarriedDuration(ZonedDateTime.now())
+            val marriedDuration = getMarriedDuration(ZonedDateTime.now())
 
-        binding.apply {
-            if (marriedDuration.Years != previousMarriedDuration.Years) {
-                yearsCount.text = marriedDuration.Years.toString()
-                val yearsLabelUpdate =
-                    getLabelUpdate(marriedDuration.Years, previousMarriedDuration.Years)
-                updateYearsLabel(yearsLabelUpdate)
-                val yearsStateUpdate =
-                    getStateUpdate(marriedDuration.Years, previousMarriedDuration.Years)
-                updateYearsState(yearsStateUpdate)
+            binding.apply {
+                if (marriedDuration.Years != previousMarriedDuration.Years) {
+                    yearsCount.text = marriedDuration.Years.toString()
+                    val yearsLabelUpdate =
+                        getLabelUpdate(marriedDuration.Years, previousMarriedDuration.Years)
+                    updateYearsLabel(yearsLabelUpdate)
+                    val yearsStateUpdate =
+                        getStateUpdate(marriedDuration.Years, previousMarriedDuration.Years)
+                    updateYearsState(yearsStateUpdate)
+                }
+                if (marriedDuration.Months != previousMarriedDuration.Months) {
+                    monthsCount.text = marriedDuration.Months.toString()
+                    val monthsLabelUpdate =
+                        getLabelUpdate(marriedDuration.Months, previousMarriedDuration.Months)
+                    updateMonthsLabel(monthsLabelUpdate)
+                    val monthsStateUpdate =
+                        getStateUpdate(marriedDuration.Months, previousMarriedDuration.Months)
+                    updateMonthsState(monthsStateUpdate)
+                }
+                if (marriedDuration.Days != previousMarriedDuration.Days) {
+                    daysCount.text = marriedDuration.Days.toString()
+                    val daysLabelUpdate =
+                        getLabelUpdate(marriedDuration.Days, previousMarriedDuration.Days)
+                    updateDaysLabel(daysLabelUpdate)
+                    val daysStateUpdate =
+                        getStateUpdate(marriedDuration.Days, previousMarriedDuration.Days)
+                    updateDaysState(daysStateUpdate)
+                }
+                if (marriedDuration.Hours != previousMarriedDuration.Hours) {
+                    hoursCount.text = marriedDuration.Hours.toString()
+                    val hoursLabelUpdate =
+                        getLabelUpdate(marriedDuration.Hours, previousMarriedDuration.Hours)
+                    updateHoursLabel(hoursLabelUpdate)
+                    val hoursStateUpdate =
+                        getStateUpdate(marriedDuration.Hours, previousMarriedDuration.Hours)
+                    updateHoursState(hoursStateUpdate)
+                }
+                if (marriedDuration.Minutes != previousMarriedDuration.Minutes) {
+                    minutesCount.text = marriedDuration.Minutes.toString()
+                    val minutesLabelUpdate =
+                        getLabelUpdate(marriedDuration.Minutes, previousMarriedDuration.Minutes)
+                    updateMinutesLabel(minutesLabelUpdate)
+                    val minutesStateUpdate =
+                        getStateUpdate(marriedDuration.Minutes, previousMarriedDuration.Minutes)
+                    updateMinutesState(minutesStateUpdate)
+                }
+                if (marriedDuration.Seconds != previousMarriedDuration.Seconds) {
+                    secondsCount.text = marriedDuration.Seconds.toString()
+                    val secondsLabelUpdate =
+                        getLabelUpdate(marriedDuration.Seconds, previousMarriedDuration.Seconds)
+                    updateSecondsLabel(secondsLabelUpdate)
+                    val secondsStateUpdate =
+                        getStateUpdate(marriedDuration.Seconds, previousMarriedDuration.Seconds)
+                    updateSecondsState(secondsStateUpdate)
+                }
             }
-            if (marriedDuration.Months != previousMarriedDuration.Months) {
-                monthsCount.text = marriedDuration.Months.toString()
-                val monthsLabelUpdate =
-                    getLabelUpdate(marriedDuration.Months, previousMarriedDuration.Months)
-                updateMonthsLabel(monthsLabelUpdate)
-                val monthsStateUpdate =
-                    getStateUpdate(marriedDuration.Months, previousMarriedDuration.Months)
-                updateMonthsState(monthsStateUpdate)
-            }
-            if (marriedDuration.Days != previousMarriedDuration.Days) {
-                daysCount.text = marriedDuration.Days.toString()
-                val daysLabelUpdate =
-                    getLabelUpdate(marriedDuration.Days, previousMarriedDuration.Days)
-                updateDaysLabel(daysLabelUpdate)
-                val daysStateUpdate =
-                    getStateUpdate(marriedDuration.Days, previousMarriedDuration.Days)
-                updateDaysState(daysStateUpdate)
-            }
-            if (marriedDuration.Hours != previousMarriedDuration.Hours) {
-                hoursCount.text = marriedDuration.Hours.toString()
-                val hoursLabelUpdate =
-                    getLabelUpdate(marriedDuration.Hours, previousMarriedDuration.Hours)
-                updateHoursLabel(hoursLabelUpdate)
-                val hoursStateUpdate =
-                    getStateUpdate(marriedDuration.Hours, previousMarriedDuration.Hours)
-                updateHoursState(hoursStateUpdate)
-            }
-            if (marriedDuration.Minutes != previousMarriedDuration.Minutes) {
-                minutesCount.text = marriedDuration.Minutes.toString()
-                val minutesLabelUpdate =
-                    getLabelUpdate(marriedDuration.Minutes, previousMarriedDuration.Minutes)
-                updateMinutesLabel(minutesLabelUpdate)
-                val minutesStateUpdate =
-                    getStateUpdate(marriedDuration.Minutes, previousMarriedDuration.Minutes)
-                updateMinutesState(minutesStateUpdate)
-            }
-            if (marriedDuration.Seconds != previousMarriedDuration.Seconds) {
-                secondsCount.text = marriedDuration.Seconds.toString()
-                val secondsLabelUpdate =
-                    getLabelUpdate(marriedDuration.Seconds, previousMarriedDuration.Seconds)
-                updateSecondsLabel(secondsLabelUpdate)
-                val secondsStateUpdate =
-                    getStateUpdate(marriedDuration.Seconds, previousMarriedDuration.Seconds)
-                updateSecondsState(secondsStateUpdate)
-            }
-        }
 
-        previousMarriedDuration = marriedDuration
+            previousMarriedDuration = marriedDuration
         }
     }
 
