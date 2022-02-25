@@ -1,111 +1,114 @@
-package com.vuonglab.hennaandphu; // suppress missing package statement warning from Android Studio
+package com.vuonglab.hennaandphu
 
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.util.HashMap;
-import java.util.Map;
+import kotlin.jvm.JvmStatic
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.util.HashMap
 
-public class TimeZoneUnitTestGenerator {
-	public static void main(String[] args) {
-		System.out.println("*** Daylight saving time unit tests ***");
-		generateTimeZoneDaylightSavingTimeUnitTests();
+// suppress missing package statement warning from Android Studio
+object TimeZoneUnitTestGenerator {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        println("*** Daylight saving time unit tests ***")
+        generateTimeZoneDaylightSavingTimeUnitTests()
+        println("*** Standard time unit tests ***")
+        generateTimeZoneStandardTimeUnitTests()
+    }
 
-		System.out.println("*** Standard time unit tests ***");
-		generateTimeZoneStandardTimeUnitTests();
-	}
+    private fun generateTimeZoneDaylightSavingTimeUnitTests() {
+        val testDateTimeInPhoenix = LocalDateTime.of(2046, 7, 29, 18, 53, 46)
+        val years = 31
+        val months = 4
+        val days = 15
+        val hours = 9
+        val minutes = 26
+        val seconds = 53
+        generateTimeZoneUnitTests(
+            testDateTimeInPhoenix,
+            years, months, days,
+            hours, minutes, seconds
+        )
+    }
 
-	private static void generateTimeZoneDaylightSavingTimeUnitTests() {
-		final LocalDateTime testDateTimeInPhoenix = LocalDateTime.of(2046, 7, 29, 18, 53, 46);
-		final int years = 31, months = 4, days = 15;
-		final int hours = 9, minutes = 26, seconds = 53;
-		generateTimeZoneUnitTests(testDateTimeInPhoenix,
-			years, months, days,
-			hours, minutes, seconds
-		);
-	}
+    private fun generateTimeZoneStandardTimeUnitTests() {
+        val testDateTimeInPhoenix = LocalDateTime.of(2017, 11, 1, 11, 35, 11)
+        val years = 2
+        val months = 7
+        val days = 18
+        val hours = 2
+        val minutes = 8
+        val seconds = 18
+        generateTimeZoneUnitTests(
+            testDateTimeInPhoenix,
+            years, months, days,
+            hours, minutes, seconds
+        )
+    }
 
-	private static void generateTimeZoneStandardTimeUnitTests() {
-		final LocalDateTime testDateTimeInPhoenix = LocalDateTime.of(2017, 11, 1, 11, 35, 11);
-		final int years = 2, months = 7, days = 18;
-		final int hours = 2, minutes = 8, seconds = 18;
-		generateTimeZoneUnitTests(testDateTimeInPhoenix,
-				years, months, days,
-				hours, minutes, seconds
-		);
-	}
+    private fun generateTimeZoneUnitTests(
+        testDateTimeInPhoenix: LocalDateTime,
+        years: Int, months: Int, days: Int,
+        hours: Int, minutes: Int, seconds: Int
+    ) {
+        val allTimeZoneNamesAndOffsets = getAllTimeZoneNamesAndOffsets(testDateTimeInPhoenix)
+        for ((timeZoneName, zoneOffsetInSeconds) in allTimeZoneNamesAndOffsets) {
+            val unitTestName = generateUnitTestName(timeZoneName)
+            val offsetHours = zoneOffsetInSeconds / (60 * 60)
+            val offsetMinutes = zoneOffsetInSeconds % (60 * 60) / 60
 
-	private static void generateTimeZoneUnitTests(
-			LocalDateTime testDateTimeInPhoenix,
-		  	int years, int months, int days,
-		  	int hours, int minutes, int seconds)
-	{
-		Map<String, Integer> allTimeZoneNamesAndOffsets = getAllTimeZoneNamesAndOffsets(testDateTimeInPhoenix);
+            // The time in Phoenix (GMT-7) is in testDateTimeInPhoenix
+            // Calculate the time in the time zone being tested.
+            val testDateTime = testDateTimeInPhoenix.minusMinutes(-offsetMinutes.toLong())
+                .minusHours(-(offsetHours + 7).toLong())
+            val timeZoneOffset = String.format("%+03d:%02d", offsetHours, offsetMinutes)
+            printUnitTest(
+                unitTestName, testDateTime, timeZoneName, timeZoneOffset,
+                years, months, days,
+                hours, minutes, seconds
+            )
+        }
+    }
 
-		for (Map.Entry<String, Integer> timeZoneToTest : allTimeZoneNamesAndOffsets.entrySet()) {
-			String timeZoneName = timeZoneToTest.getKey();
-			Integer zoneOffsetInSeconds = timeZoneToTest.getValue();
+    private fun getAllTimeZoneNamesAndOffsets(testDateTimeInPhoenix: LocalDateTime): Map<String, Int> {
+        val timeZoneNamesAndOffsets: MutableMap<String, Int> = HashMap()
+        for (zoneId in ZoneId.getAvailableZoneIds()) {
+            val id = ZoneId.of(zoneId)
+            val zonedDateTime = ZonedDateTime.of(testDateTimeInPhoenix, id)
+            val zoneOffset = zonedDateTime.offset
+            val zoneOffsetInSeconds = zoneOffset.totalSeconds
+            timeZoneNamesAndOffsets[zoneId] = zoneOffsetInSeconds
+        }
+        return timeZoneNamesAndOffsets
+    }
 
-			String unitTestName = generateUnitTestName(timeZoneName);
+    private fun generateUnitTestName(timeZoneName: String): String {
+        var unitTestName = timeZoneName.replace('/', '_')
+        unitTestName = unitTestName.replace("+", "plus")
+        val unitTestNameParts = unitTestName.split("-".toRegex()).toTypedArray()
+        val nameContainsNegativeNumber =
+            unitTestNameParts.size == 2 && unitTestNameParts[1].matches(Regex("^\\d+$"))
+        unitTestName = unitTestName.replace("-", if (nameContainsNegativeNumber) "minus" else "_")
+        return unitTestName
+    }
 
-			int offsetHours = zoneOffsetInSeconds / (60 * 60);
-			int offsetMinutes = (zoneOffsetInSeconds % (60 * 60)) / 60;
-
-			// The time in Phoenix (GMT-7) is in testDateTimeInPhoenix
-			// Calculate the time in the time zone being tested.
-			LocalDateTime testDateTime = testDateTimeInPhoenix.minusMinutes(-offsetMinutes).minusHours(-(offsetHours+7));
-
-			String timeZoneOffset = String.format("%+03d:%02d", offsetHours, offsetMinutes);
-
-			printUnitTest(unitTestName, testDateTime, timeZoneName, timeZoneOffset,
-				years, months, days,
-				hours, minutes, seconds
-			);
-		}
-	}
-
-	private static Map<String, Integer> getAllTimeZoneNamesAndOffsets(LocalDateTime testDateTimeInPhoenix) {
-		Map<String, Integer> timeZoneNamesAndOffsets = new HashMap<>();
-
-		for (String zoneId : ZoneId.getAvailableZoneIds()) {
-			ZoneId id = ZoneId.of(zoneId);
-
-			ZonedDateTime zonedDateTime = ZonedDateTime.of(testDateTimeInPhoenix, id);
-			ZoneOffset zoneOffset = zonedDateTime.getOffset();
-			int zoneOffsetInSeconds = zoneOffset.getTotalSeconds();
-
-			timeZoneNamesAndOffsets.put(zoneId, zoneOffsetInSeconds);
-		}
-
-		return timeZoneNamesAndOffsets;
-	}
-
-	private static String generateUnitTestName(String timeZoneName) {
-		String unitTestName = timeZoneName.replace('/', '_');
-		unitTestName = unitTestName.replace("+", "plus");
-
-		String[] unitTestNameParts = unitTestName.split("-");
-		boolean nameContainsNegativeNumber = (unitTestNameParts.length == 2 && unitTestNameParts[1].matches("^\\d+$"));
-		unitTestName = unitTestName.replace("-", nameContainsNegativeNumber ? "minus" : "_");
-
-		return unitTestName;
-	}
-
-	private static void printUnitTest(String unitTestName, LocalDateTime testDateTime,
-									  String timeZoneName, String timeZoneOffset,
-									  int years, int months, int days,
-									  int hours, int minutes, int seconds)
-	{
-		System.out.println("@Test");
-		System.out.println(String.format("public void %s() {", unitTestName));
-		System.out.println(String.format("\tZonedDateTime now = getDateTimeInATimeZone(%d, %d, %d, %d, %d, %d, \"%s\"); // GMT%s",
-				testDateTime.getYear(), testDateTime.getMonthValue(), testDateTime.getDayOfMonth(),
-				testDateTime.getHour(), testDateTime.getMinute(), testDateTime.getSecond(),
-				timeZoneName, timeZoneOffset));
-		System.out.println("\tDuration marriedDuration = DurationCalculator.getMarriedDuration(now);");
-		System.out.println(String.format("\tassertDuration(marriedDuration, new Duration(%d, %d, %d, %d, %d, %d));",
-			years, months, days, hours, minutes, seconds));
-		System.out.println("}\n");
-	}
+    private fun printUnitTest(
+        unitTestName: String, testDateTime: LocalDateTime,
+        timeZoneName: String, timeZoneOffset: String,
+        years: Int, months: Int, days: Int,
+        hours: Int, minutes: Int, seconds: Int
+    ) {
+        println("@Test")
+        println("public void ${unitTestName}() {")
+        println("\tZonedDateTime now = getDateTimeInATimeZone("
+                + "${testDateTime.year}, ${testDateTime.monthValue}, ${testDateTime.dayOfMonth}, "
+                + "${testDateTime.hour}, ${testDateTime.minute}, ${testDateTime.second}, "
+                + "\"${timeZoneName}\"); // GMT${timeZoneOffset}"
+        )
+        println("\tDuration marriedDuration = DurationCalculator.getMarriedDuration(now);")
+        println("\tassertDuration(marriedDuration, new Duration("
+                + "$years, $months, $days, $hours, $minutes, $seconds));"
+        )
+        println("}\n")
+    }
 }
