@@ -1,299 +1,341 @@
-package com.vuonglab.hennaandphu;
+package com.vuonglab.hennaandphu
 
-import androidx.test.core.app.ActivityScenario;
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
+import androidx.test.filters.LargeTest
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.ext.junit.rules.activityScenarioRule
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-
-@RunWith(AndroidJUnit4.class)
+@RunWith(AndroidJUnit4::class)
 @LargeTest
-public class DateTimeLabelUpdateTests {
-    @Rule
-    public ActivityScenarioRule<MainActivity> rule
-            = new ActivityScenarioRule<>(MainActivity.class);
+class DateTimeLabelUpdateTests {
+    @get:Rule
+    val rule = activityScenarioRule<MainActivity>()
 
     // <editor-fold desc="Years grammatical number tests">
     @Test
-    public void labelYearToYears() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelYearToYears() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.year)));
+        scenario.onActivity { activity: MainActivity -> activity.updateYearsLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.yearsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.year)))
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.years)));
+        scenario.onActivity { activity: MainActivity -> activity.updateYearsLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.yearsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.years)))
     }
 
     @Test
-    public void labelYearNoChange() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelYearNoChange() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.year)));
+        scenario.onActivity { activity: MainActivity -> activity.updateYearsLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.yearsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.year)))
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.NOT_NEEDED));
-        onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.year)));
+        scenario.onActivity { activity: MainActivity -> activity.updateYearsLabel(LabelUpdate.NOT_NEEDED) }
+        Espresso.onView(ViewMatchers.withId(R.id.yearsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.year)))
     }
 
     @Test
-    public void labelYearsToYear() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelYearsToYear() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.years)));
+        scenario.onActivity { activity: MainActivity -> activity.updateYearsLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.yearsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.years)))
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.year)));
+        scenario.onActivity { activity: MainActivity -> activity.updateYearsLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.yearsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.year)))
     }
 
     @Test
-    public void labelYearsNoChange() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelYearsNoChange() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.years)));
+        scenario.onActivity { activity: MainActivity -> activity.updateYearsLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.yearsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.years)))
 
-        scenario.onActivity(activity -> activity.updateYearsLabel(LabelUpdate.NOT_NEEDED));
-        onView(withId(R.id.yearsLabel)).check(matches(withText(R.string.years)));
+        scenario.onActivity { activity: MainActivity -> activity.updateYearsLabel(LabelUpdate.NOT_NEEDED) }
+        Espresso.onView(ViewMatchers.withId(R.id.yearsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.years)))
     }
+
     // </editor-fold>
-
     // <editor-fold desc="Months grammatical number tests">
     @Test
-    public void labelMonthToMonths() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelMonthToMonths() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.month)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMonthsLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.monthsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.month)))
 
-        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.months)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMonthsLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.monthsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.months)))
     }
 
     @Test
-    public void labelMonthNoChange() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelMonthNoChange() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.month)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMonthsLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.monthsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.month)))
 
-        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.NOT_NEEDED));
-        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.month)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMonthsLabel(LabelUpdate.NOT_NEEDED) }
+        Espresso.onView(ViewMatchers.withId(R.id.monthsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.month)))
     }
 
     @Test
-    public void labelMonthsToMonth() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelMonthsToMonth() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.months)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMonthsLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.monthsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.months)))
 
-        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.month)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMonthsLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.monthsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.month)))
     }
 
     @Test
-    public void labelMonthsNoChange() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelMonthsNoChange() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.months)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMonthsLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.monthsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.months)))
 
-        scenario.onActivity(activity -> activity.updateMonthsLabel(LabelUpdate.NOT_NEEDED));
-        onView(withId(R.id.monthsLabel)).check(matches(withText(R.string.months)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMonthsLabel(LabelUpdate.NOT_NEEDED) }
+        Espresso.onView(ViewMatchers.withId(R.id.monthsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.months)))
     }
+
     // </editor-fold>
-
     // <editor-fold desc="Days grammatical number tests">
     @Test
-    public void labelDayToDays() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelDayToDays() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.day)));
+        scenario.onActivity { activity: MainActivity -> activity.updateDaysLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.daysLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.day)))
 
-        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.days)));
+        scenario.onActivity { activity: MainActivity -> activity.updateDaysLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.daysLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.days)))
     }
 
     @Test
-    public void labelDayNoChange() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelDayNoChange() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.day)));
+        scenario.onActivity { activity: MainActivity -> activity.updateDaysLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.daysLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.day)))
 
-        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.NOT_NEEDED));
-        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.day)));
+        scenario.onActivity { activity: MainActivity -> activity.updateDaysLabel(LabelUpdate.NOT_NEEDED) }
+        Espresso.onView(ViewMatchers.withId(R.id.daysLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.day)))
     }
 
     @Test
-    public void labelDaysToDay() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelDaysToDay() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.days)));
+        scenario.onActivity { activity: MainActivity -> activity.updateDaysLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.daysLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.days)))
 
-        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.day)));
+        scenario.onActivity { activity: MainActivity -> activity.updateDaysLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.daysLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.day)))
     }
 
     @Test
-    public void labelDaysNoChange() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelDaysNoChange() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.days)));
+        scenario.onActivity { activity: MainActivity -> activity.updateDaysLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.daysLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.days)))
 
-        scenario.onActivity(activity -> activity.updateDaysLabel(LabelUpdate.NOT_NEEDED));
-        onView(withId(R.id.daysLabel)).check(matches(withText(R.string.days)));
+        scenario.onActivity { activity: MainActivity -> activity.updateDaysLabel(LabelUpdate.NOT_NEEDED) }
+        Espresso.onView(ViewMatchers.withId(R.id.daysLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.days)))
     }
+
     // </editor-fold>
-
     // <editor-fold desc="Hours grammatical number tests">
     @Test
-    public void labelHourToHours() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelHourToHours() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hour)));
+        scenario.onActivity { activity: MainActivity -> activity.updateHoursLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.hoursLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.hour)))
 
-        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hours)));
+        scenario.onActivity { activity: MainActivity -> activity.updateHoursLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.hoursLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.hours)))
     }
 
     @Test
-    public void labelHourNoChange() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelHourNoChange() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hour)));
+        scenario.onActivity { activity: MainActivity -> activity.updateHoursLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.hoursLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.hour)))
 
-        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.NOT_NEEDED));
-        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hour)));
+        scenario.onActivity { activity: MainActivity -> activity.updateHoursLabel(LabelUpdate.NOT_NEEDED) }
+        Espresso.onView(ViewMatchers.withId(R.id.hoursLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.hour)))
     }
 
     @Test
-    public void labelHoursToHour() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelHoursToHour() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hours)));
+        scenario.onActivity { activity: MainActivity -> activity.updateHoursLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.hoursLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.hours)))
 
-        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hour)));
+        scenario.onActivity { activity: MainActivity -> activity.updateHoursLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.hoursLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.hour)))
     }
 
     @Test
-    public void labelHoursNoChange() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelHoursNoChange() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hours)));
+        scenario.onActivity { activity: MainActivity -> activity.updateHoursLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.hoursLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.hours)))
 
-        scenario.onActivity(activity -> activity.updateHoursLabel(LabelUpdate.NOT_NEEDED));
-        onView(withId(R.id.hoursLabel)).check(matches(withText(R.string.hours)));
+        scenario.onActivity { activity: MainActivity -> activity.updateHoursLabel(LabelUpdate.NOT_NEEDED) }
+        Espresso.onView(ViewMatchers.withId(R.id.hoursLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.hours)))
     }
+
     // </editor-fold>
-
     // <editor-fold desc="Minutes grammatical number tests">
     @Test
-    public void labelMinuteToMinutes() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelMinuteToMinutes() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minute)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMinutesLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.minutesLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.minute)))
 
-        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minutes)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMinutesLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.minutesLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.minutes)))
     }
 
     @Test
-    public void labelMinuteNoChange() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelMinuteNoChange() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minute)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMinutesLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.minutesLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.minute)))
 
-        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.NOT_NEEDED));
-        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minute)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMinutesLabel(LabelUpdate.NOT_NEEDED) }
+        Espresso.onView(ViewMatchers.withId(R.id.minutesLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.minute)))
     }
 
     @Test
-    public void labelMinutesToMinute() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelMinutesToMinute() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minutes)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMinutesLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.minutesLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.minutes)))
 
-        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minute)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMinutesLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.minutesLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.minute)))
     }
 
     @Test
-    public void labelMinutesNoChange() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelMinutesNoChange() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minutes)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMinutesLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.minutesLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.minutes)))
 
-        scenario.onActivity(activity -> activity.updateMinutesLabel(LabelUpdate.NOT_NEEDED));
-        onView(withId(R.id.minutesLabel)).check(matches(withText(R.string.minutes)));
+        scenario.onActivity { activity: MainActivity -> activity.updateMinutesLabel(LabelUpdate.NOT_NEEDED) }
+        Espresso.onView(ViewMatchers.withId(R.id.minutesLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.minutes)))
     }
+
     // </editor-fold>
-
     // <editor-fold desc="Seconds grammatical number tests">
     @Test
-    public void labelSecondToSeconds() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelSecondToSeconds() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.second)));
+        scenario.onActivity { activity: MainActivity -> activity.updateSecondsLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.secondsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.second)))
 
-        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.seconds)));
+        scenario.onActivity { activity: MainActivity -> activity.updateSecondsLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.secondsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.seconds)))
     }
 
     @Test
-    public void labelSecondNoChange() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelSecondNoChange() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.second)));
+        scenario.onActivity { activity: MainActivity -> activity.updateSecondsLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.secondsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.second)))
 
-        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.NOT_NEEDED));
-        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.second)));
+        scenario.onActivity { activity: MainActivity -> activity.updateSecondsLabel(LabelUpdate.NOT_NEEDED) }
+        Espresso.onView(ViewMatchers.withId(R.id.secondsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.second)))
     }
 
     @Test
-    public void labelSecondsToSecond() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelSecondsToSecond() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.seconds)));
+        scenario.onActivity { activity: MainActivity -> activity.updateSecondsLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.secondsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.seconds)))
 
-        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.SHOW_SINGULAR));
-        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.second)));
+        scenario.onActivity { activity: MainActivity -> activity.updateSecondsLabel(LabelUpdate.SHOW_SINGULAR) }
+        Espresso.onView(ViewMatchers.withId(R.id.secondsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.second)))
     }
 
     @Test
-    public void labelSecondsNoChange() {
-        ActivityScenario<MainActivity> scenario = rule.getScenario();
+    fun labelSecondsNoChange() {
+        val scenario = rule.scenario
 
-        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.SHOW_PLURAL));
-        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.seconds)));
+        scenario.onActivity { activity: MainActivity -> activity.updateSecondsLabel(LabelUpdate.SHOW_PLURAL) }
+        Espresso.onView(ViewMatchers.withId(R.id.secondsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.seconds)))
 
-        scenario.onActivity(activity -> activity.updateSecondsLabel(LabelUpdate.NOT_NEEDED));
-        onView(withId(R.id.secondsLabel)).check(matches(withText(R.string.seconds)));
-    }
-    // </editor-fold>
+        scenario.onActivity { activity: MainActivity -> activity.updateSecondsLabel(LabelUpdate.NOT_NEEDED) }
+        Espresso.onView(ViewMatchers.withId(R.id.secondsLabel))
+            .check(ViewAssertions.matches(ViewMatchers.withText(R.string.seconds)))
+    } // </editor-fold>
 }
