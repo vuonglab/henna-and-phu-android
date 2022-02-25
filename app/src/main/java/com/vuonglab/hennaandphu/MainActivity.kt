@@ -6,7 +6,6 @@ import android.os.Handler
 import android.os.Looper
 import com.vuonglab.hennaandphu.databinding.ActivityMainBinding
 import java.time.ZonedDateTime
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -18,8 +17,6 @@ class MainActivity : AppCompatActivity() {
         -1, -1, -1
     )
 
-    private var timer: Timer? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,32 +24,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         handler = Handler(Looper.getMainLooper())
-
-        timer = Timer()
-        timer!!.schedule(object : TimerTask() {
-            override fun run() {
-                handler.postDelayed(runnable, 0)
-            }
-        }, 0, 1000)
     }
 
-    override fun onStop() {
-        super.onStop()
-        timer!!.cancel()
+    override fun onPause() {
+        super.onPause()
+        handler.removeCallbacks(updateDurationTask)
     }
 
-    override fun onRestart() {
-        // override fun onResume() {
-        super.onRestart()
-        timer = Timer()
-        timer!!.schedule(object : TimerTask() {
-            override fun run() {
-                handler.postDelayed(runnable, 0)
-            }
-        }, 0, 1000)
+    override fun onResume() {
+        super.onResume()
+        handler.post(updateDurationTask)
     }
 
-    private val runnable = Runnable {
+    private val updateDurationTask = object : Runnable {
+        override fun run() {
+        handler.postDelayed(this, 1000)
+
         val marriedDuration = getMarriedDuration(ZonedDateTime.now())
 
         binding.apply {
@@ -113,6 +100,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         previousMarriedDuration = marriedDuration
+        }
     }
 
     fun updateYearsLabel(yearsLabelUpdate: LabelUpdate) {
