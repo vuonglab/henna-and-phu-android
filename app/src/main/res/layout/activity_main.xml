@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true">
+
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:stretchColumns="*"
     android:layout_margin="16sp"
     tools:context=".MainActivity">
@@ -103,3 +108,5 @@
             android:gravity="start" />
     </TableRow>
 </TableLayout>
+
+</ScrollView>
