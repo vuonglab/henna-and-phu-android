@@ -9,7 +9,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:stretchColumns="*"
-    android:layout_margin="16sp"
+    android:layout_marginTop="4sp"
+    android:layout_marginHorizontal="16sp"
     tools:context=".MainActivity">
 
     <TableRow>
@@ -92,7 +93,7 @@
             android:gravity="start" />
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="4sp">
         <TextView
             android:id="@+id/secondsCount"
             android:text="53"
