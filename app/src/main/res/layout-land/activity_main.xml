@@ -10,7 +10,7 @@
     <TableRow>
         <TextView
             android:id="@+id/yearsCount"
-            android:text="4"
+            tools:text="4"
             android:textSize="48sp"
             android:layout_marginEnd="2sp"
             android:gravity="end" />
@@ -24,7 +24,7 @@
 
         <TextView
             android:id="@+id/hoursCount"
-            android:text="8"
+            tools:text="8"
             android:textSize="48sp"
             android:layout_marginEnd="2sp"
             android:gravity="end" />
@@ -40,7 +40,7 @@
     <TableRow>
         <TextView
             android:id="@+id/monthsCount"
-            android:text="10"
+            tools:text="10"
             android:textSize="48sp"
             android:layout_marginEnd="2sp"
             android:gravity="end" />
@@ -54,7 +54,7 @@
 
         <TextView
             android:id="@+id/minutesCount"
-            android:text="4"
+            tools:text="4"
             android:textSize="48sp"
             android:layout_marginEnd="2sp"
             android:gravity="end" />
@@ -70,7 +70,7 @@
     <TableRow>
         <TextView
             android:id="@+id/daysCount"
-            android:text="28"
+            tools:text="28"
             android:textSize="48sp"
             android:layout_marginEnd="2sp"
             android:gravity="end" />
@@ -84,7 +84,7 @@
 
         <TextView
             android:id="@+id/secondsCount"
-            android:text="53"
+            tools:text="53"
             android:textSize="48sp"
             android:layout_marginEnd="2sp"
             android:gravity="end" />
