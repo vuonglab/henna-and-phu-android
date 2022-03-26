@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="4dp"
     android:fillViewport="true">
 
 <TableLayout
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:stretchColumns="*"
-    android:layout_margin="16sp"
     tools:context=".MainActivity">
 
     <TableRow>
@@ -25,12 +25,14 @@
             android:text="@string/years"
             android:textSize="48sp"
             android:layout_marginStart="2sp"
+            android:layout_marginEnd="4dp"
             android:gravity="start" />
 
         <TextView
             android:id="@+id/hoursCount"
             tools:text="8"
             android:textSize="48sp"
+            android:layout_marginStart="4dp"
             android:layout_marginEnd="2sp"
             android:gravity="end" />
 
@@ -55,12 +57,14 @@
             android:text="@string/months"
             android:textSize="48sp"
             android:layout_marginStart="2sp"
+            android:layout_marginEnd="4dp"
             android:gravity="start" />
 
         <TextView
             android:id="@+id/minutesCount"
             tools:text="4"
             android:textSize="48sp"
+            android:layout_marginStart="4dp"
             android:layout_marginEnd="2sp"
             android:gravity="end" />
 
@@ -85,12 +89,14 @@
             android:text="@string/days"
             android:textSize="48sp"
             android:layout_marginStart="2sp"
+            android:layout_marginEnd="4dp"
             android:gravity="start" />
 
         <TextView
             android:id="@+id/secondsCount"
             tools:text="53"
             android:textSize="48sp"
+            android:layout_marginStart="4dp"
             android:layout_marginEnd="2sp"
             android:gravity="end" />
 
